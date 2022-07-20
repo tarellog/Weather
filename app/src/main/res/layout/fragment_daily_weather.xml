@@ -3,7 +3,54 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.DailyWeatherFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <ImageButton
+            android:id="@+id/location"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/location"
+            android:background="@drawable/rounded_corner"
+            app:tint="#8F96A1" />
+
+        <TextView
+            android:layout_width="260dp"
+            android:layout_height="30dp"
+            tools:text="@tools:sample/lorem"
+            android:textColor="#2A2D33"
+            android:textSize="18sp"
+            android:layout_marginStart="18dp"
+            android:gravity="center" />
+
+        <ImageButton
+            android:id="@+id/loader"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/loader"
+            android:background="@drawable/rounded_corner"
+            app:tint="#8F96A1"
+            android:layout_marginEnd="8dp" />
+
+        <ImageButton
+            android:id="@+id/search"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/search"
+            android:background="@drawable/rounded_corner"
+            app:tint="#8F96A1" />
+
+    </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:layout_width="match_parent"
