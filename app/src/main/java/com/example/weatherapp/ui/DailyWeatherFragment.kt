@@ -6,12 +6,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.weatherapp.R
+import com.example.weatherapp.data.repository.RemoteRepositoryImpl
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
+import com.example.weatherapp.domain.RemoteRepository
 
 class DailyWeatherFragment : Fragment() {
 
     var _binding: FragmentDailyWeatherBinding? = null
     val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
+
+    private val remoteRepository: RemoteRepository = RemoteRepositoryImpl()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

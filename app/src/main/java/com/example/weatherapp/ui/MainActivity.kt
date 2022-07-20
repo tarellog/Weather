@@ -13,8 +13,6 @@ class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
 
-    private val remoteRepository: RemoteRepository = RemoteRepositoryImpl()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -26,12 +24,6 @@ class MainActivity : AppCompatActivity() {
             val transaction: FragmentTransaction = manager.beginTransaction()
             searchDialogFragment.show(transaction, "searchDialog")
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        remoteRepository.requestRepository()
-            .subscribe({ Log.d("data", it.toString())}){}
     }
 
     override fun onDestroy() {
