@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
-import com.example.weatherapp.R
 import com.example.weatherapp.data.repository.RemoteRepositoryImpl
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.domain.RemoteRepository
@@ -18,8 +17,12 @@ class DailyWeatherFragment : Fragment() {
 
     private val remoteRepository: RemoteRepository = RemoteRepositoryImpl()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentDailyWeatherBinding.inflate(inflater, container, false)
 
         binding.search.setOnClickListener {
             val searchDialogFragment = SearchDialogFragment()
@@ -28,14 +31,8 @@ class DailyWeatherFragment : Fragment() {
             searchDialogFragment.show(transaction, "searchDialog")
         }
 
-    }
+        remoteRepository.requestRepository()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentDailyWeatherBinding.inflate(inflater, container, false)
         return binding.root
     }
 

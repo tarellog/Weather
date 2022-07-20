@@ -2,11 +2,7 @@ package com.example.weatherapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.FragmentTransaction
-import com.example.weatherapp.data.repository.RemoteRepositoryImpl
 import com.example.weatherapp.databinding.ActivityMainBinding
-import com.example.weatherapp.domain.RemoteRepository
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,6 +14,9 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportFragmentManager.beginTransaction()
+            .add(binding.containerFragment.id, DailyWeatherFragment())
+            .commit()
     }
 
     override fun onDestroy() {
