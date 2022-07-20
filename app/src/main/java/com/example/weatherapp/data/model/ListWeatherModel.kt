@@ -3,8 +3,8 @@ package com.example.weatherapp.data.model
 import com.google.gson.annotations.SerializedName
 
 data class ListWeatherModel(
-    @SerializedName("id")
-    val id: Int,
+    @SerializedName("dt")
+    val dt: Int,
     @SerializedName("main")
     val main: MainWeatherModel,
     @SerializedName("weather")
@@ -16,7 +16,7 @@ data class ListWeatherModel(
     @SerializedName("visibility")
     val visibility: Int,
     @SerializedName("pop")
-    val pop: Int,
+    val pop: Double,
     @SerializedName("sys")
     val sys: SysModel,
     @SerializedName("dt_txt")
