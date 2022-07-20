@@ -18,12 +18,6 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.search.setOnClickListener {
-            val searchDialogFragment = SearchDialogFragment()
-            val manager = supportFragmentManager
-            val transaction: FragmentTransaction = manager.beginTransaction()
-            searchDialogFragment.show(transaction, "searchDialog")
-        }
     }
 
     override fun onDestroy() {
