@@ -25,7 +25,7 @@
                 app:tint="#8F96A1" />
 
             <TextView
-                android:layout_width="265dp"
+                android:layout_width="260dp"
                 android:layout_height="30dp"
                 tools:text="@tools:sample/lorem"
                 android:textColor="#2A2D33"
@@ -52,13 +52,7 @@
 
     </androidx.appcompat.widget.Toolbar>
     
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
