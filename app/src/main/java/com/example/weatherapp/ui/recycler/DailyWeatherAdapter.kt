@@ -2,7 +2,6 @@ package com.example.weatherapp.ui.recycler
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weatherapp.data.model.ListWeatherModel
 import com.example.weatherapp.data.model.custommodel.DailyWeatherModel
 
 class DailyWeatherAdapter : RecyclerView.Adapter<DailyWeatherHolder>() {
