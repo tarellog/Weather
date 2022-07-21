@@ -17,7 +17,7 @@ class DailyWeatherHolder
 
     fun populate(item: ListWeatherModel) {
         binding.date.text = item.dt_txt
-        binding.temp.text = item.main.temp.toString()
+        binding.temp.text = item.main.temp_min.toString()
         binding.maxTemp.text = item.main.temp_max.toString()
         Picasso.get()
             .load("https://openweathermap.org/img/wn/" + item.weather.first().icon + "@2x.png")
