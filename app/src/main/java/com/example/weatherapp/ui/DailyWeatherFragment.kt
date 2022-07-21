@@ -46,7 +46,7 @@ class DailyWeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.listWeatherModel.observe(viewLifecycleOwner) {
+        viewModel.dailyWeatherModel.observe(viewLifecycleOwner) {
             adapter.setData(it)
         }
 

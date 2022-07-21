@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.data.model.ListWeatherModel
+import com.example.weatherapp.data.model.custommodel.DailyWeatherModel
 import com.example.weatherapp.databinding.DailyItemBinding
 import com.squareup.picasso.Picasso
 
@@ -15,12 +16,12 @@ class DailyWeatherHolder
         DailyItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
-    fun populate(item: ListWeatherModel) {
-        binding.date.text = item.dt_txt
-        binding.temp.text = item.main.temp_min.toString()
-        binding.maxTemp.text = item.main.temp_max.toString()
+    fun populate(item: DailyWeatherModel) {
+        binding.date.text = item.data
+        binding.temp.text = item.minTemp.toString()
+        binding.maxTemp.text = item.maxTemp.toString()
         Picasso.get()
-            .load("https://openweathermap.org/img/wn/" + item.weather.first().icon + "@2x.png")
+            .load("https://openweathermap.org/img/wn/" + item.icon + "@2x.png")
             .into(binding.image)
     }
 }
