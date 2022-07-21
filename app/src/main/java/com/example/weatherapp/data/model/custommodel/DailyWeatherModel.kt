@@ -1,9 +1,7 @@
 package com.example.weatherapp.data.model.custommodel
 
-import java.util.*
-
-data class DailyModel(
-    val data: Date,
+data class DailyWeatherModel(
+    val data: String,
     val minTemp: Int,
     val maxTemp: Int,
     val icon: String
