@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModel
 import com.example.weatherapp.data.repository.RemoteRepositoryImpl
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.domain.RemoteRepository
@@ -17,8 +19,9 @@ class DailyWeatherFragment : Fragment() {
     var _binding: FragmentDailyWeatherBinding? = null
     val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
 
-    private val remoteRepository: RemoteRepository = RemoteRepositoryImpl()
-    private val adapter: DailyWeatherAdapter = DailyWeatherAdapter()
+    private lateinit var adapter: DailyWeatherAdapter
+
+    private val viewModel: DailyWeatherViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -34,20 +37,21 @@ class DailyWeatherFragment : Fragment() {
             searchDialogFragment.show(transaction, "searchDialog")
         }
 
+        adapter = DailyWeatherAdapter()
+        binding.recycler.adapter = adapter
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.recycler.adapter = adapter
-        loadData()
+        viewModel.listWeatherModel.observe(viewLifecycleOwner) {
+            adapter.setData(it)
+        }
 
-    }
+        viewModel.loadData()
 
-    private fun loadData() {
-        remoteRepository.requestRepository()
-            .subscribe({adapter.setData(it.list)}){}
     }
 
 }
