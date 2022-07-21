@@ -13,8 +13,7 @@
         android:background="#FFFFFF"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        >
+        app:layout_constraintEnd_toEndOf="parent">
 
         <ImageButton
             android:id="@+id/location"
@@ -22,15 +21,15 @@
             android:layout_height="32dp"
             android:src="@drawable/location"
             android:background="@drawable/rounded_corner"
+            android:layout_marginStart="25dp"
             app:tint="#8F96A1" />
 
         <TextView
-            android:layout_width="260dp"
+            android:layout_width="240dp"
             android:layout_height="30dp"
             tools:text="@tools:sample/lorem"
             android:textColor="#2A2D33"
             android:textSize="18sp"
-            android:layout_marginStart="18dp"
             android:gravity="center" />
 
         <ImageButton
@@ -47,6 +46,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@drawable/search"
+            android:layout_marginEnd="25dp"
             android:background="@drawable/rounded_corner"
             app:tint="#8F96A1" />
 

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.data.model.ListWeatherModel
 import com.example.weatherapp.databinding.DailyItemBinding
+import com.squareup.picasso.Picasso
 
 class DailyWeatherHolder
     (
@@ -18,6 +19,8 @@ class DailyWeatherHolder
         binding.date.text = item.dt_txt
         binding.temp.text = item.main.temp.toString()
         binding.maxTemp.text = item.main.temp_max.toString()
-
+        Picasso.get()
+            .load("https://openweathermap.org/img/wn/" + item.weather.first().icon + "@2x.png")
+            .into(binding.image)
     }
 }
