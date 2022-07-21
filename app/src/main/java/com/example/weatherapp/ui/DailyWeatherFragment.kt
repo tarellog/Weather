@@ -16,8 +16,8 @@ import com.example.weatherapp.ui.recycler.DailyWeatherAdapter
 
 class DailyWeatherFragment : Fragment() {
 
-    var _binding: FragmentDailyWeatherBinding? = null
-    val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
+    private var _binding: FragmentDailyWeatherBinding? = null
+    private val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
 
     private lateinit var adapter: DailyWeatherAdapter
 

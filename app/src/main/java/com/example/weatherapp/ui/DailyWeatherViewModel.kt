@@ -9,7 +9,7 @@ import com.example.weatherapp.domain.RemoteRepository
 
 class DailyWeatherViewModel : ViewModel() {
 
-    val repository: RemoteRepository = RemoteRepositoryImpl()
+    private val repository: RemoteRepository = RemoteRepositoryImpl()
 
     private var _listWeatherModel = MutableLiveData<List<ListWeatherModel>>()
     val listWeatherModel: LiveData<List<ListWeatherModel>> get() = _listWeatherModel
