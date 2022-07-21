@@ -37,8 +37,7 @@ class DailyWeatherFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        remoteRepository.requestRepository()
-            .subscribe({Log.d("da", it.toString())}) {}
+
     }
 
 }
