@@ -15,6 +15,9 @@ class DailyWeatherHolder
     )
 
     fun populate(item: ListWeatherModel) {
+        binding.date.text = item.dt_txt
+        binding.temp.text = item.main.temp.toString()
+        binding.maxTemp.text = item.main.temp_max.toString()
 
     }
 }

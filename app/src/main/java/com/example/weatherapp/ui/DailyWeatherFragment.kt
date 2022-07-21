@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction
 import com.example.weatherapp.data.repository.RemoteRepositoryImpl
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.domain.RemoteRepository
+import com.example.weatherapp.ui.recycler.DailyWeatherAdapter
 
 class DailyWeatherFragment : Fragment() {
 
@@ -17,6 +18,7 @@ class DailyWeatherFragment : Fragment() {
     val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
 
     private val remoteRepository: RemoteRepository = RemoteRepositoryImpl()
+    private val adapter: DailyWeatherAdapter = DailyWeatherAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,9 +37,17 @@ class DailyWeatherFragment : Fragment() {
         return binding.root
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
+        binding.recycler.adapter = adapter
+        loadData()
+
+    }
+
+    private fun loadData() {
+        remoteRepository.requestRepository()
+            .subscribe({adapter.setData(it.list)}){}
     }
 
 }
