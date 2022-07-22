@@ -5,5 +5,5 @@
     <string name="cancel">Отменить</string>
     <string name="add">Добавить</string>
     <string name="temp">%1$d°</string>
-    <string name="today">Сегодня</string>
+    <string name="today">Сегодня %1$s</string>
 </resources>
