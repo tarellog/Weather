@@ -19,12 +19,13 @@ class HeaderScreenWeatherHolder(
 
     fun populate(item: TodayWeatherModel) {
         val sdf = SimpleDateFormat("dd MMMM, E", Locale("ru"))
-        binding.todayDate.text = binding.root.context.getString(R.string.today, sdf.format(item.date).toString())
+        binding.todayDate.text = binding.root.context.getString(
+            R.string.today, sdf.format(item.date).toString()
+        )
         binding.todayTemp.text = binding.root.context.getString(R.string.temp, item.temp)
         binding.todayDescription.text = item.description
         Picasso.get()
             .load("https://openweathermap.org/img/wn/" + item.icon + "@2x.png")
             .into(binding.todayIcon)
-
     }
 }
