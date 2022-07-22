@@ -1,5 +1,6 @@
 package com.example.weatherapp.data.model.custommodel
 
+import com.example.weatherapp.domain.BasedModel
 import java.util.*
 
 data class TodayWeatherModel(
@@ -7,4 +8,4 @@ data class TodayWeatherModel(
     val icon: String,
     val temp: Int,
     val description: String
-)
+) : BasedModel
