@@ -19,9 +19,6 @@ fun List<ListWeatherModel>.mapToHeaderDisplayModel() : List<TodayWeatherModel> {
             if (index == 0) {
                 currentDay = dailyWeatherModel.date
                 true
-            } else if (dailyWeatherModel.date.after(currentDay)) {
-                currentDay = dailyWeatherModel.date
-                true
             } else false
         }
 }
