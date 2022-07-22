@@ -3,20 +3,36 @@ package com.example.weatherapp.ui.recycler
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.data.model.custommodel.DailyWeatherModel
+import com.example.weatherapp.data.model.custommodel.TodayWeatherModel
+import com.example.weatherapp.domain.BasedModel
 
-class DailyWeatherAdapter : RecyclerView.Adapter<DailyWeatherHolder>() {
+class DailyWeatherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val list: MutableList<DailyWeatherModel> = mutableListOf()
+    private val list: MutableList<BasedModel> = mutableListOf()
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = DailyWeatherHolder(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
+        when(viewType) {
+            0 -> DailyWeatherHolder(parent)
+            else -> HeaderScreenWeatherHolder(parent)
+        }
 
-    override fun onBindViewHolder(holder: DailyWeatherHolder, position: Int) {
-        holder.populate(list[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        when(holder) {
+            is DailyWeatherHolder -> holder.populate(list[position] as DailyWeatherModel)
+            is HeaderScreenWeatherHolder -> holder.populate(list[position] as TodayWeatherModel)
+        }
     }
 
     override fun getItemCount() = list.size
 
-    fun setData(getList: List<DailyWeatherModel>) {
+    override fun getItemViewType(position: Int): Int {
+        return when(list[position]) {
+            is DailyWeatherModel -> 0
+            else -> 1
+        }
+    }
+
+    fun setData(getList: List<BasedModel>) {
         list.addAll(getList)
         notifyDataSetChanged()
     }

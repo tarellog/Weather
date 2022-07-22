@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.data.model.custommodel.TodayWeatherModel
 import com.example.weatherapp.databinding.HeaderItemBinding
+import com.squareup.picasso.Picasso
+import java.text.SimpleDateFormat
+import java.util.*
 
 class HeaderScreenWeatherHolder(
     private val binding: HeaderItemBinding
@@ -13,7 +16,14 @@ class HeaderScreenWeatherHolder(
         HeaderItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     )
 
-    fun populate() {
+    fun populate(item: TodayWeatherModel) {
+        val sdf = SimpleDateFormat("dd MMMM, E", Locale("ru"))
+        binding.todayDate.text = sdf.format(item.date)
+        binding.todayTemp.text = item.temp.toString()
+        binding.todayDescription.text = item.description
+        Picasso.get()
+            .load("https://openweathermap.org/img/wn/" + item.icon + "@2x.png")
+            .into(binding.todayIcon)
 
     }
 }
