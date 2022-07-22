@@ -4,4 +4,6 @@
     <string name="hello_blank_fragment">Введите город</string>
     <string name="cancel">Отменить</string>
     <string name="add">Добавить</string>
+    <string name="temp">%1$d°</string>
+    <string name="today">Сегодня</string>
 </resources>

@@ -11,8 +11,8 @@ fun List<ListWeatherModel>.mapToDisplayModel(): List<DailyWeatherModel> {
         .map {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val date = sdf.parse(it.dt_txt)
-        val minTemp = it.main.temp_min.toInt()
-        val maxTemp = it.main.temp_max.toInt()
+        val minTemp = (it.main.temp_min -273f).toInt()
+        val maxTemp = (it.main.temp_max -273f).toInt()
         val icon = it.weather.first().icon
         DailyWeatherModel(date, minTemp, maxTemp, icon)
     }
