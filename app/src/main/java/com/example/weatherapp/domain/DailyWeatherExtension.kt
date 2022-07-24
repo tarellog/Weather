@@ -4,7 +4,7 @@ import com.example.weatherapp.data.model.ListWeatherModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun List<ListWeatherModel>.mapToDisplayModel(): List<BasedModel.DailyWeatherModel> {
+fun List<ListWeatherModel>.mapToDisplayModel(): List<BasedModel> {
     var currentDay = Date()
     return this
         .map {
