@@ -2,8 +2,6 @@ package com.example.weatherapp.ui.recycler
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weatherapp.data.model.custommodel.DailyWeatherModel
-import com.example.weatherapp.data.model.custommodel.TodayWeatherModel
 import com.example.weatherapp.domain.BasedModel
 
 class DailyWeatherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -18,8 +16,8 @@ class DailyWeatherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when(holder) {
-            is DailyWeatherHolder -> holder.populate(list[position] as DailyWeatherModel)
-            is HeaderScreenWeatherHolder -> holder.populate(list[position] as TodayWeatherModel)
+            is DailyWeatherHolder -> holder.populate(list[position] as BasedModel.DailyWeatherModel)
+            is HeaderScreenWeatherHolder -> holder.populate(list[position] as BasedModel.TodayWeatherModel)
         }
     }
 
@@ -27,12 +25,13 @@ class DailyWeatherAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         return when(list[position]) {
-            is DailyWeatherModel -> 0
+            is BasedModel.DailyWeatherModel -> 0
             else -> 1
         }
     }
 
     fun setData(getList: List<BasedModel>) {
+        list.clear()
         list.addAll(getList)
         notifyDataSetChanged()
     }
