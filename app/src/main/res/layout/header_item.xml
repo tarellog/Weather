@@ -6,7 +6,7 @@
     android:layout_marginHorizontal="25dp"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="20dp"
-    android:background="#5AADFF"
+    android:background="@drawable/ic_daily_bg"
     android:orientation="vertical">
 
     <TextView
