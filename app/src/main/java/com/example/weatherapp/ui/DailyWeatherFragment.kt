@@ -1,13 +1,15 @@
 package com.example.weatherapp.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
+import com.example.weatherapp.ui.DailyWeatherViewModel.ViewState
 import com.example.weatherapp.ui.recycler.DailyWeatherAdapter
 
 class DailyWeatherFragment : Fragment() {
@@ -17,7 +19,7 @@ class DailyWeatherFragment : Fragment() {
 
     private lateinit var adapter: DailyWeatherAdapter
 
-    private val viewModel: DailyWeatherViewModel by viewModels()
+    private val viewModel: DailyWeatherViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,17 +44,19 @@ class DailyWeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.todayWeatherModel.observe(viewLifecycleOwner) {
-            adapter.setData(it)
+        viewModel.basedModel.observe(viewLifecycleOwner, ::render)
+
+    }
+
+    private fun render(state: ViewState) {
+        when(state) {
+            is ViewState.Success -> adapter.setData(state.weather)
+            is ViewState.Error -> Toast.makeText(
+                requireContext(),
+                "Произошла ошибка, повторите попытку",
+                Toast.LENGTH_SHORT
+            ).show()
         }
-
-        viewModel.dailyWeatherModel.observe(viewLifecycleOwner) {
-            adapter.setData(it)
-        }
-
-        viewModel.loadTodayWeatherData()
-        viewModel.loadDailyWeatherData()
-
     }
 
 }
