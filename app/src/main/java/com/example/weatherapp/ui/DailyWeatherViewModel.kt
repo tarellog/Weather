@@ -4,14 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.data.repository.RemoteRepositoryImpl
-import com.example.weatherapp.domain.BasedModel
 import com.example.weatherapp.domain.RemoteRepository
 
 class DailyWeatherViewModel : ViewModel() {
 
     sealed class ViewState {
         data class Success(
-            val weather: List<BasedModel>
+            val weather: RemoteRepositoryImpl.WeatherResponse,
         ) : ViewState()
 
         object Error : ViewState()
