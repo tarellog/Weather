@@ -21,16 +21,22 @@ class RemoteRepositoryImpl : RemoteRepository {
 
     private val apiService: ApiWeatherService = retrofit.create(ApiWeatherService::class.java)
 
-    override fun requestRepository(cityName: String): Single<List<BasedModel>> {
+    override fun requestRepository(cityName: String): Single<WeatherResponse> {
         return apiService.getApi(cityName)
             .map { weatherModel ->
-                buildList {
-                    add(weatherModel.list.mapToHeaderDisplayModel())
-                    addAll(weatherModel.list.mapToDisplayModel())
-                }
+                WeatherResponse(
+                    weatherList = buildList {
+                        add(weatherModel.list.mapToHeaderDisplayModel())
+                        addAll(weatherModel.list.mapToDisplayModel())
+                    },
+                    cityName = weatherModel.city.name)
             }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }
 
+    data class WeatherResponse(
+        val weatherList: List<BasedModel>,
+        val cityName: String
+    )
 }
