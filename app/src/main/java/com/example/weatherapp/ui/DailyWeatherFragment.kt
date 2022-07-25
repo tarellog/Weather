@@ -50,13 +50,18 @@ class DailyWeatherFragment : Fragment() {
 
     private fun render(state: ViewState) {
         when(state) {
-            is ViewState.Success -> adapter.setData(state.weather)
+            is ViewState.Success -> showWeather(state)
             is ViewState.Error -> Toast.makeText(
                 requireContext(),
                 "Произошла ошибка, повторите попытку",
                 Toast.LENGTH_SHORT
             ).show()
         }
+    }
+
+    private fun showWeather(viewState: ViewState.Success) {
+        adapter.setData(viewState.weather.weatherList)
+        binding.city.text = viewState.weather.cityName
     }
 
 }
