@@ -31,6 +31,7 @@
             tools:text="@tools:sample/lorem"
             android:textColor="#2A2D33"
             android:textSize="18sp"
+            android:textStyle="bold"
             android:gravity="center" />
 
         <ImageButton

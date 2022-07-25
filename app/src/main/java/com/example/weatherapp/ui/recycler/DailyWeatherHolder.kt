@@ -3,6 +3,7 @@ package com.example.weatherapp.ui.recycler
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.weatherapp.R
 import com.example.weatherapp.databinding.DailyItemBinding
 import com.example.weatherapp.domain.BasedModel
 import com.squareup.picasso.Picasso
@@ -20,8 +21,8 @@ class DailyWeatherHolder
     fun populate(item: BasedModel.DailyWeatherModel) {
         val sdf = SimpleDateFormat("dd MMMM, E", Locale("ru"))
         binding.date.text = sdf.format(item.date)
-        binding.temp.text = item.minTemp.toString()
-        binding.maxTemp.text = item.maxTemp.toString()
+        binding.temp.text = binding.root.context.getString(R.string.temp, item.minTemp)
+        binding.maxTemp.text = binding.root.context.getString(R.string.temp, item.maxTemp)
         Picasso.get()
             .load("https://openweathermap.org/img/wn/" + item.icon + "@2x.png")
             .into(binding.image)
