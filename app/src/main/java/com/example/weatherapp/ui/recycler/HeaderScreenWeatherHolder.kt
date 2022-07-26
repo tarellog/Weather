@@ -28,4 +28,5 @@ class HeaderScreenWeatherHolder(
             .load("https://openweathermap.org/img/wn/" + item.icon + "@2x.png")
             .into(binding.todayIcon)
     }
+
 }
