@@ -21,10 +21,19 @@ class DailyWeatherHolder
     fun populate(item: BasedModel.DailyWeatherModel) {
         val sdf = SimpleDateFormat("dd MMMM, E", Locale("ru"))
         binding.date.text = sdf.format(item.date)
-        binding.temp.text = binding.root.context.getString(R.string.temp, item.minTemp)
+        binding.minTemp.text = binding.root.context.getString(R.string.temp, item.minTemp)
         binding.maxTemp.text = binding.root.context.getString(R.string.temp, item.maxTemp)
         Picasso.get()
             .load("https://openweathermap.org/img/wn/" + item.icon + "@2x.png")
             .into(binding.image)
+
+        val hoursAdapter = HoursWeatherAdapter()
+        binding.recyclerHours.adapter = hoursAdapter
+        hoursAdapter.setData(item.hoursList)
     }
+
+
+
+
+
 }
