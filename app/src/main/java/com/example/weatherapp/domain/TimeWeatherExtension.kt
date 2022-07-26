@@ -18,7 +18,7 @@ fun List<ListWeatherModel>.mapToHoursDisplayModel(hourDate: Date): List<BasedMod
         .map {
             val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
             val timeHours = sdf.parse(it.dt_txt)
-            val tempHours = (it.main.temp - 273f).toInt()
+            val tempHours = it.main.temp.toInt()
             val iconHours = it.weather.first().icon
             BasedModel.TimeWeatherModel(timeHours, tempHours, iconHours)
         }

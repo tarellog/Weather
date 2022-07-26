@@ -10,8 +10,8 @@ fun List<ListWeatherModel>.mapToDisplayModel(): List<BasedModel.DailyWeatherMode
         .map {
             val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val date = sdf.parse(it.dt_txt)
-            val minTemp = (it.main.temp_min - 273f).toInt()
-            val maxTemp = (it.main.temp_max - 273f).toInt()
+            val minTemp = it.main.temp_min.toInt()
+            val maxTemp = (it.main.temp_max).toInt()
             val icon = it.weather.first().icon
             val hours = this.mapToHoursDisplayModel(date)
             BasedModel.DailyWeatherModel(date, minTemp, maxTemp, icon, hours)

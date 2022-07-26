@@ -9,7 +9,7 @@ fun List<ListWeatherModel>.mapToHeaderDisplayModel() : BasedModel.TodayWeatherMo
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val date = sdf.parse(it.dt_txt)
         val icon = it.weather.first().icon
-        val temp = (it.main.temp -273f).toInt()
+        val temp = it.main.temp.toInt()
         val description = it.weather.first().description
         BasedModel.TodayWeatherModel(date, icon, temp, description)
     }
