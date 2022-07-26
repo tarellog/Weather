@@ -8,7 +8,8 @@ sealed class BasedModel {
         val date: Date,
         val minTemp: Int,
         val maxTemp: Int,
-        val icon: String
+        val icon: String,
+        val hoursList: List<TimeWeatherModel>
     ) : BasedModel()
 
     data class TodayWeatherModel(
@@ -16,6 +17,12 @@ sealed class BasedModel {
         val icon: String,
         val temp: Int,
         val description: String
+    ) : BasedModel()
+
+    data class TimeWeatherModel(
+        var timeHours: Date,
+        val tempHours: Int,
+        val iconHours: String
     ) : BasedModel()
 
 }
