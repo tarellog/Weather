@@ -5,7 +5,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 fun List<ListWeatherModel>.mapToHeaderDisplayModel() : BasedModel.TodayWeatherModel {
-    return this.map {
+    return this
+        .map {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val date = sdf.parse(it.dt_txt)
         val icon = it.weather.first().icon
