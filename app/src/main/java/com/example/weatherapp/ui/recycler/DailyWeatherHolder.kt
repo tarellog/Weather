@@ -2,11 +2,11 @@ package com.example.weatherapp.ui.recycler
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.DailyItemBinding
 import com.example.weatherapp.domain.BasedModel
-import com.squareup.picasso.Picasso
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -23,9 +23,7 @@ class DailyWeatherHolder
         binding.date.text = sdf.format(item.date)
         binding.minTemp.text = binding.root.context.getString(R.string.temp, item.minTemp)
         binding.maxTemp.text = binding.root.context.getString(R.string.temp, item.maxTemp)
-        Picasso.get()
-            .load("https://openweathermap.org/img/wn/" + item.icon + "@2x.png")
-            .into(binding.image)
+        binding.image.setImageDrawable(ContextCompat.getDrawable(binding.root.context, item.icon.image))
 
         val hoursAdapter = HoursWeatherAdapter()
         binding.recyclerHours.adapter = hoursAdapter
