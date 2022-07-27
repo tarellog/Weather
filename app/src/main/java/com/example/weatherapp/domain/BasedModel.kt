@@ -1,5 +1,6 @@
 package com.example.weatherapp.domain
 
+import com.example.weatherapp.data.model.Icon
 import java.util.*
 
 sealed class BasedModel {
@@ -8,21 +9,21 @@ sealed class BasedModel {
         val date: Date,
         val minTemp: Int,
         val maxTemp: Int,
-        val icon: String,
+        val icon: Icon,
         val hoursList: List<TimeWeatherModel>
     ) : BasedModel()
 
     data class TodayWeatherModel(
         val date: Date,
-        val icon: String,
+        var icon: Icon,
         val temp: Int,
-        val description: String
+        val description: String,
     ) : BasedModel()
 
     data class TimeWeatherModel(
         var timeHours: Date,
         val tempHours: Int,
-        val iconHours: String
+        val iconHours: Icon
     ) : BasedModel()
 
 }
