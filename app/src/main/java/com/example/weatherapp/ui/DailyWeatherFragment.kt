@@ -11,7 +11,7 @@ import androidx.fragment.app.activityViewModels
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.dialogweather.SearchDialogFragment
 import com.example.weatherapp.ui.DailyWeatherViewModel.ViewState
-import com.example.weatherapp.ui.recycler.DailyWeatherAdapter
+import com.example.weatherapp.weather.adapter.dailyweather.DailyWeatherAdapter
 
 class DailyWeatherFragment : Fragment() {
 

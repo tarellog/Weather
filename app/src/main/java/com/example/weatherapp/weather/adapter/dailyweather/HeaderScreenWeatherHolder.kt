@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui.recycler
+package com.example.weatherapp.weather.adapter.dailyweather
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

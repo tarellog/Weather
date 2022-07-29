@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui.recycler
+package com.example.weatherapp.weather.adapter.dailyweather
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.DailyItemBinding
 import com.example.weatherapp.domain.BasedModel
+import com.example.weatherapp.weather.adapter.hoursweather.HoursWeatherAdapter
 import java.text.SimpleDateFormat
 import java.util.*
 
