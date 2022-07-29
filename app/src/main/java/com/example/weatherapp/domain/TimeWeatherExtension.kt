@@ -1,6 +1,6 @@
 package com.example.weatherapp.domain
 
-import com.example.weatherapp.data.model.ListWeatherModel
+import com.example.weatherapp.weather.network.model.ListWeatherModel
 import java.text.SimpleDateFormat
 import java.util.*
 

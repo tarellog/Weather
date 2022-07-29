@@ -1,6 +1,6 @@
 package com.example.weatherapp.domain
 
-import com.example.weatherapp.data.model.Icon
+import com.example.weatherapp.weather.network.model.Icon
 import java.util.*
 
 sealed class BasedModel {
