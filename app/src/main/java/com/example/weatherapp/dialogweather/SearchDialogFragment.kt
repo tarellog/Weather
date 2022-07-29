@@ -8,7 +8,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentSearchDialogBinding
-import com.example.weatherapp.ui.DailyWeatherViewModel
+import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel
 
 class SearchDialogFragment : DialogFragment() {
 

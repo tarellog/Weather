@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui
+package com.example.weatherapp.weather.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,8 +10,9 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.dialogweather.SearchDialogFragment
-import com.example.weatherapp.ui.DailyWeatherViewModel.ViewState
 import com.example.weatherapp.weather.adapter.dailyweather.DailyWeatherAdapter
+import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel
+import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel.ViewState
 
 class DailyWeatherFragment : Fragment() {
 
