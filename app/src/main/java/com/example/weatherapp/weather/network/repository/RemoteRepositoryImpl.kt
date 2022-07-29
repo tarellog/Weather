@@ -1,9 +1,9 @@
 package com.example.weatherapp.weather.network.repository
 
-import com.example.weatherapp.domain.BasedModel
-import com.example.weatherapp.domain.RemoteRepository
-import com.example.weatherapp.domain.mapToDisplayModel
-import com.example.weatherapp.domain.mapToHeaderDisplayModel
+import com.example.weatherapp.weather.domain.BasedModel
+import com.example.weatherapp.weather.domain.RemoteRepository
+import com.example.weatherapp.weather.domain.mapToDisplayModel
+import com.example.weatherapp.weather.domain.mapToHeaderDisplayModel
 import com.example.weatherapp.weather.network.api.ApiWeatherService
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single

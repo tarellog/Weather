@@ -2,7 +2,7 @@ package com.example.weatherapp.weather.adapter.hoursweather
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.weatherapp.domain.BasedModel
+import com.example.weatherapp.weather.domain.BasedModel
 
 class HoursWeatherAdapter : RecyclerView.Adapter<HoursWeatherHolder>() {
 

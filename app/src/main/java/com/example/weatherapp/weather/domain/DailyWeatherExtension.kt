@@ -1,4 +1,4 @@
-package com.example.weatherapp.domain
+package com.example.weatherapp.weather.domain
 
 import com.example.weatherapp.weather.network.model.ListWeatherModel
 import java.text.SimpleDateFormat

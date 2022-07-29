@@ -1,4 +1,4 @@
-package com.example.weatherapp.domain
+package com.example.weatherapp.weather.domain
 
 import com.example.weatherapp.weather.network.repository.RemoteRepositoryImpl
 import io.reactivex.rxjava3.core.Single

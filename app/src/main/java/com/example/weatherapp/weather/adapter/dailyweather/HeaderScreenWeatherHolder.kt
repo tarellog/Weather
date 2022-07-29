@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.HeaderItemBinding
-import com.example.weatherapp.domain.BasedModel
+import com.example.weatherapp.weather.domain.BasedModel
 import java.text.SimpleDateFormat
 import java.util.*
 

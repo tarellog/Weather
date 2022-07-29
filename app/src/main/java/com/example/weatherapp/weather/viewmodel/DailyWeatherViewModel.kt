@@ -3,7 +3,7 @@ package com.example.weatherapp.weather.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.weatherapp.domain.RemoteRepository
+import com.example.weatherapp.weather.domain.RemoteRepository
 import com.example.weatherapp.weather.network.repository.RemoteRepositoryImpl
 
 class DailyWeatherViewModel : ViewModel() {
