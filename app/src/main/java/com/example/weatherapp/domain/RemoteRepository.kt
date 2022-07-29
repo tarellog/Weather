@@ -1,9 +1,0 @@
-package com.example.weatherapp.domain
-
-import com.example.weatherapp.data.repository.RemoteRepositoryImpl
-import io.reactivex.rxjava3.core.Single
-
-interface RemoteRepository {
-    fun requestRepository(cityName: String): Single<RemoteRepositoryImpl.WeatherResponse>
-
-}
