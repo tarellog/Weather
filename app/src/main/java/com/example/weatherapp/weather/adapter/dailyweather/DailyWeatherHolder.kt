@@ -6,8 +6,11 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.DailyItemBinding
-import com.example.weatherapp.weather.adapter.hoursweather.HoursWeatherAdapter
+import com.example.weatherapp.weather.adapter.hoursweather.HoursAdapter
 import com.example.weatherapp.weather.domain.BasedModel
+import com.mikepenz.fastadapter.FastAdapter
+import com.mikepenz.fastadapter.adapters.ItemAdapter
+import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,9 +29,10 @@ class DailyWeatherHolder
         binding.maxTemp.text = binding.root.context.getString(R.string.temp, item.maxTemp)
         binding.image.setImageDrawable(ContextCompat.getDrawable(binding.root.context, item.icon.image))
 
-        val hoursAdapter = HoursWeatherAdapter()
-        binding.recyclerHours.adapter = hoursAdapter
-        hoursAdapter.setData(item.hoursList)
+        val itemAdapter = ItemAdapter<HoursAdapter>()
+        val fastAdapter = FastAdapter.with(itemAdapter)
+        binding.recyclerHours.adapter = fastAdapter
+        FastAdapterDiffUtil[itemAdapter] = item.hoursList.map(::HoursAdapter)
     }
 
 
