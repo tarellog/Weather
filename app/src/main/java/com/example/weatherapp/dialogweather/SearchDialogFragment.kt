@@ -1,4 +1,4 @@
-package com.example.weatherapp.ui
+package com.example.weatherapp.dialogweather
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentSearchDialogBinding
+import com.example.weatherapp.ui.DailyWeatherViewModel
 
 class SearchDialogFragment : DialogFragment() {
 
