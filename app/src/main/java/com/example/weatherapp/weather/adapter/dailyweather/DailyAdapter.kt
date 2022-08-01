@@ -14,7 +14,7 @@ import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DailyAdapter(val item: BasedModel.DailyWeatherModel) :
+class DailyAdapter(private val item: BasedModel.DailyWeatherModel) :
     AbstractBindingItem<DailyItemBinding>() {
 
     override var identifier: Long
@@ -44,7 +44,6 @@ class DailyAdapter(val item: BasedModel.DailyWeatherModel) :
         val fastAdapter = FastAdapter.with(hoursAdapter)
         FastAdapterDiffUtil[hoursAdapter] = item.hoursList.map(::HoursAdapter)
         binding.recyclerHours.adapter = fastAdapter
-
     }
 
 }

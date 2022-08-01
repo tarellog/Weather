@@ -48,4 +48,5 @@ class RemoteRepositoryImpl : RemoteRepository {
         val dailyWeather: List<BasedModel.DailyWeatherModel>,
         val cityName: String
     )
+
 }
