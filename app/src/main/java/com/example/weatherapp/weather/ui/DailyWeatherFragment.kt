@@ -10,16 +10,23 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.dialogweather.SearchDialogFragment
-import com.example.weatherapp.weather.adapter.dailyweather.DailyWeatherAdapter
+import com.example.weatherapp.weather.adapter.dailyweather.DailyItem
+import com.example.weatherapp.weather.adapter.dailyweather.HeaderItem
 import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel
 import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel.ViewState
+import com.mikepenz.fastadapter.FastAdapter
+import com.mikepenz.fastadapter.adapters.GenericItemAdapter
+import com.mikepenz.fastadapter.adapters.ItemAdapter
+import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
 
 class DailyWeatherFragment : Fragment() {
 
     private var _binding: FragmentDailyWeatherBinding? = null
     private val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
 
-    private lateinit var adapter: DailyWeatherAdapter
+    private val headerAdapter = ItemAdapter<HeaderItem>()
+    private val itemAdapter = GenericItemAdapter()
+    private val fastAdapter = FastAdapter.with(listOf(headerAdapter, itemAdapter))
 
     private val viewModel: DailyWeatherViewModel by activityViewModels()
 
@@ -37,8 +44,7 @@ class DailyWeatherFragment : Fragment() {
             searchDialogFragment.show(transaction, "searchDialog")
         }
 
-        adapter = DailyWeatherAdapter()
-        binding.recycler.adapter = adapter
+        binding.recycler.adapter = fastAdapter
 
         return binding.root
     }
@@ -62,7 +68,8 @@ class DailyWeatherFragment : Fragment() {
     }
 
     private fun showWeather(viewState: ViewState.Success) {
-        adapter.setData(viewState.weather.weatherList)
+        FastAdapterDiffUtil[headerAdapter] = viewState.weather.headerWeather.map(::HeaderItem)
+        FastAdapterDiffUtil[itemAdapter] = viewState.weather.dailyWeather.map(::DailyItem)
         binding.city.text = viewState.weather.cityName
     }
 
