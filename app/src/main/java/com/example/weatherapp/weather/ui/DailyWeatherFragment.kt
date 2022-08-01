@@ -10,8 +10,8 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.dialogweather.SearchDialogFragment
-import com.example.weatherapp.weather.adapter.dailyweather.DailyAdapter
-import com.example.weatherapp.weather.adapter.dailyweather.HeaderAdapter
+import com.example.weatherapp.weather.adapter.dailyweather.DailyItem
+import com.example.weatherapp.weather.adapter.dailyweather.HeaderItem
 import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel
 import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel.ViewState
 import com.mikepenz.fastadapter.FastAdapter
@@ -24,7 +24,7 @@ class DailyWeatherFragment : Fragment() {
     private var _binding: FragmentDailyWeatherBinding? = null
     private val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
 
-    private val headerAdapter = ItemAdapter<HeaderAdapter>()
+    private val headerAdapter = ItemAdapter<HeaderItem>()
     private val itemAdapter = GenericItemAdapter()
     private val fastAdapter = FastAdapter.with(listOf(headerAdapter, itemAdapter))
 
@@ -68,8 +68,8 @@ class DailyWeatherFragment : Fragment() {
     }
 
     private fun showWeather(viewState: ViewState.Success) {
-        FastAdapterDiffUtil[headerAdapter] = viewState.weather.headerWeather.map(::HeaderAdapter)
-        FastAdapterDiffUtil[itemAdapter] = viewState.weather.dailyWeather.map(::DailyAdapter)
+        FastAdapterDiffUtil[headerAdapter] = viewState.weather.headerWeather.map(::HeaderItem)
+        FastAdapterDiffUtil[itemAdapter] = viewState.weather.dailyWeather.map(::DailyItem)
         binding.city.text = viewState.weather.cityName
     }
 

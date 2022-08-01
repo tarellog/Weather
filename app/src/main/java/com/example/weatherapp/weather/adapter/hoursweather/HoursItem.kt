@@ -10,7 +10,7 @@ import com.mikepenz.fastadapter.binding.AbstractBindingItem
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HoursAdapter(val item: BasedModel.TimeWeatherModel) :
+class HoursItem(private val item: BasedModel.TimeWeatherModel) :
     AbstractBindingItem<HoursItemBinding>() {
 
     override var identifier: Long
@@ -24,12 +24,13 @@ class HoursAdapter(val item: BasedModel.TimeWeatherModel) :
         HoursItemBinding.inflate(inflater, parent, false)
 
     override fun bindView(binding: HoursItemBinding, payloads: List<Any>) {
+        val context = binding.root.context
         val sdf = SimpleDateFormat("HH:mm", Locale("ru"))
         binding.hoursTime.text = sdf.format(item.timeHours)
-        binding.hoursTemp.text = binding.root.context.getString(R.string.temp, item.tempHours)
+        binding.hoursTemp.text = context.getString(R.string.temp, item.tempHours)
         binding.hoursImage.setImageDrawable(
             ContextCompat.getDrawable(
-                binding.root.context,
+                context,
                 item.iconHours.image
             )
         )

@@ -10,7 +10,7 @@ import com.mikepenz.fastadapter.binding.AbstractBindingItem
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HeaderAdapter(val item: BasedModel.TodayWeatherModel) :
+class HeaderItem(private val item: BasedModel.TodayWeatherModel) :
     AbstractBindingItem<HeaderItemBinding>() {
 
     override var identifier: Long
@@ -24,15 +24,16 @@ class HeaderAdapter(val item: BasedModel.TodayWeatherModel) :
         HeaderItemBinding.inflate(inflater, parent, false)
 
     override fun bindView(binding: HeaderItemBinding, payloads: List<Any>) {
+        val context = binding.root.context
         val sdf = SimpleDateFormat("dd MMMM, E", Locale("ru"))
-        binding.todayDate.text = binding.root.context.getString(
+        binding.todayDate.text = context.getString(
             R.string.today, sdf.format(item.date).toString()
         )
-        binding.todayTemp.text = binding.root.context.getString(R.string.temp, item.temp)
+        binding.todayTemp.text = context.getString(R.string.temp, item.temp)
         binding.todayDescription.text = item.description
         binding.todayIcon.setImageDrawable(
             ContextCompat.getDrawable(
-                binding.root.context,
+                context,
                 item.icon.image
             )
         )
