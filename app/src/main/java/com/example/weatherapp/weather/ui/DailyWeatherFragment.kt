@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import com.example.weatherapp.common.App
+import com.example.weatherapp.common.App.Companion.getApp
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.dialogweather.SearchDialogFragment
 import com.example.weatherapp.weather.adapter.dailyweather.DailyItem
@@ -28,8 +29,10 @@ class DailyWeatherFragment : Fragment() {
     private val itemAdapter = GenericItemAdapter()
     private val fastAdapter = FastAdapter.with(listOf(headerAdapter, itemAdapter))
 
+    private val application: App = getApp()
+
     private val viewModel: DailyWeatherViewModel by activityViewModels{
-        getApp().appComponent.viewModelFactory()
+        application.appComponent.viewModelFactory()
     }
 
     override fun onCreateView(
@@ -73,13 +76,5 @@ class DailyWeatherFragment : Fragment() {
         FastAdapterDiffUtil[headerAdapter] = viewState.weather.headerWeather.map(::HeaderItem)
         FastAdapterDiffUtil[itemAdapter] = viewState.weather.dailyWeather.map(::DailyItem)
         binding.city.text = viewState.weather.cityName
-    }
-
-    companion object {
-        var instance: App = App()
-
-        fun getApp(): App {
-            return instance
-        }
     }
 }
