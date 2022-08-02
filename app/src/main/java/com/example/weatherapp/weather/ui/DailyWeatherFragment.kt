@@ -1,6 +1,5 @@
 package com.example.weatherapp.weather.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,11 +30,6 @@ class DailyWeatherFragment : Fragment() {
 
     private val viewModel: DailyWeatherViewModel by activityViewModels{
         getApp().appComponent.viewModelFactory()
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        getApp().appComponent.inject(this)
     }
 
     override fun onCreateView(
