@@ -18,6 +18,12 @@ class RemoteRepositoryImpl(private val api: ApiWeatherService) : RemoteRepositor
                         add(weatherModel.list.mapToHeaderDisplayModel())
                         addAll(weatherModel.list.mapToDisplayModel())
                     },
+                    headerWeather = buildList {
+                        add(weatherModel.list.mapToHeaderDisplayModel())
+                    },
+                    dailyWeather = buildList {
+                        addAll(weatherModel.list.mapToDisplayModel())
+                    },
                     cityName = weatherModel.city.name)
             }
             .subscribeOn(Schedulers.io())
@@ -26,6 +32,9 @@ class RemoteRepositoryImpl(private val api: ApiWeatherService) : RemoteRepositor
 
     data class WeatherResponse(
         val weatherList: List<BasedModel>,
+        val headerWeather: List<BasedModel.TodayWeatherModel>,
+        val dailyWeather: List<BasedModel.DailyWeatherModel>,
         val cityName: String
     )
+
 }
