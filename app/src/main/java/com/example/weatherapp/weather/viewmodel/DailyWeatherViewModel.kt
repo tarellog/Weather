@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.weather.domain.RemoteRepository
 import com.example.weatherapp.weather.network.repository.RemoteRepositoryImpl
+import javax.inject.Inject
 
-class DailyWeatherViewModel : ViewModel() {
+class DailyWeatherViewModel @Inject constructor(
+     private val repository: RemoteRepository
+    ) : ViewModel() {
 
     sealed class ViewState {
         data class Success(
@@ -15,8 +18,6 @@ class DailyWeatherViewModel : ViewModel() {
 
         object Error : ViewState()
     }
-
-    private val repository: RemoteRepository = RemoteRepositoryImpl()
 
     private var _basedModel = MutableLiveData<ViewState>()
     val basedModel: LiveData<ViewState> get() = _basedModel

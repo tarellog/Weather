@@ -1,5 +1,6 @@
 package com.example.weatherapp.weather.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
+import com.example.weatherapp.common.App
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.dialogweather.SearchDialogFragment
 import com.example.weatherapp.weather.adapter.dailyweather.DailyWeatherAdapter
@@ -15,13 +17,19 @@ import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel
 import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel.ViewState
 
 class DailyWeatherFragment : Fragment() {
-
     private var _binding: FragmentDailyWeatherBinding? = null
     private val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
 
     private lateinit var adapter: DailyWeatherAdapter
 
-    private val viewModel: DailyWeatherViewModel by activityViewModels()
+    private val viewModel: DailyWeatherViewModel by activityViewModels{
+        getApp().appComponent.viewModelFactory()
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        getApp().appComponent.inject(this)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -66,4 +74,11 @@ class DailyWeatherFragment : Fragment() {
         binding.city.text = viewState.weather.cityName
     }
 
+    companion object {
+        var instance: App = App()
+
+        fun getApp(): App {
+            return instance
+        }
+    }
 }
