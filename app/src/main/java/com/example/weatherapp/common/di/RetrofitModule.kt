@@ -1,4 +1,4 @@
-package com.example.weatherapp.common
+package com.example.weatherapp.common.di
 
 import dagger.Module
 import dagger.Provides

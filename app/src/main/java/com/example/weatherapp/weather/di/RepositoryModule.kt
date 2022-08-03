@@ -9,7 +9,7 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module
-class WeatherModule {
+class RepositoryModule {
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiWeatherService =
