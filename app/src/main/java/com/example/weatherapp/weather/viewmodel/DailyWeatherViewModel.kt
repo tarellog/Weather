@@ -6,7 +6,9 @@ import com.example.weatherapp.weather.network.repository.RemoteRepositoryImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class DailyWeatherViewModel : ViewModel() {
+class DailyWeatherViewModel(
+    private val repository: RemoteRepository
+) : ViewModel() {
     sealed class ViewState {
         object Empty: ViewState()
 
@@ -16,8 +18,6 @@ class DailyWeatherViewModel : ViewModel() {
 
         object Error : ViewState()
     }
-
-    private val repository: RemoteRepository = RemoteRepositoryImpl()
 
     private var _basedModel = MutableStateFlow<ViewState>(ViewState.Empty)
     val basedModel get() = _basedModel.asStateFlow()
