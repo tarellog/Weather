@@ -1,18 +1,16 @@
 package com.example.weatherapp.common
 
 import android.app.Application
-import com.example.weatherapp.common.di.DaggerWeatherComponent
-import com.example.weatherapp.common.di.WeatherComponent
+import com.example.weatherapp.common.di.AppComponent
+import com.example.weatherapp.common.di.DaggerAppComponent
 
 class App : Application() {
-
     override fun onCreate() {
         super.onCreate()
-        appComponent = DaggerWeatherComponent.create()
+        appComponent = DaggerAppComponent.create()
     }
 
     companion object {
-        lateinit var appComponent: WeatherComponent
+        lateinit var appComponent: AppComponent
     }
-
 }
