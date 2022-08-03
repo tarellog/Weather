@@ -1,14 +1,15 @@
 package com.example.weatherapp.weather.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.weather.domain.RemoteRepository
 import com.example.weatherapp.weather.network.repository.RemoteRepositoryImpl
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class DailyWeatherViewModel : ViewModel() {
-
     sealed class ViewState {
+        object Empty: ViewState()
+
         data class Success(
             val weather: RemoteRepositoryImpl.WeatherResponse,
         ) : ViewState()
@@ -18,16 +19,15 @@ class DailyWeatherViewModel : ViewModel() {
 
     private val repository: RemoteRepository = RemoteRepositoryImpl()
 
-    private var _basedModel = MutableLiveData<ViewState>()
-    val basedModel: LiveData<ViewState> get() = _basedModel
+    private var _basedModel = MutableStateFlow<ViewState>(ViewState.Empty)
+    val basedModel get() = _basedModel.asStateFlow()
 
     fun loadBasedWeatherData(cityName: String) {
         repository.requestRepository(cityName)
             .subscribe({ listWeatherModel ->
-                _basedModel.postValue(ViewState.Success(listWeatherModel))
+                _basedModel.tryEmit(ViewState.Success(listWeatherModel))
             }, {
-                _basedModel.postValue(ViewState.Error)
+                _basedModel.tryEmit(ViewState.Error)
             })
     }
-
 }

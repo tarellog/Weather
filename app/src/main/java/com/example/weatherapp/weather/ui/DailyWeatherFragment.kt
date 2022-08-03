@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.dialogweather.SearchDialogFragment
 import com.example.weatherapp.weather.adapter.dailyweather.DailyItem
@@ -51,9 +52,9 @@ class DailyWeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.basedModel.observe(viewLifecycleOwner, ::render)
-
+        lifecycleScope.launchWhenStarted {
+            viewModel.basedModel.collect(::render)
+        }
     }
 
     private fun render(state: ViewState) {
@@ -72,5 +73,4 @@ class DailyWeatherFragment : Fragment() {
         FastAdapterDiffUtil[itemAdapter] = viewState.weather.dailyWeather.map(::DailyItem)
         binding.city.text = viewState.weather.cityName
     }
-
 }
