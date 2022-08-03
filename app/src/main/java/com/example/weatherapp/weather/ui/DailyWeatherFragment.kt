@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
+import com.example.weatherapp.common.di.ViewModelFactory
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.dialogweather.SearchDialogFragment
 import com.example.weatherapp.weather.adapter.dailyweather.DailyItem
@@ -20,7 +21,6 @@ import com.mikepenz.fastadapter.adapters.ItemAdapter
 import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
 
 class DailyWeatherFragment : Fragment() {
-
     private var _binding: FragmentDailyWeatherBinding? = null
     private val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
 
@@ -28,7 +28,7 @@ class DailyWeatherFragment : Fragment() {
     private val itemAdapter = GenericItemAdapter()
     private val fastAdapter = FastAdapter.with(listOf(headerAdapter, itemAdapter))
 
-    private val viewModel: DailyWeatherViewModel by activityViewModels()
+    private val viewModel: DailyWeatherViewModel by activityViewModels{ ViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,5 +72,4 @@ class DailyWeatherFragment : Fragment() {
         FastAdapterDiffUtil[itemAdapter] = viewState.weather.dailyWeather.map(::DailyItem)
         binding.city.text = viewState.weather.cityName
     }
-
 }

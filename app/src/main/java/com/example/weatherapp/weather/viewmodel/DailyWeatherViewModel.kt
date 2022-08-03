@@ -6,8 +6,9 @@ import androidx.lifecycle.ViewModel
 import com.example.weatherapp.weather.domain.RemoteRepository
 import com.example.weatherapp.weather.network.repository.RemoteRepositoryImpl
 
-class DailyWeatherViewModel : ViewModel() {
-
+class DailyWeatherViewModel(
+    private val repository: RemoteRepository
+) : ViewModel() {
     sealed class ViewState {
         data class Success(
             val weather: RemoteRepositoryImpl.WeatherResponse,
@@ -15,8 +16,6 @@ class DailyWeatherViewModel : ViewModel() {
 
         object Error : ViewState()
     }
-
-    private val repository: RemoteRepository = RemoteRepositoryImpl()
 
     private var _basedModel = MutableLiveData<ViewState>()
     val basedModel: LiveData<ViewState> get() = _basedModel
@@ -29,5 +28,4 @@ class DailyWeatherViewModel : ViewModel() {
                 _basedModel.postValue(ViewState.Error)
             })
     }
-
 }
