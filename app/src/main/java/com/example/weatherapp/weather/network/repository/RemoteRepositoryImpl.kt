@@ -14,10 +14,6 @@ class RemoteRepositoryImpl(private val api: ApiWeatherService) : RemoteRepositor
         return api.getApi(cityName)
             .map { weatherModel ->
                 WeatherResponse(
-                    weatherList = buildList {
-                        add(weatherModel.list.mapToHeaderDisplayModel())
-                        addAll(weatherModel.list.mapToDisplayModel())
-                    },
                     headerWeather = buildList {
                         add(weatherModel.list.mapToHeaderDisplayModel())
                     },
@@ -31,7 +27,6 @@ class RemoteRepositoryImpl(private val api: ApiWeatherService) : RemoteRepositor
     }
 
     data class WeatherResponse(
-        val weatherList: List<BasedModel>,
         val headerWeather: List<BasedModel.TodayWeatherModel>,
         val dailyWeather: List<BasedModel.DailyWeatherModel>,
         val cityName: String

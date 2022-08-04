@@ -53,27 +53,33 @@ class DailyWeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
-            viewModel.basedModel.collect(::render)
+            viewModel.empty.collect(::render)
         }
         lifecycleScope.launchWhenStarted {
             viewModel.error.collect(::render)
+        }
+        lifecycleScope.launchWhenStarted {
+            viewModel.dailyModel.collect(::render)
+        }
+        lifecycleScope.launchWhenStarted {
+            viewModel.headerModel.collect(::render)
+        }
+        lifecycleScope.launchWhenStarted {
+            viewModel.city.collect(::render)
         }
     }
 
     private fun render(state: ViewState) {
         when(state) {
-            is ViewState.Success -> showWeather(state)
+            is ViewState.Empty -> binding.toolbar
+            is ViewState.Header -> FastAdapterDiffUtil[headerAdapter] = state.today.map(::HeaderItem)
+            is ViewState.Success -> FastAdapterDiffUtil[itemAdapter] = state.daily.map(::DailyItem)
+            is ViewState.City -> binding.city.text = state.city
             is ViewState.Error -> Toast.makeText(
                 requireContext(),
                 "Произошла ошибка, повторите попытку",
                 Toast.LENGTH_SHORT
             ).show()
         }
-    }
-
-    private fun showWeather(viewState: ViewState.Success) {
-        FastAdapterDiffUtil[headerAdapter] = viewState.weather.headerWeather.map(::HeaderItem)
-        FastAdapterDiffUtil[itemAdapter] = viewState.weather.dailyWeather.map(::DailyItem)
-        binding.city.text = viewState.weather.cityName
     }
 }
