@@ -1,5 +1,6 @@
 package com.example.weatherapp.weather.viewmodel
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.weather.domain.BasedModel
 import com.example.weatherapp.weather.domain.RemoteRepository
@@ -44,7 +45,7 @@ class DailyWeatherViewModel(
     private var _city = MutableStateFlow<ViewState>(ViewState.Empty)
     val city get() = _city.asStateFlow()
 
-
+    @SuppressLint("CheckResult")
     fun loadBasedWeatherData(cityName: String) {
         repository.requestRepository(cityName)
             .subscribe({ listWeatherModel ->
