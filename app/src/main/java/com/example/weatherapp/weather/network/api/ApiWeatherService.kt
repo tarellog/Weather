@@ -1,7 +1,7 @@
 package com.example.weatherapp.weather.network.api
 
 import com.example.weatherapp.weather.network.model.WeatherModel
-import io.reactivex.rxjava3.core.Single
+import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
