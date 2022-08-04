@@ -8,8 +8,8 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
-import com.example.weatherapp.common.di.ViewModelFactory
 import androidx.lifecycle.lifecycleScope
+import com.example.weatherapp.common.di.ViewModelFactory
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.dialogweather.SearchDialogFragment
 import com.example.weatherapp.weather.adapter.dailyweather.DailyItem
@@ -54,6 +54,9 @@ class DailyWeatherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
             viewModel.basedModel.collect(::render)
+        }
+        lifecycleScope.launchWhenStarted {
+            viewModel.error.collect(::render)
         }
     }
 
