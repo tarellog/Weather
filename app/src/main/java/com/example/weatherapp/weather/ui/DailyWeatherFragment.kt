@@ -15,7 +15,6 @@ import com.example.weatherapp.dialogweather.SearchDialogFragment
 import com.example.weatherapp.weather.adapter.dailyweather.DailyItem
 import com.example.weatherapp.weather.adapter.dailyweather.HeaderItem
 import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel
-import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel.ViewState
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.GenericItemAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
@@ -29,7 +28,7 @@ class DailyWeatherFragment : Fragment() {
     private val itemAdapter = GenericItemAdapter()
     private val fastAdapter = FastAdapter.with(listOf(headerAdapter, itemAdapter))
 
-    private val viewModel: DailyWeatherViewModel by activityViewModels{ ViewModelFactory() }
+    private val viewModel: DailyWeatherViewModel by activityViewModels { ViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,27 +52,29 @@ class DailyWeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         lifecycleScope.launchWhenStarted {
-            viewModel.basedModel.collect(::render)
+            viewModel.error.collect {
+                Toast.makeText(
+                    requireContext(),
+                    "Произошла ошибка, повторите попытку",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
         lifecycleScope.launchWhenStarted {
-            viewModel.error.collect(::render)
+            viewModel.headerModel.collect {
+                FastAdapterDiffUtil[headerAdapter] = it.map(::HeaderItem)
+            }
         }
-    }
-
-    private fun render(state: ViewState) {
-        when(state) {
-            is ViewState.Success -> showWeather(state)
-            is ViewState.Error -> Toast.makeText(
-                requireContext(),
-                "Произошла ошибка, повторите попытку",
-                Toast.LENGTH_SHORT
-            ).show()
+        lifecycleScope.launchWhenStarted {
+            viewModel.dailyModel.collect {
+                FastAdapterDiffUtil[itemAdapter] = it.map(::DailyItem)
+            }
         }
-    }
+        lifecycleScope.launchWhenStarted {
+            viewModel.city.collect {
+                binding.city.text = it
 
-    private fun showWeather(viewState: ViewState.Success) {
-        FastAdapterDiffUtil[headerAdapter] = viewState.weather.headerWeather.map(::HeaderItem)
-        FastAdapterDiffUtil[itemAdapter] = viewState.weather.dailyWeather.map(::DailyItem)
-        binding.city.text = viewState.weather.cityName
+            }
+        }
     }
 }
