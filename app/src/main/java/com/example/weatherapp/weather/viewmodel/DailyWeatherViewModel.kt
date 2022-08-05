@@ -1,5 +1,6 @@
 package com.example.weatherapp.weather.viewmodel
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,6 +21,7 @@ class DailyWeatherViewModel(
     private var _basedModel = MutableLiveData<ViewState>()
     val basedModel: LiveData<ViewState> get() = _basedModel
 
+    @SuppressLint("CheckResult")
     fun loadBasedWeatherData(cityName: String) {
         repository.requestRepository(cityName)
             .subscribe({ listWeatherModel ->
