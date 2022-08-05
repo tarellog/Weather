@@ -13,20 +13,19 @@ class DailyWeatherViewModel(
     private val repository: RemoteRepository
 ) : ViewModel() {
 
-    object Error
+    object Message
 
-    private var _error = MutableSharedFlow<Error>(0, 1)
-    val error get() = _error.asSharedFlow()
+    private var _message = MutableSharedFlow<Message>(0, 1)
+    val message get() = _message.asSharedFlow()
 
-    private var _headerModel = MutableStateFlow<List<BasedModel.TodayWeatherModel>>(listOf())
+    private var _headerModel = MutableStateFlow<List<BasedModel.TodayWeatherModel>>(emptyList())
     val headerModel get() = _headerModel.asStateFlow()
 
-    private var _dailyModel = MutableStateFlow<List<BasedModel.DailyWeatherModel>>(listOf())
+    private var _dailyModel = MutableStateFlow<List<BasedModel.DailyWeatherModel>>(emptyList())
     val dailyModel get() = _dailyModel.asStateFlow()
 
     private var _city = MutableStateFlow("")
     val city get() = _city.asStateFlow()
-
 
     @SuppressLint("CheckResult")
     fun loadBasedWeatherData(cityName: String) {
@@ -36,7 +35,7 @@ class DailyWeatherViewModel(
                 _dailyModel.tryEmit(listWeatherModel.dailyWeather)
                 _city.tryEmit((listWeatherModel.cityName))
             }, {
-                _error.tryEmit(Error)
+                _message.tryEmit(Message)
             })
     }
 }
