@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.rules.TestRule
 import org.junit.runner.RunWith
 import org.mockito.Mock
-import org.mockito.Mockito
 import org.mockito.Mockito.verify
 import org.mockito.junit.MockitoJUnitRunner
 
@@ -48,36 +47,28 @@ internal class DailyWeatherViewModelTest {
     }
 
     @Test
-    fun testNull(){
+    fun testNull() {
         assertNotNull(repository)
-        assertNotNull(viewModel)
+        assertNotNull(viewModel.basedModel)
         assertNotNull((observer))
-        Mockito.`when`(apiService.getApi(Mockito.anyString())).thenReturn(single)
         assertTrue(viewModel.basedModel.hasObservers())
-        assertNotNull(viewModel.loadBasedWeatherData(CITY_NAME))
-        verify(apiService).getApi(Mockito.anyString())
     }
 
-//    @Test
-//    fun loadBasedWeatherDataTest() {
-//
-//        val viewModel = DailyWeatherViewModel(repository)
-//
-//        viewModel.basedModel.observeForever(observer)
-//
-//        val parameter = RemoteRepositoryImpl.WeatherResponse(
-//            weatherList = listOf(),
-//            headerWeather = listOf(),
-//            dailyWeather = listOf(),
-//            cityName = "Tambov"
-//        )
-//        viewModel.loadBasedWeatherData(parameter.cityName)
-//
-//        val captor = ArgumentCaptor.forClass(DailyWeatherViewModel.ViewState::class.java)
-//        captor.run {
-//            verify(observer, times(1)).onChanged(capture())
-//            assertEquals(parameter.cityName, value)
-//        }
-//    }
-
+    @Test
+    fun testLoadBasedWeatherDataTest() {
+        val parameter = RemoteRepositoryImpl.WeatherResponse(
+            weatherList = listOf(),
+            headerWeather = listOf(),
+            dailyWeather = listOf(),
+            cityName = "Tambov"
+        )
+//        Mockito.`when`(apiService.getApi(Mockito.anyString())).thenReturn(null)
+//        assertNotNull(repository.requestRepository(CITY_NAME))
+//        Mockito.`when`(repository.requestRepository(Mockito.anyString())).thenReturn(single.map { parameter }.subscribeOn(
+//            Schedulers.io()).observeOn(AndroidSchedulers.mainThread()))
+//        viewModel.loadBasedWeatherData(CITY_NAME)
+//        verify(apiService).getApi(Mockito.anyString())
+        verify(observer).onChanged(DailyWeatherViewModel.ViewState.Success(parameter))
+        verify(observer).onChanged(DailyWeatherViewModel.ViewState.Error)
+    }
 }
