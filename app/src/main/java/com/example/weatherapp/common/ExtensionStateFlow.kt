@@ -1,4 +1,4 @@
-package com.example.weatherapp.weather.domain
+package com.example.weatherapp.common
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow

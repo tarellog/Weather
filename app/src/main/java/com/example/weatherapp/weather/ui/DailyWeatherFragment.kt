@@ -11,11 +11,11 @@ import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.weatherapp.common.di.ViewModelFactory
+import com.example.weatherapp.common.observe
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.dialogweather.SearchDialogFragment
 import com.example.weatherapp.weather.adapter.dailyweather.DailyItem
 import com.example.weatherapp.weather.adapter.dailyweather.HeaderItem
-import com.example.weatherapp.weather.domain.observe
 import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.GenericItemAdapter
