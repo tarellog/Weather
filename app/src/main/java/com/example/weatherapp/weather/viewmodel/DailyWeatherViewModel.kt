@@ -3,9 +3,9 @@ package com.example.weatherapp.weather.viewmodel
 import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.R
+import com.example.weatherapp.common.flow.MutableSingleEventFlow
 import com.example.weatherapp.weather.domain.BasedModel
 import com.example.weatherapp.weather.domain.RemoteRepository
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,7 +14,7 @@ class DailyWeatherViewModel(
     private val repository: RemoteRepository
 ) : ViewModel() {
 
-    private var _message = MutableSharedFlow<Int>(0, 1)
+    private var _message = MutableSingleEventFlow<Int>()
     val message get() = _message.asSharedFlow()
 
     private var _header = MutableStateFlow<List<BasedModel.TodayWeatherModel>>(emptyList())
