@@ -1,6 +1,7 @@
 package com.example.weatherapp.weather.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,19 +55,23 @@ class DailyWeatherFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.headerModel.observe(
             lifecycleScope,
-            action = { FastAdapterDiffUtil[headerAdapter] = it.map(::HeaderItem) }
+            action = { FastAdapterDiffUtil[headerAdapter] = it.map(::HeaderItem) },
+            onError = { Log.e("log", "error") }
         )
         viewModel.dailyModel.observe(
             lifecycleScope,
-            action = { FastAdapterDiffUtil[itemAdapter] = it.map(::DailyItem) }
+            action = { FastAdapterDiffUtil[itemAdapter] = it.map(::DailyItem) },
+            onError = { Log.e("log", "error") }
         )
         viewModel.city.observe(
             lifecycleScope,
-            action = { binding.city.text = it }
+            action = { binding.city.text = it },
+            onError = { Log.e("log", "error") }
         )
         viewModel.message.observe(
             lifecycleScope,
-            action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() }
+            action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() },
+            onError = { Log.e("log", "error") }
         )
     }
 }
