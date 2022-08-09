@@ -1,6 +1,7 @@
 package com.example.weatherapp.weather.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,13 +9,14 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.weatherapp.common.di.ViewModelFactory
+import com.example.weatherapp.common.observe
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.dialogweather.SearchDialogFragment
 import com.example.weatherapp.weather.adapter.dailyweather.DailyItem
 import com.example.weatherapp.weather.adapter.dailyweather.HeaderItem
 import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel
-import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel.ViewState
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.GenericItemAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
@@ -28,7 +30,7 @@ class DailyWeatherFragment : Fragment() {
     private val itemAdapter = GenericItemAdapter()
     private val fastAdapter = FastAdapter.with(listOf(headerAdapter, itemAdapter))
 
-    private val viewModel: DailyWeatherViewModel by activityViewModels{ ViewModelFactory() }
+    private val viewModel: DailyWeatherViewModel by activityViewModels { ViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,25 +53,25 @@ class DailyWeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        viewModel.basedModel.observe(viewLifecycleOwner, ::render)
-
-    }
-
-    private fun render(state: ViewState) {
-        when(state) {
-            is ViewState.Success -> showWeather(state)
-            is ViewState.Error -> Toast.makeText(
-                requireContext(),
-                "Произошла ошибка, повторите попытку",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
-
-    private fun showWeather(viewState: ViewState.Success) {
-        FastAdapterDiffUtil[headerAdapter] = viewState.weather.headerWeather.map(::HeaderItem)
-        FastAdapterDiffUtil[itemAdapter] = viewState.weather.dailyWeather.map(::DailyItem)
-        binding.city.text = viewState.weather.cityName
+        viewModel.header.observe(
+            lifecycleScope,
+            action = { FastAdapterDiffUtil[headerAdapter] = it.map(::HeaderItem) },
+            onError = { Log.e("log", "error") }
+        )
+        viewModel.dailyWeather.observe(
+            lifecycleScope,
+            action = { FastAdapterDiffUtil[itemAdapter] = it.map(::DailyItem) },
+            onError = { Log.e("log", "error") }
+        )
+        viewModel.city.observe(
+            lifecycleScope,
+            action = { binding.city.text = it },
+            onError = { Log.e("log", "error") }
+        )
+        viewModel.message.observe(
+            lifecycleScope,
+            action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() },
+            onError = { Log.e("log", "error") }
+        )
     }
 }

@@ -1,31 +1,40 @@
 package com.example.weatherapp.weather.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
+import com.example.weatherapp.R
+import com.example.weatherapp.common.flow.MutableSingleEventFlow
+import com.example.weatherapp.weather.domain.BasedModel
 import com.example.weatherapp.weather.domain.RemoteRepository
-import com.example.weatherapp.weather.network.repository.RemoteRepositoryImpl
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class DailyWeatherViewModel(
     private val repository: RemoteRepository
 ) : ViewModel() {
-    sealed class ViewState {
-        data class Success(
-            val weather: RemoteRepositoryImpl.WeatherResponse,
-        ) : ViewState()
 
-        object Error : ViewState()
-    }
+    private var _message = MutableSingleEventFlow<Int>()
+    val message get() = _message.asSharedFlow()
 
-    private var _basedModel = MutableLiveData<ViewState>()
-    val basedModel: LiveData<ViewState> get() = _basedModel
+    private var _header = MutableStateFlow<List<BasedModel.TodayWeatherModel>>(emptyList())
+    val header get() = _header.asStateFlow()
 
+    private var _dailyWeather = MutableStateFlow<List<BasedModel.DailyWeatherModel>>(emptyList())
+    val dailyWeather get() = _dailyWeather.asStateFlow()
+
+    private var _city = MutableStateFlow("")
+    val city get() = _city.asStateFlow()
+
+    @SuppressLint("CheckResult")
     fun loadBasedWeatherData(cityName: String) {
         repository.requestRepository(cityName)
             .subscribe({ listWeatherModel ->
-                _basedModel.postValue(ViewState.Success(listWeatherModel))
+                _header.tryEmit(listWeatherModel.headerWeather)
+                _dailyWeather.tryEmit(listWeatherModel.dailyWeather)
+                _city.tryEmit((listWeatherModel.cityName))
             }, {
-                _basedModel.postValue(ViewState.Error)
+                _message.tryEmit(R.string.message)
             })
     }
 }
