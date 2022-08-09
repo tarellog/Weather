@@ -17,11 +17,11 @@ class DailyWeatherViewModel(
     private var _message = MutableSharedFlow<Int>(0, 1)
     val message get() = _message.asSharedFlow()
 
-    private var _headerModel = MutableStateFlow<List<BasedModel.TodayWeatherModel>>(emptyList())
-    val headerModel get() = _headerModel.asStateFlow()
+    private var _header = MutableStateFlow<List<BasedModel.TodayWeatherModel>>(emptyList())
+    val header get() = _header.asStateFlow()
 
-    private var _dailyModel = MutableStateFlow<List<BasedModel.DailyWeatherModel>>(emptyList())
-    val dailyModel get() = _dailyModel.asStateFlow()
+    private var _dailyWeather = MutableStateFlow<List<BasedModel.DailyWeatherModel>>(emptyList())
+    val dailyWeather get() = _dailyWeather.asStateFlow()
 
     private var _city = MutableStateFlow("")
     val city get() = _city.asStateFlow()
@@ -30,8 +30,8 @@ class DailyWeatherViewModel(
     fun loadBasedWeatherData(cityName: String) {
         repository.requestRepository(cityName)
             .subscribe({ listWeatherModel ->
-                _headerModel.tryEmit(listWeatherModel.headerWeather)
-                _dailyModel.tryEmit(listWeatherModel.dailyWeather)
+                _header.tryEmit(listWeatherModel.headerWeather)
+                _dailyWeather.tryEmit(listWeatherModel.dailyWeather)
                 _city.tryEmit((listWeatherModel.cityName))
             }, {
                 _message.tryEmit(R.string.message)

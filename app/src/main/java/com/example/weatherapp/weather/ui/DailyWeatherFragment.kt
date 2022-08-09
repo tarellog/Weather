@@ -53,12 +53,12 @@ class DailyWeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.headerModel.observe(
+        viewModel.header.observe(
             lifecycleScope,
             action = { FastAdapterDiffUtil[headerAdapter] = it.map(::HeaderItem) },
             onError = { Log.e("log", "error") }
         )
-        viewModel.dailyModel.observe(
+        viewModel.dailyWeather.observe(
             lifecycleScope,
             action = { FastAdapterDiffUtil[itemAdapter] = it.map(::DailyItem) },
             onError = { Log.e("log", "error") }
