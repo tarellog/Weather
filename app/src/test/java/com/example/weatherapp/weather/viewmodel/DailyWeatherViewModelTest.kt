@@ -12,7 +12,6 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 internal class DailyWeatherViewModelTest {
-
     private val CITY_NAME = ""
 
     @Mock
@@ -31,9 +30,15 @@ internal class DailyWeatherViewModelTest {
         val viewModel = DailyWeatherViewModel(repository)
         viewModel.loadBasedWeatherData(CITY_NAME)
 
-        val expected = weatherResponse.headerWeather
-        val actual = viewModel.header.value
+        val expectedHeaderWeather = weatherResponse.headerWeather
+        val expectedDailyWeather = weatherResponse.dailyWeather
+        val expectedCityWeather = weatherResponse.cityName
+        val actualHeader = viewModel.header.value
+        val actualDaily = viewModel.dailyWeather.value
+        val actualCity = viewModel.city.value
 
-        assertEquals(expected, actual)
+        assertEquals(expectedHeaderWeather, actualHeader)
+        assertEquals(expectedDailyWeather, actualDaily)
+        assertEquals(expectedCityWeather, actualCity)
     }
 }
