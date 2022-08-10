@@ -11,7 +11,7 @@ android {
     defaultConfig {
         applicationId "com.example.weatherapp"
         minSdk 21
-        targetSdk 30
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
@@ -36,9 +36,6 @@ android {
     }
     buildFeatures {
         viewBinding true
-    }
-    testOptions.unitTests {
-        includeAndroidResources = true
     }
 }
 
