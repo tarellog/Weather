@@ -1,10 +1,11 @@
 package com.example.weatherapp.weather.domain
 
 import com.example.weatherapp.weather.network.model.ListWeatherModel
+import com.example.weatherapp.weather.usecases.loaderweather.DailyWeatherModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun List<ListWeatherModel>.mapToDisplayModel(): List<BasedModel.DailyWeatherModel> {
+fun List<ListWeatherModel>.mapToDisplayModel(): List<DailyWeatherModel> {
     var currentDay = Date()
     return this
         .map {
@@ -15,7 +16,7 @@ fun List<ListWeatherModel>.mapToDisplayModel(): List<BasedModel.DailyWeatherMode
             val minTemp = hours.map { it1 -> it1.tempHours }.minOrNull()?.toInt() ?: 0
             val icon = it.weather.first().icon
 
-            BasedModel.DailyWeatherModel(date, maxTemp, minTemp, icon, hours)
+            DailyWeatherModel(date, maxTemp, minTemp, icon, hours)
         }
         .filterIndexed { index, dailyWeatherModel ->
             if (index == 0) {

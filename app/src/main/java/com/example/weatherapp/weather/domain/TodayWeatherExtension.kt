@@ -1,10 +1,11 @@
 package com.example.weatherapp.weather.domain
 
 import com.example.weatherapp.weather.network.model.ListWeatherModel
+import com.example.weatherapp.weather.usecases.loaderweather.TodayWeatherModel
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun List<ListWeatherModel>.mapToHeaderDisplayModel() : BasedModel.TodayWeatherModel {
+fun List<ListWeatherModel>.mapToHeaderDisplayModel() : TodayWeatherModel {
     return this
         .map {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -12,7 +13,7 @@ fun List<ListWeatherModel>.mapToHeaderDisplayModel() : BasedModel.TodayWeatherMo
         val icon = it.weather.first().icon
         val temp = it.main.temp.toInt()
         val description = it.weather.first().description
-        BasedModel.TodayWeatherModel(date, icon, temp, description)
+        TodayWeatherModel(date, icon, temp, description)
     }
         .first()
 }

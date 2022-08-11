@@ -4,23 +4,24 @@ import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.R
 import com.example.weatherapp.common.flow.MutableSingleEventFlow
-import com.example.weatherapp.weather.domain.BasedModel
-import com.example.weatherapp.weather.usecases.loaderweather.LoaderWeather
+import com.example.weatherapp.weather.usecases.loaderweather.DailyWeatherModel
+import com.example.weatherapp.weather.usecases.loaderweather.TodayWeatherModel
+import com.example.weatherapp.weather.usecases.loaderweather.WeatherLoader
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class DailyWeatherViewModel(
-    private val loadData: LoaderWeather
+    private val loadData: WeatherLoader
 ) : ViewModel() {
 
     private var _message = MutableSingleEventFlow<Int>()
     val message get() = _message.asSharedFlow()
 
-    private var _header = MutableStateFlow<List<BasedModel.TodayWeatherModel>>(emptyList())
+    private var _header = MutableStateFlow<List<TodayWeatherModel>>(emptyList())
     val header get() = _header.asStateFlow()
 
-    private var _dailyWeather = MutableStateFlow<List<BasedModel.DailyWeatherModel>>(emptyList())
+    private var _dailyWeather = MutableStateFlow<List<DailyWeatherModel>>(emptyList())
     val dailyWeather get() = _dailyWeather.asStateFlow()
 
     private var _city = MutableStateFlow("")
