@@ -1,4 +1,4 @@
-package com.example.weatherapp.weather.di
+package com.example.weatherapp.weather
 
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.common.di.RetrofitModule
@@ -7,7 +7,6 @@ import com.example.weatherapp.weather.network.repository.RemoteRepositoryImpl
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
-import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ClassKey
