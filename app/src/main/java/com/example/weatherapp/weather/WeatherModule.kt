@@ -2,8 +2,8 @@ package com.example.weatherapp.weather
 
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.common.di.RetrofitModule
-import com.example.weatherapp.weather.network.api.ApiWeatherService
-import com.example.weatherapp.weather.network.repository.RemoteRepositoryImpl
+import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
+import com.example.weatherapp.weather.network.weatherrequest.WeatherRequest
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
@@ -24,7 +24,7 @@ class WeatherModule {
     @Provides
     @Singleton
     fun provideRepositoryUseCase(service: ApiWeatherService): WeatherService =
-        RemoteRepositoryImpl(service)
+        WeatherRequest(service)
 
     @Provides
     @Singleton

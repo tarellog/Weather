@@ -1,6 +1,6 @@
-package com.example.weatherapp.weather.domain
+package com.example.weatherapp.weather.network.weatherrequest.converters
 
-import com.example.weatherapp.weather.network.model.ListWeatherModel
+import com.example.weatherapp.weather.network.weatherrequest.model.ListWeatherModel
 import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
 import java.text.SimpleDateFormat
 import java.util.*

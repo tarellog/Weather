@@ -1,15 +1,14 @@
-package com.example.weatherapp.weather.network.repository
+package com.example.weatherapp.weather.network.weatherrequest
 
-import com.example.weatherapp.weather.domain.mapToDisplayModel
-import com.example.weatherapp.weather.domain.mapToHeaderDisplayModel
-import com.example.weatherapp.weather.network.api.ApiWeatherService
+import com.example.weatherapp.weather.network.weatherrequest.converters.mapToDisplayModel
+import com.example.weatherapp.weather.network.weatherrequest.converters.mapToHeaderDisplayModel
 import com.example.weatherapp.weather.usecases.weatherloader.Weather
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class RemoteRepositoryImpl(private val api: ApiWeatherService) : WeatherService {
+class WeatherRequest(private val api: ApiWeatherService) : WeatherService {
     override fun getWeather(cityName: String): Single<Weather> {
         return api.getApi(cityName)
             .map { weatherModel ->
