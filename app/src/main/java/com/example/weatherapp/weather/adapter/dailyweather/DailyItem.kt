@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.DailyItemBinding
 import com.example.weatherapp.weather.adapter.hoursweather.HoursItem
-import com.example.weatherapp.weather.usecases.loaderweather.DailyWeatherModel
+import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 import com.mikepenz.fastadapter.binding.AbstractBindingItem
@@ -14,7 +14,7 @@ import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DailyItem(private val item: DailyWeatherModel) :
+class DailyItem(private val item: DailyWeather) :
     AbstractBindingItem<DailyItemBinding>() {
 
     override var identifier: Long

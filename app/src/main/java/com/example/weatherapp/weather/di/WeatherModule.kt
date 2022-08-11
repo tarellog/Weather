@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import com.example.weatherapp.common.di.RetrofitModule
 import com.example.weatherapp.weather.network.api.ApiWeatherService
 import com.example.weatherapp.weather.network.repository.RemoteRepositoryImpl
-import com.example.weatherapp.weather.usecases.loaderweather.RemoteRepository
-import com.example.weatherapp.weather.usecases.loaderweather.WeatherLoader
-import com.example.weatherapp.weather.usecases.loaderweather.WeatherLoaderImpl
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
 import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel
 import dagger.Module
 import dagger.Provides
@@ -24,12 +24,12 @@ class WeatherModule {
 
     @Provides
     @Singleton
-    fun provideRepositoryUseCase(service: ApiWeatherService): RemoteRepository =
+    fun provideRepositoryUseCase(service: ApiWeatherService): WeatherService =
         RemoteRepositoryImpl(service)
 
     @Provides
     @Singleton
-    fun provideLoadDataUseCase(repository: RemoteRepository): WeatherLoader =
+    fun provideLoadDataUseCase(repository: WeatherService): WeatherLoader =
         WeatherLoaderImpl(repository)
 
     @IntoMap

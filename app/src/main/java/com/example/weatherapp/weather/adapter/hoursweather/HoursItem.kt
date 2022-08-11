@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.HoursItemBinding
-import com.example.weatherapp.weather.usecases.loaderweather.TimeWeatherModel
+import com.example.weatherapp.weather.usecases.weatherloader.TimeWeather
 import com.mikepenz.fastadapter.binding.AbstractBindingItem
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HoursItem(private val item: TimeWeatherModel) :
+class HoursItem(private val item: TimeWeather) :
     AbstractBindingItem<HoursItemBinding>() {
 
     override var identifier: Long

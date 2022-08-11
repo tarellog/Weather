@@ -3,17 +3,17 @@ package com.example.weatherapp.weather.network.repository
 import com.example.weatherapp.weather.domain.mapToDisplayModel
 import com.example.weatherapp.weather.domain.mapToHeaderDisplayModel
 import com.example.weatherapp.weather.network.api.ApiWeatherService
-import com.example.weatherapp.weather.usecases.loaderweather.RemoteRepository
-import com.example.weatherapp.weather.usecases.loaderweather.WeatherResponse
+import com.example.weatherapp.weather.usecases.weatherloader.Weather
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class RemoteRepositoryImpl(private val api: ApiWeatherService) : RemoteRepository {
-    override fun requestRepository(cityName: String): Single<WeatherResponse> {
+class RemoteRepositoryImpl(private val api: ApiWeatherService) : WeatherService {
+    override fun getWeather(cityName: String): Single<Weather> {
         return api.getApi(cityName)
             .map { weatherModel ->
-                WeatherResponse(
+                Weather(
                     headerWeather = buildList {
                         add(weatherModel.list.mapToHeaderDisplayModel())
                     },

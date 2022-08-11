@@ -1,11 +1,11 @@
 package com.example.weatherapp.weather.domain
 
 import com.example.weatherapp.weather.network.model.ListWeatherModel
-import com.example.weatherapp.weather.usecases.loaderweather.TimeWeatherModel
+import com.example.weatherapp.weather.usecases.weatherloader.TimeWeather
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun List<ListWeatherModel>.mapToHoursDisplayModel(hourDate: Date): List<TimeWeatherModel> {
+fun List<ListWeatherModel>.mapToHoursDisplayModel(hourDate: Date): List<TimeWeather> {
     return this
         .filter {
             val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
@@ -22,6 +22,6 @@ fun List<ListWeatherModel>.mapToHoursDisplayModel(hourDate: Date): List<TimeWeat
             val timeHours = sdf.parse(it.dt_txt)
             val tempHours = it.main.temp.toInt()
             val iconHours = it.weather.first().icon
-            TimeWeatherModel(timeHours, tempHours, iconHours)
+            TimeWeather(timeHours, tempHours, iconHours)
         }
 }
