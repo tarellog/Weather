@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModel
 import com.example.weatherapp.R
 import com.example.weatherapp.common.flow.MutableSingleEventFlow
 import com.example.weatherapp.weather.domain.BasedModel
-import com.example.weatherapp.weather.usecase.RepositoryUseCase
+import com.example.weatherapp.weather.usecase.LoadDataUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class DailyWeatherViewModel(
-    private val repository: RepositoryUseCase
+    private val loadData: LoadDataUseCase
 ) : ViewModel() {
 
     private var _message = MutableSingleEventFlow<Int>()
@@ -27,8 +27,8 @@ class DailyWeatherViewModel(
     val city get() = _city.asStateFlow()
 
     @SuppressLint("CheckResult")
-    fun loadBasedWeatherData(cityName: String) {
-        repository.requestRepository(cityName)
+    fun displayDataWeather(cityName: String) {
+        loadData.loadBasedWeatherData(cityName)
             .subscribe({ listWeatherModel ->
                 _header.tryEmit(listWeatherModel.headerWeather)
                 _dailyWeather.tryEmit(listWeatherModel.dailyWeather)
