@@ -2,9 +2,9 @@ package com.example.weatherapp.weather.di
 
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.common.di.RetrofitModule
-import com.example.weatherapp.weather.domain.RemoteRepository
 import com.example.weatherapp.weather.network.api.ApiWeatherService
 import com.example.weatherapp.weather.network.repository.RemoteRepositoryImpl
+import com.example.weatherapp.weather.usecase.RepositoryUseCase
 import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel
 import dagger.Module
 import dagger.Provides
@@ -22,14 +22,14 @@ class WeatherModule {
 
     @Provides
     @Singleton
-    fun provideRemoteRepository(service: ApiWeatherService): RemoteRepository =
+    fun provideRemoteRepository(service: ApiWeatherService): RepositoryUseCase =
         RemoteRepositoryImpl(service)
 
     @IntoMap
     @ClassKey(DailyWeatherViewModel::class)
     @Provides
     @Singleton
-    fun getViewModel(repository: RemoteRepository): ViewModel {
+    fun getViewModel(repository: RepositoryUseCase): ViewModel {
         return DailyWeatherViewModel(repository)
     }
 }

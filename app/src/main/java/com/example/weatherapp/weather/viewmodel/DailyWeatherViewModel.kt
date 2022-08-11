@@ -5,13 +5,13 @@ import androidx.lifecycle.ViewModel
 import com.example.weatherapp.R
 import com.example.weatherapp.common.flow.MutableSingleEventFlow
 import com.example.weatherapp.weather.domain.BasedModel
-import com.example.weatherapp.weather.domain.RemoteRepository
+import com.example.weatherapp.weather.usecase.RepositoryUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class DailyWeatherViewModel(
-    private val repository: RemoteRepository
+    private val repository: RepositoryUseCase
 ) : ViewModel() {
 
     private var _message = MutableSingleEventFlow<Int>()

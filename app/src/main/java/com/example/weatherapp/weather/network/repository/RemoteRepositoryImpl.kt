@@ -1,15 +1,15 @@
 package com.example.weatherapp.weather.network.repository
 
 import com.example.weatherapp.weather.domain.BasedModel
-import com.example.weatherapp.weather.domain.RemoteRepository
 import com.example.weatherapp.weather.domain.mapToDisplayModel
 import com.example.weatherapp.weather.domain.mapToHeaderDisplayModel
 import com.example.weatherapp.weather.network.api.ApiWeatherService
+import com.example.weatherapp.weather.usecase.RepositoryUseCase
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class RemoteRepositoryImpl(private val api: ApiWeatherService) : RemoteRepository {
+class RemoteRepositoryImpl(private val api: ApiWeatherService) : RepositoryUseCase {
     override fun requestRepository(cityName: String): Single<WeatherResponse> {
         return api.getApi(cityName)
             .map { weatherModel ->
