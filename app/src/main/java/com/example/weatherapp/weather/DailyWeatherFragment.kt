@@ -1,4 +1,4 @@
-package com.example.weatherapp.weather.ui
+package com.example.weatherapp.weather
 
 import android.os.Bundle
 import android.util.Log
@@ -16,7 +16,6 @@ import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
 import com.example.weatherapp.dialogweather.SearchDialogFragment
 import com.example.weatherapp.weather.adapter.dailyweather.DailyItem
 import com.example.weatherapp.weather.adapter.dailyweather.HeaderItem
-import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.GenericItemAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter

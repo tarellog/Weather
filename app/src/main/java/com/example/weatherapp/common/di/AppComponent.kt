@@ -1,7 +1,7 @@
 package com.example.weatherapp.common.di
 
 import androidx.lifecycle.ViewModel
-import com.example.weatherapp.weather.di.WeatherModule
+import com.example.weatherapp.weather.WeatherModule
 import dagger.Component
 import javax.inject.Singleton
 
