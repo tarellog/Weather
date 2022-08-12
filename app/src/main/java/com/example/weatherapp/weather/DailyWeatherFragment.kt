@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.example.weatherapp.R
 import com.example.weatherapp.common.di.ViewModelFactory
 import com.example.weatherapp.common.observe
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
-import com.example.weatherapp.dialogweather.SearchDialogFragment
 import com.example.weatherapp.weather.adapter.dailyweather.DailyItem
 import com.example.weatherapp.weather.adapter.dailyweather.HeaderItem
 import com.mikepenz.fastadapter.FastAdapter
@@ -39,10 +39,7 @@ class DailyWeatherFragment : Fragment() {
         _binding = FragmentDailyWeatherBinding.inflate(inflater, container, false)
 
         binding.search.setOnClickListener {
-            val searchDialogFragment = SearchDialogFragment()
-            val manager = parentFragmentManager
-            val transaction: FragmentTransaction = manager.beginTransaction()
-            searchDialogFragment.show(transaction, "searchDialog")
+            findNavController().navigate(R.id.action_dailyWeatherFragment_to_searchDialogFragment)
         }
 
         binding.recycler.adapter = fastAdapter
