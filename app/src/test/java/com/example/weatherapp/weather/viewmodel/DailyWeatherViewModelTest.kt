@@ -1,7 +1,8 @@
 package com.example.weatherapp.weather.viewmodel
 
-import com.example.weatherapp.weather.domain.RemoteRepository
-import com.example.weatherapp.weather.network.repository.RemoteRepositoryImpl
+import com.example.weatherapp.weather.DailyWeatherViewModel
+import com.example.weatherapp.weather.usecases.weatherloader.Weather
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
 import io.reactivex.Single
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -12,23 +13,22 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 internal class DailyWeatherViewModelTest {
-    private val CITY_NAME = ""
+    private val CITY_NAME = "Tambov"
 
     @Mock
-    lateinit var repository: RemoteRepository
+    lateinit var weatherLoader: WeatherLoader
 
     @Test
     fun testLoadBasedWeatherData() {
-        val weatherResponse = RemoteRepositoryImpl.WeatherResponse(
-            weatherList = listOf(),
+        val weatherResponse = Weather(
             headerWeather = listOf(),
             dailyWeather = listOf(),
             cityName = "")
 
-        Mockito.`when`(repository.requestRepository(CITY_NAME)).thenReturn(Single.just(weatherResponse))
+        Mockito.`when`(weatherLoader.getWeather(CITY_NAME)).thenReturn(Single.just(weatherResponse))
 
-        val viewModel = DailyWeatherViewModel(repository)
-        viewModel.loadBasedWeatherData(CITY_NAME)
+        val viewModel = DailyWeatherViewModel(weatherLoader)
+        viewModel.displayDataWeather(CITY_NAME)
 
         val expectedHeaderWeather = weatherResponse.headerWeather
         val expectedDailyWeather = weatherResponse.dailyWeather
