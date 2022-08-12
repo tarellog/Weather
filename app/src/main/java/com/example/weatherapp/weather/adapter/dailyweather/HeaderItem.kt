@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.HeaderItemBinding
-import com.example.weatherapp.weather.domain.BasedModel
+import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
 import com.mikepenz.fastadapter.binding.AbstractBindingItem
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HeaderItem(private val item: BasedModel.TodayWeatherModel) :
+class HeaderItem(private val item: TodayWeather) :
     AbstractBindingItem<HeaderItemBinding>() {
 
     override var identifier: Long

@@ -8,7 +8,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentSearchDialogBinding
-import com.example.weatherapp.weather.viewmodel.DailyWeatherViewModel
+import com.example.weatherapp.weather.DailyWeatherViewModel
 
 class SearchDialogFragment : DialogFragment() {
 
@@ -31,7 +31,7 @@ class SearchDialogFragment : DialogFragment() {
 
         dialog?.window?.setBackgroundDrawableResource(R.drawable.rounded_corner_dialog)
         binding.buttonAdd.setOnClickListener {
-            viewModel.loadBasedWeatherData(binding.editText.text.toString())
+            viewModel.displayDataWeather(binding.editText.text.toString())
             dismiss()
         }
 
