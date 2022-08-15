@@ -31,7 +31,7 @@ class SearchDialogFragment : DialogFragment() {
 
         dialog?.window?.setBackgroundDrawableResource(R.drawable.rounded_corner_dialog)
         binding.buttonAdd.setOnClickListener {
-            viewModel.displayDataWeather(binding.editText.text.toString())
+//            viewModel.displayDataWeather(binding.editText.text.toString())
             dismiss()
         }
 

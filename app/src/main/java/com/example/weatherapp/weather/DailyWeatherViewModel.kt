@@ -28,8 +28,8 @@ class DailyWeatherViewModel(
     val city get() = _city.asStateFlow()
 
     @SuppressLint("CheckResult")
-    fun displayDataWeather(cityName: String) {
-        loadData.getWeather(cityName)
+    fun displayDataWeather(cityName: String, latitude: Double, longitude: Double) {
+        loadData.getWeather(cityName, latitude, longitude)
             .subscribe({ listWeatherModel ->
                 _header.tryEmit(listWeatherModel.headerWeather)
                 _dailyWeather.tryEmit(listWeatherModel.dailyWeather)

@@ -9,8 +9,12 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class WeatherRequest(private val api: ApiWeatherService) : WeatherService {
-    override fun getWeather(cityName: String): Single<Weather> {
-        return api.getApi(cityName)
+    override fun getWeather(
+        cityName: String,
+        latitude: Double,
+        longitude: Double
+    ): Single<Weather> {
+        return api.getApi(cityName, latitude, longitude)
             .map { weatherModel ->
                 Weather(
                     headerWeather = buildList {
