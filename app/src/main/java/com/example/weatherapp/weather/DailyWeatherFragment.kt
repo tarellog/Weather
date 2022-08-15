@@ -45,6 +45,10 @@ class DailyWeatherFragment : Fragment() {
             searchDialogFragment.show(transaction, "searchDialog")
         }
 
+        binding.location.setOnClickListener {
+
+        }
+
         binding.recycler.adapter = fastAdapter
 
         return binding.root
