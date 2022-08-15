@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.example.weatherapp.R
 import com.example.weatherapp.common.di.ViewModelFactory
 import com.example.weatherapp.common.observe
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
@@ -39,7 +38,9 @@ class DailyWeatherFragment : Fragment() {
         _binding = FragmentDailyWeatherBinding.inflate(inflater, container, false)
 
         binding.search.setOnClickListener {
-            findNavController().navigate(R.id.action_dailyWeatherFragment_to_searchDialogFragment)
+            val action =
+                DailyWeatherFragmentDirections.actionDailyWeatherFragmentToSearchDialogFragment(String())
+            findNavController().navigate(action)
         }
 
         binding.recycler.adapter = fastAdapter

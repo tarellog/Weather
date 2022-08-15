@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.navArgs
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.FragmentSearchDialogBinding
 import com.example.weatherapp.weather.DailyWeatherViewModel
@@ -16,6 +17,8 @@ class SearchDialogFragment : DialogFragment() {
     private val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
 
     private val viewModel: DailyWeatherViewModel by activityViewModels()
+
+    private val arguments by navArgs<SearchDialogFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -32,6 +35,7 @@ class SearchDialogFragment : DialogFragment() {
         dialog?.window?.setBackgroundDrawableResource(R.drawable.rounded_corner_dialog)
         binding.buttonAdd.setOnClickListener {
             viewModel.displayDataWeather(binding.editText.text.toString())
+            binding.editText.setText(arguments.getCityName)
             dismiss()
         }
 
