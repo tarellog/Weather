@@ -1,6 +1,7 @@
 package com.example.weatherapp.weather
 
 import android.annotation.SuppressLint
+import android.location.Location
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.R
 import com.example.weatherapp.common.flow.MutableSingleEventFlow
@@ -28,8 +29,8 @@ class DailyWeatherViewModel(
     val city get() = _city.asStateFlow()
 
     @SuppressLint("CheckResult")
-    fun displayDataWeather(cityName: String, latitude: Double, longitude: Double) {
-        loadData.getWeather(cityName, latitude, longitude)
+    fun displayDataWeather(cityName: String) {
+        loadData.getWeather(cityName)
             .subscribe({ listWeatherModel ->
                 _header.tryEmit(listWeatherModel.headerWeather)
                 _dailyWeather.tryEmit(listWeatherModel.dailyWeather)
@@ -38,4 +39,11 @@ class DailyWeatherViewModel(
                 _message.tryEmit(R.string.message)
             })
     }
+
+    fun displayDataLocation(location: Location?) {
+        location?.let {
+            loadData.getWeatherLocation(it.latitude, it.longitude)
+        }
+    }
+
 }

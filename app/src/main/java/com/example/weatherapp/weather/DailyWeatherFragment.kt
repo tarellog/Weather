@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -21,7 +20,7 @@ import com.mikepenz.fastadapter.adapters.GenericItemAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
 
-class DailyWeatherFragment : Fragment() {
+class DailyWeatherFragment : CurrentLocationFragment() {
     private var _binding: FragmentDailyWeatherBinding? = null
     private val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
 
@@ -45,6 +44,7 @@ class DailyWeatherFragment : Fragment() {
             searchDialogFragment.show(transaction, "searchDialog")
         }
 
+        getLocation { viewModel.displayDataLocation(it) }
         binding.location.setOnClickListener {
 
         }
