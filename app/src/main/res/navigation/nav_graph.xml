@@ -19,8 +19,5 @@
         android:name="com.example.weatherapp.dialogweather.SearchDialogFragment"
         android:label="fragment_search_dialog"
         tools:layout="@layout/fragment_search_dialog" >
-        <argument
-            android:name="getCityName"
-            app:argType="string" />
     </dialog>
 </navigation>
