@@ -3,7 +3,6 @@ package com.example.weatherapp.common
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.weatherapp.databinding.ActivityMainBinding
-import com.example.weatherapp.weather.DailyWeatherFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,10 +13,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        supportFragmentManager.beginTransaction()
-            .add(binding.containerFragment.id, DailyWeatherFragment())
-            .commit()
     }
 
     override fun onDestroy() {
