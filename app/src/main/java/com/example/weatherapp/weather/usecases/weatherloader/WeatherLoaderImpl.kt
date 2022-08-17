@@ -7,7 +7,7 @@ class WeatherLoaderImpl(private val weatherService: WeatherService) : WeatherLoa
         return weatherService.getWeather(cityName)
     }
 
-    override fun getWeatherLocation(latitude: Double, longitude: Double): Single<WeatherModel> {
+    override fun getWeatherLocation(latitude: Double, longitude: Double): Single<Weather> {
         return weatherService.getWeatherLocation(latitude, longitude)
     }
 }

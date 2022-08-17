@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.asStateFlow
 class DailyWeatherViewModel(
     private val loadData: WeatherLoader
 ) : ViewModel() {
-
     private var _message = MutableSingleEventFlow<Int>()
     val message get() = _message.asSharedFlow()
 
@@ -43,7 +42,13 @@ class DailyWeatherViewModel(
     fun displayDataLocation(location: Location?) {
         location?.let {
             loadData.getWeatherLocation(it.latitude, it.longitude)
+                .subscribe({ listWeatherModel ->
+                    _header.tryEmit(listWeatherModel.headerWeather)
+                    _dailyWeather.tryEmit(listWeatherModel.dailyWeather)
+                    _city.tryEmit((listWeatherModel.cityName))
+                }, {
+                    _message.tryEmit(R.string.message)
+                })
         }
     }
-
 }

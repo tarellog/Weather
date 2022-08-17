@@ -3,7 +3,6 @@ package com.example.weatherapp.weather.network.weatherrequest
 import com.example.weatherapp.weather.network.weatherrequest.converters.mapToDisplayModel
 import com.example.weatherapp.weather.network.weatherrequest.converters.mapToHeaderDisplayModel
 import com.example.weatherapp.weather.usecases.weatherloader.Weather
-import com.example.weatherapp.weather.usecases.weatherloader.WeatherModel
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -27,8 +26,19 @@ class WeatherRequest(private val api: ApiWeatherService) : WeatherService {
             .observeOn(AndroidSchedulers.mainThread())
     }
 
-    override fun getWeatherLocation(latitude: Double, longitude: Double): Single<WeatherModel> {
+    override fun getWeatherLocation(latitude: Double, longitude: Double): Single<Weather> {
         return api.getLocation(latitude, longitude)
+            .map { weatherModel ->
+                Weather(
+                    headerWeather = buildList {
+                        add(weatherModel.list.mapToHeaderDisplayModel())
+                    },
+                    dailyWeather = buildList {
+                        addAll(weatherModel.list.mapToDisplayModel())
+                    },
+                    cityName = weatherModel.city.name
+                )
+            }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
     }

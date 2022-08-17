@@ -46,8 +46,6 @@ class DailyWeatherFragment : CurrentLocationFragment() {
             val transaction: FragmentTransaction = manager.beginTransaction()
             searchDialogFragment.show(transaction, "searchDialog")
         }
-
-        permissionLocation()
         binding.location.setOnClickListener {
             getLocation { viewModel.displayDataLocation(it) }
         }
