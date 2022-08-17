@@ -16,9 +16,15 @@ open class CurrentLocationFragment : Fragment() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.N)
+    fun permissionLocation() {
         val locationPermissionRequest = registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
         ) { permissions ->
@@ -40,10 +46,10 @@ open class CurrentLocationFragment : Fragment() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             )
         )
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
     }
 
-    protected fun getLocation(listener: (Location) -> Unit) {
+    protected fun getLocation(listener: (Location?) -> Unit) {
+        val task = fusedLocationClient.lastLocation
         if (ActivityCompat.checkSelfPermission(
                 requireActivity(),
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -52,9 +58,12 @@ open class CurrentLocationFragment : Fragment() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 101
+            )
             return
         }
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener(listener)
+            task.addOnSuccessListener(listener)
     }
 }

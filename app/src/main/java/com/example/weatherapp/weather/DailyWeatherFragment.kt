@@ -1,11 +1,13 @@
 package com.example.weatherapp.weather
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -30,6 +32,7 @@ class DailyWeatherFragment : CurrentLocationFragment() {
 
     private val viewModel: DailyWeatherViewModel by activityViewModels { ViewModelFactory() }
 
+    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,9 +47,9 @@ class DailyWeatherFragment : CurrentLocationFragment() {
             searchDialogFragment.show(transaction, "searchDialog")
         }
 
-        getLocation { viewModel.displayDataLocation(it) }
+        permissionLocation()
         binding.location.setOnClickListener {
-
+            getLocation { viewModel.displayDataLocation(it) }
         }
 
         binding.recycler.adapter = fastAdapter
