@@ -19,14 +19,10 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 internal class DailyWeatherViewModelTest {
-    private val headerWeather = weatherHeader
-    private val dailyWeather = weatherDaily
-    private val cityName = city
-
     private val weatherModel = Weather(
-        headerWeather = headerWeather,
-        dailyWeather = dailyWeather,
-        cityName = cityName
+        headerWeather = weatherHeader,
+        dailyWeather = weatherDaily,
+        cityName = city
     )
 
     private val headerStateFlow = MutableStateFlow<List<TodayWeather>>(emptyList())
@@ -39,24 +35,24 @@ internal class DailyWeatherViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun displayDataWeather() = runTest {
-        Mockito.`when`(weatherLoader.getWeather(cityName)).thenReturn(Single.just(weatherModel))
+        Mockito.`when`(weatherLoader.getWeather(city)).thenReturn(Single.just(weatherModel))
 
         val viewModel = DailyWeatherViewModel(weatherLoader)
-        viewModel.displayDataWeather(cityName)
+        viewModel.displayDataWeather(city)
 
         viewModel.header.test {
-            headerStateFlow.emit(headerWeather)
-            assertEquals(awaitItem(), headerWeather)
+            headerStateFlow.emit(weatherHeader)
+            assertEquals(awaitItem(), weatherHeader)
         }
 
         viewModel.dailyWeather.test {
-            dailyStateFlow.emit(dailyWeather)
-            assertEquals(awaitItem(), dailyWeather)
+            dailyStateFlow.emit(weatherDaily)
+            assertEquals(awaitItem(), weatherDaily)
         }
 
         viewModel.city.test {
-            cityStateFlow.emit(cityName)
-            assertEquals(awaitItem(), cityName)
+            cityStateFlow.emit(city)
+            assertEquals(awaitItem(), city)
         }
     }
 }

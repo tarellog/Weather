@@ -4,10 +4,8 @@ import com.example.weatherapp.weather.network.weatherrequest.model.Icon
 import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
 import com.example.weatherapp.weather.usecases.weatherloader.TimeWeather
 import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
-import org.mockito.Mock
 import java.util.*
 
-@Mock
 val weatherHeader = listOf(
     TodayWeather(
         date = Date(),
@@ -16,7 +14,7 @@ val weatherHeader = listOf(
         description = "Пасмурно"
     )
 )
-@Mock
+
 val weatherDaily = listOf(
     DailyWeather(
         date = Date(),
@@ -32,5 +30,5 @@ val weatherDaily = listOf(
         )
     )
 )
-@Mock
+
 val city = "Москва"
