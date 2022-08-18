@@ -7,13 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.weatherapp.common.di.ViewModelFactory
 import com.example.weatherapp.common.observe
 import com.example.weatherapp.databinding.FragmentDailyWeatherBinding
-import com.example.weatherapp.dialogweather.SearchDialogFragment
+import com.example.weatherapp.dialogweather.SearchDialogFragment.Companion.BUNDLE_KEY
+import com.example.weatherapp.dialogweather.SearchDialogFragment.Companion.REQUEST_KEY
 import com.example.weatherapp.weather.adapter.dailyweather.DailyItem
 import com.example.weatherapp.weather.adapter.dailyweather.HeaderItem
 import com.mikepenz.fastadapter.FastAdapter
@@ -38,11 +40,15 @@ class DailyWeatherFragment : Fragment() {
     ): View {
         _binding = FragmentDailyWeatherBinding.inflate(inflater, container, false)
 
+        setFragmentResultListener(REQUEST_KEY) { key, bundle ->
+            val result = bundle.getString(BUNDLE_KEY)
+            viewModel.displayDataWeather(result.toString())
+        }
+
         binding.search.setOnClickListener {
-            val searchDialogFragment = SearchDialogFragment()
-            val manager = parentFragmentManager
-            val transaction: FragmentTransaction = manager.beginTransaction()
-            searchDialogFragment.show(transaction, "searchDialog")
+            val action =
+                DailyWeatherFragmentDirections.actionDailyWeatherFragmentToSearchDialogFragment()
+            findNavController().navigate(action)
         }
 
         binding.recycler.adapter = fastAdapter
