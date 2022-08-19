@@ -5,7 +5,7 @@
     android:layout_width="343dp"
     android:layout_height="180dp"
     android:background="@drawable/rounded_corner_dialog"
-    tools:context=".ui.SearchDialogFragment">
+    tools:context=".dialogweather.SearchDialogFragment">
 
     <EditText
         android:id="@+id/edit_text"
