@@ -1,14 +1,10 @@
 package com.example.weatherapp.weather.viewmodel
 
-import app.cash.turbine.test
+import app.cash.turbine.testIn
 import com.example.weatherapp.weather.DailyWeatherViewModel
-import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
-import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
-import com.example.weatherapp.weather.usecases.weatherloader.Weather
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
 import io.reactivex.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -19,40 +15,28 @@ import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
 internal class DailyWeatherViewModelTest {
-    private val weatherModel = Weather(
-        headerWeather = weatherHeader,
-        dailyWeather = weatherDaily,
-        cityName = city
-    )
-
-    private val headerStateFlow = MutableStateFlow<List<TodayWeather>>(emptyList())
-    private val dailyStateFlow = MutableStateFlow<List<DailyWeather>>(emptyList())
-    private val cityStateFlow = MutableStateFlow("")
-
     @Mock
     lateinit var weatherLoader: WeatherLoader
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun displayDataWeather() = runTest {
-        Mockito.`when`(weatherLoader.getWeather(city)).thenReturn(Single.just(weatherModel))
+        Mockito.`when`(weatherLoader.getWeather(weatherModel.cityName))
+            .thenReturn(Single.just(weatherModel))
 
         val viewModel = DailyWeatherViewModel(weatherLoader)
-        viewModel.displayDataWeather(city)
+        viewModel.displayDataWeather(weatherModel.cityName)
 
-        viewModel.header.test {
-            headerStateFlow.emit(weatherHeader)
-            assertEquals(awaitItem(), weatherHeader)
-        }
+        val testHeaderWeather = viewModel.header.testIn(this)
+        val testDailyWeather = viewModel.dailyWeather.testIn(this)
+        val testCityName = viewModel.city.testIn(this)
 
-        viewModel.dailyWeather.test {
-            dailyStateFlow.emit(weatherDaily)
-            assertEquals(awaitItem(), weatherDaily)
-        }
+        assertEquals(weatherModel.headerWeather, testHeaderWeather.awaitItem())
+        assertEquals(weatherModel.dailyWeather, testDailyWeather.awaitItem())
+        assertEquals(weatherModel.cityName, testCityName.awaitItem())
 
-        viewModel.city.test {
-            cityStateFlow.emit(city)
-            assertEquals(awaitItem(), city)
-        }
+        testHeaderWeather.cancel()
+        testDailyWeather.cancel()
+        testCityName.cancel()
     }
 }
