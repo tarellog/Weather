@@ -22,7 +22,7 @@ internal class DailyWeatherViewModelTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun displayDataWeather() = runTest {
+    fun testDisplayDataWeather() = runTest {
         Mockito.`when`(weatherLoader.getWeather(weatherModel.cityName))
             .thenReturn(Single.just(weatherModel))
 
@@ -48,5 +48,33 @@ internal class DailyWeatherViewModelTest {
         testCityName.cancel()
 
         testMessage.cancel()
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun testDisplayDataWeatherWithException() = runTest {
+        Mockito.`when`(weatherLoader.getWeather(weatherModel.cityName))
+            .thenReturn(Single.error(Throwable()))
+
+        val viewModel = DailyWeatherViewModel(weatherLoader)
+
+        val testMessage = viewModel.message.testIn(this)
+        val testHeaderWeather = viewModel.header.testIn(this)
+        val testDailyWeather = viewModel.dailyWeather.testIn(this)
+        val testCityName = viewModel.city.testIn(this)
+
+        viewModel.displayDataWeather(weatherModel.cityName)
+
+        assertEquals(messageError, testMessage.awaitItem())
+        testMessage.cancel()
+
+        assertEquals(emptyList<TodayWeather>(), testHeaderWeather.awaitItem())
+        testHeaderWeather.cancel()
+
+        assertEquals(emptyList<DailyWeather>(), testDailyWeather.awaitItem())
+        testDailyWeather.cancel()
+
+        assertEquals("", testCityName.awaitItem())
+        testCityName.cancel()
     }
 }

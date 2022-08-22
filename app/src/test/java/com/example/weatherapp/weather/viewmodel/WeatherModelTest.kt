@@ -1,5 +1,6 @@
 package com.example.weatherapp.weather.viewmodel
 
+import com.example.weatherapp.R
 import com.example.weatherapp.weather.network.weatherrequest.model.Icon
 import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
 import com.example.weatherapp.weather.usecases.weatherloader.TimeWeather
@@ -7,7 +8,7 @@ import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
 import com.example.weatherapp.weather.usecases.weatherloader.Weather
 import java.util.*
 
-const val messageError = 12345
+val messageError = R.string.message
 val weatherModel = Weather(
     headerWeather = listOf(
         TodayWeather(
