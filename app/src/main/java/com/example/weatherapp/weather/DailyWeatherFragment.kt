@@ -1,14 +1,11 @@
 package com.example.weatherapp.weather
 
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
-import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
@@ -36,7 +33,6 @@ class DailyWeatherFragment : Fragment() {
 
     private val viewModel: DailyWeatherViewModel by activityViewModels { ViewModelFactory() }
 
-    @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -55,7 +51,7 @@ class DailyWeatherFragment : Fragment() {
             findNavController().navigate(action)
         }
         binding.location.setOnClickListener {
-            getLocation { viewModel.displayDataLocation(it) }
+            viewModel.displayDataLocation()
         }
 
         binding.recycler.adapter = fastAdapter
