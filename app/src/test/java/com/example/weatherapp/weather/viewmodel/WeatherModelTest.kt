@@ -7,6 +7,7 @@ import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
 import com.example.weatherapp.weather.usecases.weatherloader.Weather
 import java.util.*
 
+const val messageError = 12345
 val weatherModel = Weather(
     headerWeather = listOf(
         TodayWeather(
@@ -33,6 +34,5 @@ val weatherModel = Weather(
     ),
     cityName = "Москва"
 )
-
 
 

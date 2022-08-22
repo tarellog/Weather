@@ -2,6 +2,8 @@ package com.example.weatherapp.weather.viewmodel
 
 import app.cash.turbine.testIn
 import com.example.weatherapp.weather.DailyWeatherViewModel
+import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
+import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
 import io.reactivex.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -25,18 +27,26 @@ internal class DailyWeatherViewModelTest {
             .thenReturn(Single.just(weatherModel))
 
         val viewModel = DailyWeatherViewModel(weatherLoader)
-        viewModel.displayDataWeather(weatherModel.cityName)
 
+        val testMessage = viewModel.message.testIn(this)
         val testHeaderWeather = viewModel.header.testIn(this)
         val testDailyWeather = viewModel.dailyWeather.testIn(this)
         val testCityName = viewModel.city.testIn(this)
 
-        assertEquals(weatherModel.headerWeather, testHeaderWeather.awaitItem())
-        assertEquals(weatherModel.dailyWeather, testDailyWeather.awaitItem())
-        assertEquals(weatherModel.cityName, testCityName.awaitItem())
+        viewModel.displayDataWeather(weatherModel.cityName)
 
+        assertEquals(emptyList<TodayWeather>(), testHeaderWeather.awaitItem())
+        assertEquals(weatherModel.headerWeather, testHeaderWeather.awaitItem())
         testHeaderWeather.cancel()
+
+        assertEquals(emptyList<DailyWeather>(), testDailyWeather.awaitItem())
+        assertEquals(weatherModel.dailyWeather, testDailyWeather.awaitItem())
         testDailyWeather.cancel()
+
+        assertEquals("", testCityName.awaitItem())
+        assertEquals(weatherModel.cityName, testCityName.awaitItem())
         testCityName.cancel()
+
+        testMessage.cancel()
     }
 }
