@@ -1,6 +1,5 @@
-package com.example.weatherapp.weather.viewmodel
+package com.example.weatherapp.weather.network.weatherrequest
 
-import com.example.weatherapp.R
 import com.example.weatherapp.weather.network.weatherrequest.model.Icon
 import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
 import com.example.weatherapp.weather.usecases.weatherloader.TimeWeather
@@ -8,26 +7,25 @@ import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
 import com.example.weatherapp.weather.usecases.weatherloader.Weather
 import java.util.*
 
-val messageError = R.string.message
-val weatherModel = Weather(
+val weatherActualModel = Weather(
     headerWeather = listOf(
         TodayWeather(
-            date = Date(),
+            date = Date(122, 2,15,0,0,0),
             icon = Icon.SUN,
-            temp = 10,
+            temp = 1,
             description = "Пасмурно"
         )
     ),
     dailyWeather = listOf(
         DailyWeather(
-            date = Date(),
-            minTemp = 0,
-            maxTemp = 16,
+            date = Date(122, 2,15,0,0,0),
+            minTemp = 1,
+            maxTemp = 1,
             icon = Icon.SUN,
             hoursList = listOf(
                 TimeWeather(
-                    timeHours = Date(),
-                    tempHours = 13,
+                    timeHours = Date(122, 2,15,12,0,0),
+                    tempHours = 1,
                     iconHours = Icon.SUN
                 )
             )
@@ -35,5 +33,3 @@ val weatherModel = Weather(
     ),
     cityName = "Москва"
 )
-
-

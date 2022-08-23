@@ -1,7 +1,6 @@
-package com.example.weatherapp.weather.viewmodel
+package com.example.weatherapp.weather
 
 import app.cash.turbine.testIn
-import com.example.weatherapp.weather.DailyWeatherViewModel
 import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
 import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
