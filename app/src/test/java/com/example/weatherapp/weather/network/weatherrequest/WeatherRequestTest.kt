@@ -30,13 +30,22 @@ class WeatherRequestTest {
     @Test
     fun getWeatherTest() {
         Mockito.`when`(apiWeatherService.getApi(weatherModel.cityName)).thenReturn(
-            Single.just(weatherExpectedModel)
-        )
+            Single.just(weatherExpectedModel))
 
         weatherRequest.getWeather(weatherModel.cityName).test()
             .assertNoErrors()
             .assertValueCount(1)
             .assertValues(weatherActualModel)
             .assertComplete()
+    }
+
+    @Test
+    fun getWeatherExceptionTest() {
+        Mockito.`when`(apiWeatherService.getApi(weatherModel.cityName))
+            .thenReturn(Single.error(Throwable()))
+
+        weatherRequest.getWeather(weatherModel.cityName).test()
+            .assertValueCount(0)
+            .assertNotComplete()
     }
 }
