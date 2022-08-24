@@ -5,10 +5,10 @@ import android.location.Location
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.R
 import com.example.weatherapp.common.flow.MutableSingleEventFlow
-import com.example.weatherapp.weather.usecases.weatherbylocation.WeatherLocation
 import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
 import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherLocation
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
