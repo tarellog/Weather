@@ -3,7 +3,7 @@ package com.example.weatherapp.weather.network.weatherrequest
 import com.example.weatherapp.weather.network.weatherrequest.converters.mapToDisplayModel
 import com.example.weatherapp.weather.network.weatherrequest.converters.mapToHeaderDisplayModel
 import com.example.weatherapp.weather.usecases.weatherloader.Weather
-import com.example.weatherapp.weather.usecases.weatherloader.WeatherRequestLocation
+import com.example.weatherapp.weather.usecases.weatherlocation.WeatherRequestLocation
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

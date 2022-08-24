@@ -1,11 +1,15 @@
 package com.example.weatherapp.weather
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.common.di.RetrofitModule
 import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
 import com.example.weatherapp.weather.network.weatherrequest.WeatherRequest
 import com.example.weatherapp.weather.network.weatherrequest.WeatherRequestLocationImpl
-import com.example.weatherapp.weather.usecases.weatherloader.*
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
+import com.example.weatherapp.weather.usecases.weatherlocation.*
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ClassKey
@@ -14,7 +18,7 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @Module(includes = [RetrofitModule::class])
-class WeatherModule {
+class WeatherModule  {
     @Provides
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiWeatherService =
@@ -37,14 +41,23 @@ class WeatherModule {
 
     @Provides
     @Singleton
-    fun provideWeatherLocation(repository: WeatherRequestLocation): WeatherLocation =
-        WeatherLocationImpl(repository)
+    fun provideWeatherLocation(request: WeatherRequestLocation): WeatherLocation =
+        WeatherLocationImpl(request)
+
+    @Provides
+    @Singleton
+    fun provideWeatherPermission(context: Context): WeatherPermission =
+        WeatherPermissionLocation(context)
 
     @IntoMap
     @ClassKey(DailyWeatherViewModel::class)
     @Provides
     @Singleton
-    fun getViewModel(loadData: WeatherLoader, weatherLocation: WeatherLocation): ViewModel {
-        return DailyWeatherViewModel(loadData, weatherLocation)
+    fun getViewModel(
+        loadData: WeatherLoader,
+        locations: WeatherLocation,
+        locationPermission: WeatherPermission
+    ): ViewModel {
+        return DailyWeatherViewModel(loadData, locations, locationPermission)
     }
 }

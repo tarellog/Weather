@@ -1,6 +1,5 @@
 package com.example.weatherapp.weather
 
-import android.annotation.SuppressLint
 import android.location.Location
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.R
@@ -8,14 +7,16 @@ import com.example.weatherapp.common.flow.MutableSingleEventFlow
 import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
 import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
-import com.example.weatherapp.weather.usecases.weatherloader.WeatherLocation
+import com.example.weatherapp.weather.usecases.weatherlocation.WeatherLocation
+import com.example.weatherapp.weather.usecases.weatherlocation.WeatherPermission
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class DailyWeatherViewModel(
     private val loadData: WeatherLoader,
-    private val weatherLocation: WeatherLocation
+    private val locations: WeatherLocation,
+    private val locationPermission: WeatherPermission
 ) : ViewModel() {
     private var _message = MutableSingleEventFlow<Int>()
     val message get() = _message.asSharedFlow()
@@ -29,21 +30,9 @@ class DailyWeatherViewModel(
     private var _city = MutableStateFlow("")
     val city get() = _city.asStateFlow()
 
-    @SuppressLint("CheckResult")
     fun displayDataWeather(cityName: String) {
-        loadData.getWeather(cityName)
-            .subscribe({ listWeatherModel ->
-                _header.tryEmit(listWeatherModel.headerWeather)
-                _dailyWeather.tryEmit(listWeatherModel.dailyWeather)
-                _city.tryEmit((listWeatherModel.cityName))
-            }, {
-                _message.tryEmit(R.string.message)
-            })
-    }
-
-    fun displayDataLocation(location: Location?) {
-        location?.let {
-            weatherLocation.getWeatherLocation(it.latitude, it.longitude)
+        cityName.let {
+            loadData.getWeather(cityName)
                 .subscribe({ listWeatherModel ->
                     _header.tryEmit(listWeatherModel.headerWeather)
                     _dailyWeather.tryEmit(listWeatherModel.dailyWeather)
@@ -52,5 +41,22 @@ class DailyWeatherViewModel(
                     _message.tryEmit(R.string.message)
                 })
         }
+    }
+
+    private fun displayDataLocation(location: Location?) {
+        location?.let {
+            locations.getPermission(location.latitude, location.longitude)
+                .subscribe({ listWeatherModel ->
+                    _header.tryEmit(listWeatherModel.headerWeather)
+                    _dailyWeather.tryEmit(listWeatherModel.dailyWeather)
+                    _city.tryEmit((listWeatherModel.cityName))
+                }, {
+                    _message.tryEmit(R.string.message)
+                })
+        }
+    }
+
+    fun permissionLocation() {
+        locationPermission.getPermission { displayDataLocation(it) }
     }
 }
