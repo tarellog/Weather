@@ -10,24 +10,36 @@ object AppDependencies {
     private val constraintLayout =
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     private val material = "com.google.android.material:material:${Versions.material}"
+
+    //Retrofit
     private val gson = "com.google.code.gson:gson:${Versions.gson}"
     private val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
     private val converterGson = "com.squareup.retrofit2:converter-gson:${Versions.converterGson}"
+
+    //Lifecycle
     private val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.frgamentKtx}"
     private val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModelKtx}"
+
+    //Navigation
     private val navigation = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     private val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigationUi}"
+
+    //FastAdapter
     private val fastAdapter = "com.mikepenz:fastadapter:${Versions.fastAdapter}"
     private val fastAdapterBinding = "com.mikepenz:fastadapter-extensions-binding:${Versions.fastBinding}"
     private val fastAdapterDiff = "com.mikepenz:fastadapter-extensions-diff:${Versions.fastDiff}"
     private val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recycler}"
+
+    //Dagger
     private val dagger = "com.google.dagger:dagger:${Versions.dagger}"
-    private val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
-    private val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
-    private val rxRetrofit = "com.squareup.retrofit2:adapter-rxjava2:${Versions.rxRetrofit}"
 
     //kapt
     private val daggerKapt = "com.google.dagger:dagger-compiler:2.41"
+
+    //Rx
+    private val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}"
+    private val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
+    private val rxRetrofit = "com.squareup.retrofit2:adapter-rxjava2:${Versions.rxRetrofit}"
 
     //test libs
     private val junit = "junit:junit:${Versions.junit}"
