@@ -1,10 +1,6 @@
-package com.example.weatherapp.weather.network.weatherrequest
+package com.example.weatherapp.weather.usecases.weatherloader
 
 import com.example.weatherapp.weather.network.weatherrequest.model.Icon
-import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
-import com.example.weatherapp.weather.usecases.weatherloader.TimeWeather
-import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
-import com.example.weatherapp.weather.usecases.weatherloader.Weather
 import java.util.*
 
 val weatherActualModel = Weather(

@@ -1,4 +1,4 @@
-package com.example.weatherapp.weather.network.weatherrequest
+package com.example.weatherapp.weather.usecases.weatherloader
 
 import com.example.weatherapp.weather.network.weatherrequest.model.*
 

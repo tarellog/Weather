@@ -1,7 +1,6 @@
 package com.example.weatherapp.weather.usecases.weatherloader
 
 import com.example.weatherapp.weather.network.weatherrequest.RxImmediateSchedulerRule
-import com.example.weatherapp.weather.network.weatherrequest.weatherActualModel
 import com.example.weatherapp.weather.weatherModel
 import io.reactivex.Single
 import org.junit.Before
