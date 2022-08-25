@@ -3,6 +3,7 @@ object Versions {
     //app level
     const val gradle = "7.2.1"
     const val kotlin = "1.6.10"
+    const val safeArgs = "2.5.1"
 
     //libs
     val coreKtx = "1.8.0"
