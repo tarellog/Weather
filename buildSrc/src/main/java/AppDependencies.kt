@@ -47,6 +47,10 @@ object AppDependencies {
     private val rxRetrofit = "com.squareup.retrofit2:adapter-rxjava2:${Versions.rxRetrofit}"
     //endregion
 
+    //region Location
+    private val location = "com.google.android.gms:play-services-location:${Versions.locationService}"
+    //endregion
+
     //region test libs
     private val junit = "junit:junit:${Versions.junit}"
     private val extJUnit = "androidx.test.ext:junit:${Versions.extJunit}"
@@ -75,6 +79,7 @@ object AppDependencies {
         rxAndroid,
         rxJava,
         rxRetrofit,
+        location
     )
     //endregion
 

@@ -9,7 +9,9 @@ import com.example.weatherapp.weather.network.weatherrequest.WeatherRequestLocat
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
-import com.example.weatherapp.weather.usecases.weatherlocation.*
+import com.example.weatherapp.weather.usecases.weatherlocation.WeatherLocation
+import com.example.weatherapp.weather.usecases.weatherlocation.WeatherLocationImpl
+import com.example.weatherapp.weather.usecases.weatherlocation.WeatherRequestLocation
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ClassKey
@@ -41,13 +43,8 @@ class WeatherModule  {
 
     @Provides
     @Singleton
-    fun provideWeatherLocation(request: WeatherRequestLocation): WeatherLocation =
-        WeatherLocationImpl(request)
-
-    @Provides
-    @Singleton
-    fun provideWeatherPermission(context: Context): WeatherPermission =
-        WeatherPermissionLocation(context)
+    fun provideWeatherLocation(request: WeatherRequestLocation, context: Context): WeatherLocation =
+        WeatherLocationImpl(request, context)
 
     @IntoMap
     @ClassKey(DailyWeatherViewModel::class)
@@ -56,8 +53,7 @@ class WeatherModule  {
     fun getViewModel(
         loadData: WeatherLoader,
         locations: WeatherLocation,
-        locationPermission: WeatherPermission
     ): ViewModel {
-        return DailyWeatherViewModel(loadData, locations, locationPermission)
+        return DailyWeatherViewModel(loadData, locations)
     }
 }
