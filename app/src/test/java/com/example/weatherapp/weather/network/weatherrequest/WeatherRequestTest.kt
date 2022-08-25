@@ -3,7 +3,6 @@ package com.example.weatherapp.weather.network.weatherrequest
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
 import com.example.weatherapp.weather.usecases.weatherloader.weatherActualModel
 import com.example.weatherapp.weather.usecases.weatherloader.weatherExpectedModel
-import com.example.weatherapp.weather.weatherModel
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
@@ -31,10 +30,10 @@ class WeatherRequestTest {
 
     @Test
     fun getWeatherTest() {
-        Mockito.`when`(apiWeatherService.getApi(weatherModel.cityName)).thenReturn(
+        Mockito.`when`(apiWeatherService.getApi(weatherActualModel.cityName)).thenReturn(
             Single.just(weatherExpectedModel))
 
-        weatherRequest.getWeather(weatherModel.cityName).test()
+        weatherRequest.getWeather(weatherActualModel.cityName).test()
             .assertNoErrors()
             .assertValueCount(1)
             .assertValues(weatherActualModel)
@@ -43,10 +42,10 @@ class WeatherRequestTest {
 
     @Test
     fun getWeatherExceptionTest() {
-        Mockito.`when`(apiWeatherService.getApi(weatherModel.cityName))
+        Mockito.`when`(apiWeatherService.getApi(weatherActualModel.cityName))
             .thenReturn(Single.error(Throwable()))
 
-        weatherRequest.getWeather(weatherModel.cityName).test()
+        weatherRequest.getWeather(weatherActualModel.cityName).test()
             .assertValueCount(0)
             .assertNotComplete()
     }

@@ -1,7 +1,6 @@
 package com.example.weatherapp.weather.usecases.weatherloader
 
 import com.example.weatherapp.weather.network.weatherrequest.RxImmediateSchedulerRule
-import com.example.weatherapp.weather.weatherModel
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
@@ -29,10 +28,10 @@ class WeatherLoaderImplTest {
 
     @Test
     fun getWeatherTest() {
-        Mockito.`when`(weatherRequest.getWeather(weatherModel.cityName)).thenReturn(
+        Mockito.`when`(weatherRequest.getWeather(weatherActualModel.cityName)).thenReturn(
             Single.just(weatherActualModel))
 
-        weatherLoader.getWeather(weatherModel.cityName).test()
+        weatherLoader.getWeather(weatherActualModel.cityName).test()
             .assertNoErrors()
             .assertValueCount(1)
             .assertValues(weatherActualModel)
@@ -41,10 +40,10 @@ class WeatherLoaderImplTest {
 
     @Test
     fun getWeatherExceptionTest() {
-        Mockito.`when`(weatherRequest.getWeather(weatherModel.cityName))
+        Mockito.`when`(weatherRequest.getWeather(weatherActualModel.cityName))
             .thenReturn(Single.error(Throwable()))
 
-        weatherLoader.getWeather(weatherModel.cityName).test()
+        weatherLoader.getWeather(weatherActualModel.cityName).test()
             .assertValueCount(0)
             .assertNotComplete()
     }

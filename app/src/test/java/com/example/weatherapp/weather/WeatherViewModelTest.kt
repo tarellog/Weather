@@ -28,7 +28,7 @@ class WeatherViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testDisplayDataWeather() = runTest {
-        Mockito.`when`(apiWeatherService.getApi(weatherModel.cityName)).thenReturn(
+        Mockito.`when`(apiWeatherService.getApi(weatherActualModel.cityName)).thenReturn(
             Single.just(weatherExpectedModel))
 
         val weatherRequest = WeatherRequest(apiWeatherService)
@@ -40,7 +40,7 @@ class WeatherViewModelTest {
         val testDailyWeather = viewModel.dailyWeather.testIn(this)
         val testCityName = viewModel.city.testIn(this)
 
-        viewModel.displayDataWeather(weatherModel.cityName)
+        viewModel.displayDataWeather(weatherActualModel.cityName)
 
         Assertions.assertEquals(emptyList<TodayWeather>(), testHeaderWeather.awaitItem())
         Assertions.assertEquals(weatherActualModel.headerWeather, testHeaderWeather.awaitItem())
@@ -60,7 +60,7 @@ class WeatherViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testDisplayDataWeatherWithException() = runTest {
-        Mockito.`when`(apiWeatherService.getApi(weatherModel.cityName))
+        Mockito.`when`(apiWeatherService.getApi(weatherActualModel.cityName))
             .thenReturn(Single.error(Throwable()))
 
         val weatherRequest = WeatherRequest(apiWeatherService)
@@ -72,7 +72,7 @@ class WeatherViewModelTest {
         val testDailyWeather = viewModel.dailyWeather.testIn(this)
         val testCityName = viewModel.city.testIn(this)
 
-        viewModel.displayDataWeather(weatherModel.cityName)
+        viewModel.displayDataWeather(weatherActualModel.cityName)
 
         Assertions.assertEquals(messageError, testMessage.awaitItem())
         testMessage.cancel()

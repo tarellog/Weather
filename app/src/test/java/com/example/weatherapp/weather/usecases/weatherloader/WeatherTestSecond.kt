@@ -1,8 +1,10 @@
 package com.example.weatherapp.weather.usecases.weatherloader
 
+import com.example.weatherapp.R
 import com.example.weatherapp.weather.network.weatherrequest.model.Icon
 import java.util.*
 
+val messageError = R.string.message
 val weatherActualModel = Weather(
     headerWeather = listOf(
         TodayWeather(
