@@ -38,7 +38,7 @@ object AppDependencies {
     //endregion
 
     //region kapt
-    private val daggerKapt = "com.google.dagger:dagger-compiler:2.41"
+    private val daggerKapt = "com.google.dagger:dagger-compiler:${Versions.kaptDagger}"
     //endregion
 
     //region Rx
