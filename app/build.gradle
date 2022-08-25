@@ -54,6 +54,7 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.5.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.10.0"
 
     // Unit Test
     testImplementation 'junit:junit:4.13.2'
