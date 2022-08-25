@@ -25,18 +25,14 @@ class WeatherViewModelTest {
     @Mock
     lateinit var apiWeatherService: ApiWeatherService
 
-    @Mock
-    lateinit var weatherRequest: WeatherService
-
-    @Mock
-    lateinit var weatherLoader: WeatherLoader
-
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testDisplayDataWeather() = runTest {
-        Mockito.`when`(weatherLoader.getWeather(weatherModel.cityName))
-            .thenReturn(Single.just(weatherModel))
+        Mockito.`when`(apiWeatherService.getApi(weatherModel.cityName)).thenReturn(
+            Single.just(weatherExpectedModel))
 
+        val weatherRequest = WeatherRequest(apiWeatherService)
+        val weatherLoader = WeatherLoaderImpl(weatherRequest)
         val viewModel = DailyWeatherViewModel(weatherLoader)
 
         val testMessage = viewModel.message.testIn(this)
@@ -47,15 +43,15 @@ class WeatherViewModelTest {
         viewModel.displayDataWeather(weatherModel.cityName)
 
         Assertions.assertEquals(emptyList<TodayWeather>(), testHeaderWeather.awaitItem())
-        Assertions.assertEquals(weatherModel.headerWeather, testHeaderWeather.awaitItem())
+        Assertions.assertEquals(weatherActualModel.headerWeather, testHeaderWeather.awaitItem())
         testHeaderWeather.cancel()
 
         Assertions.assertEquals(emptyList<DailyWeather>(), testDailyWeather.awaitItem())
-        Assertions.assertEquals(weatherModel.dailyWeather, testDailyWeather.awaitItem())
+        Assertions.assertEquals(weatherActualModel.dailyWeather, testDailyWeather.awaitItem())
         testDailyWeather.cancel()
 
         Assertions.assertEquals("", testCityName.awaitItem())
-        Assertions.assertEquals(weatherModel.cityName, testCityName.awaitItem())
+        Assertions.assertEquals(weatherActualModel.cityName, testCityName.awaitItem())
         testCityName.cancel()
 
         testMessage.cancel()
@@ -64,9 +60,11 @@ class WeatherViewModelTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testDisplayDataWeatherWithException() = runTest {
-        Mockito.`when`(weatherLoader.getWeather(weatherModel.cityName))
+        Mockito.`when`(apiWeatherService.getApi(weatherModel.cityName))
             .thenReturn(Single.error(Throwable()))
 
+        val weatherRequest = WeatherRequest(apiWeatherService)
+        val weatherLoader = WeatherLoaderImpl(weatherRequest)
         val viewModel = DailyWeatherViewModel(weatherLoader)
 
         val testMessage = viewModel.message.testIn(this)
@@ -87,54 +85,5 @@ class WeatherViewModelTest {
 
         Assertions.assertEquals("", testCityName.awaitItem())
         testCityName.cancel()
-    }
-
-    @Test
-    fun getWeatherRequestTest() {
-        weatherRequest = WeatherRequest(apiWeatherService)
-        Mockito.`when`(apiWeatherService.getApi(weatherModel.cityName)).thenReturn(
-            Single.just(weatherExpectedModel))
-
-        weatherRequest.getWeather(weatherModel.cityName).test()
-            .assertNoErrors()
-            .assertValueCount(1)
-            .assertValues(weatherActualModel)
-            .assertComplete()
-    }
-
-    @Test
-    fun getWeatherRequestExceptionTest() {
-        weatherRequest = WeatherRequest(apiWeatherService)
-        Mockito.`when`(apiWeatherService.getApi(weatherModel.cityName))
-            .thenReturn(Single.error(Throwable()))
-
-        weatherRequest.getWeather(weatherModel.cityName).test()
-            .assertValueCount(0)
-            .assertNotComplete()
-    }
-
-    @Test
-    fun getWeatherTest() {
-        weatherLoader = WeatherLoaderImpl(weatherRequest)
-        Mockito.`when`(weatherRequest.getWeather(weatherModel.cityName)).thenReturn(
-            Single.just(weatherActualModel)
-        )
-
-        weatherLoader.getWeather(weatherModel.cityName).test()
-            .assertNoErrors()
-            .assertValueCount(1)
-            .assertValues(weatherActualModel)
-            .assertComplete()
-    }
-
-    @Test
-    fun getWeatherExceptionTest() {
-        weatherLoader = WeatherLoaderImpl(weatherRequest)
-        Mockito.`when`(weatherRequest.getWeather(weatherModel.cityName))
-            .thenReturn(Single.error(Throwable()))
-
-        weatherLoader.getWeather(weatherModel.cityName).test()
-            .assertValueCount(0)
-            .assertNotComplete()
     }
 }

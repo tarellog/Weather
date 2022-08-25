@@ -54,5 +54,10 @@ object Versions {
     val junit = "4.13.2"
     val extJunit = "1.1.3"
     val espresso = "3.4.0"
+    val mockito = "3.7.7"
+    val junitJupiter = "5.7.0"
+    val coroutinesTest = "1.6.1"
+    val coreTest = "2.1.0"
+    val turbine = "0.9.0"
     //endregion
 }
