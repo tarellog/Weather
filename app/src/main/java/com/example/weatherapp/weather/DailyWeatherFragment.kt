@@ -51,7 +51,7 @@ class DailyWeatherFragment : Fragment() {
             findNavController().navigate(action)
         }
 
-        getWeatherLocation()
+        getWeatherByLocation()
 
         binding.recycler.adapter = fastAdapter
 
@@ -82,7 +82,7 @@ class DailyWeatherFragment : Fragment() {
         )
     }
 
-    private fun getWeatherLocation() {
+    private fun getWeatherByLocation() {
         binding.location.setOnClickListener {
             viewModel.getWeatherDataLocation()
         }
