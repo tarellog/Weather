@@ -1,8 +1,8 @@
 package com.example.weatherapp.weather.usecases.weatherlocation
 
-import android.location.Location
+import com.example.weatherapp.weather.usecases.common.WeatherLocation
 import io.reactivex.Single
 
 interface ServiceLocation {
-    fun getLocation(): Single<Location>
+    fun getLocation(): Single<WeatherLocation>
 }

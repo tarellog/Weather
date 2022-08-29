@@ -9,6 +9,6 @@ class WeatherResponseLocation(
 ) : ResponseLocation {
     override fun getWeatherByLocation(): Single<Weather> = getWeatherByLocation.getLocation()
         .flatMap {
-            repository.getWeatherLocation(it.latitude, it.longitude)
+            repository.getWeatherLocation(it)
         }
 }

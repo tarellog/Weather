@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.core.app.ActivityCompat
+import com.example.weatherapp.weather.usecases.common.WeatherLocation
 import com.example.weatherapp.weather.usecases.weatherlocation.ServiceLocation
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -14,7 +15,7 @@ import io.reactivex.Single
 class WeatherServiceLocation(private val context: Context) : ServiceLocation {
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-    override fun getLocation(): Single<Location> {
+    override fun getLocation(): Single<WeatherLocation> {
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
         val task = fusedLocationClient.lastLocation
         if (ActivityCompat.checkSelfPermission(
@@ -29,7 +30,7 @@ class WeatherServiceLocation(private val context: Context) : ServiceLocation {
                 val listener =
                     OnSuccessListener<Location> { location ->
                         if (location != null) {
-                            singleSource.onSuccess(location)
+                            singleSource.onSuccess(WeatherLocation(location.latitude, location.longitude))
                         } else {
                             singleSource.onError(IllegalStateException("Can't get location by gps"))
                         }
