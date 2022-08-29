@@ -5,8 +5,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.R
 import com.example.weatherapp.common.flow.MutableSingleEventFlow
-import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
-import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
+import com.example.weatherapp.weather.usecases.common.DailyWeather
+import com.example.weatherapp.weather.usecases.common.TodayWeather
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
 import com.example.weatherapp.weather.usecases.weatherlocation.ResponseLocation
 import kotlinx.coroutines.flow.MutableStateFlow

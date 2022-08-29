@@ -1,7 +1,7 @@
 package com.example.weatherapp.weather.network.weatherrequest.converters
 
 import com.example.weatherapp.weather.network.weatherrequest.model.ListWeatherModel
-import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
+import com.example.weatherapp.weather.usecases.common.TodayWeather
 import java.text.SimpleDateFormat
 import java.util.*
 

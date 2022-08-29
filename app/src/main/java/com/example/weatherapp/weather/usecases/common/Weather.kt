@@ -1,4 +1,4 @@
-package com.example.weatherapp.weather.usecases.weatherloader
+package com.example.weatherapp.weather.usecases.common
 
 import com.example.weatherapp.weather.network.weatherrequest.model.Icon
 import java.util.*
