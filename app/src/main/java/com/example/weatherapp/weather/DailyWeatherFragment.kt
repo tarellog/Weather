@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -36,6 +37,22 @@ class DailyWeatherFragment : Fragment() {
 
     private val viewModel: DailyWeatherViewModel by activityViewModels { ViewModelFactory() }
 
+    private val locationPermissionRequest = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        if (permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true) {
+            viewModel.getWeatherDataLocation()
+        } else if (permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true) {
+            viewModel.getWeatherDataLocation()
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Доступ к местоположению не предоставлен",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,8 +70,6 @@ class DailyWeatherFragment : Fragment() {
                 DailyWeatherFragmentDirections.actionDailyWeatherFragmentToSearchDialogFragment()
             findNavController().navigate(action)
         }
-
-        getPermissionLocation()
 
         getWeatherByLocation()
 
@@ -89,17 +104,23 @@ class DailyWeatherFragment : Fragment() {
 
     private fun getWeatherByLocation() {
         binding.location.setOnClickListener {
-            viewModel.getWeatherDataLocation()
+            if (ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    requireContext(),
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                locationPermissionRequest.launch(
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    )
+                )
+            } else {
+                viewModel.getWeatherDataLocation()
+            }
         }
-    }
-
-    private fun getPermissionLocation() {
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ), PackageManager.PERMISSION_GRANTED
-        )
     }
 }
