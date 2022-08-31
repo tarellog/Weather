@@ -4,7 +4,13 @@ import app.cash.turbine.testIn
 import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
 import com.example.weatherapp.weather.network.weatherrequest.RxImmediateSchedulerRule
 import com.example.weatherapp.weather.network.weatherrequest.WeatherRequest
-import com.example.weatherapp.weather.usecases.weatherloader.*
+import com.example.weatherapp.weather.usecases.common.DailyWeather
+import com.example.weatherapp.weather.usecases.common.TodayWeather
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
+import com.example.weatherapp.weather.usecases.weatherloader.messageError
+import com.example.weatherapp.weather.usecases.weatherloader.weatherActualModel
+import com.example.weatherapp.weather.usecases.weatherloader.weatherExpectedModel
+import com.example.weatherapp.weather.usecases.weatherlocation.ResponseLocation
 import io.reactivex.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -25,6 +31,9 @@ class WeatherViewModelTest {
     @Mock
     lateinit var apiWeatherService: ApiWeatherService
 
+    @Mock
+    lateinit var locations: ResponseLocation
+
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testDisplayDataWeather() = runTest {
@@ -33,7 +42,7 @@ class WeatherViewModelTest {
 
         val weatherRequest = WeatherRequest(apiWeatherService)
         val weatherLoader = WeatherLoaderImpl(weatherRequest)
-        val viewModel = DailyWeatherViewModel(weatherLoader)
+        val viewModel = DailyWeatherViewModel(weatherLoader, locations)
 
         val testMessage = viewModel.message.testIn(this)
         val testHeaderWeather = viewModel.header.testIn(this)
@@ -65,7 +74,7 @@ class WeatherViewModelTest {
 
         val weatherRequest = WeatherRequest(apiWeatherService)
         val weatherLoader = WeatherLoaderImpl(weatherRequest)
-        val viewModel = DailyWeatherViewModel(weatherLoader)
+        val viewModel = DailyWeatherViewModel(weatherLoader, locations)
 
         val testMessage = viewModel.message.testIn(this)
         val testHeaderWeather = viewModel.header.testIn(this)

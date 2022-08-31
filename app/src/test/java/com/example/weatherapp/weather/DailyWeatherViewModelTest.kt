@@ -1,7 +1,12 @@
 package com.example.weatherapp.weather
 
 import app.cash.turbine.testIn
-import com.example.weatherapp.weather.usecases.weatherloader.*
+import com.example.weatherapp.weather.usecases.common.DailyWeather
+import com.example.weatherapp.weather.usecases.common.TodayWeather
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
+import com.example.weatherapp.weather.usecases.weatherloader.messageError
+import com.example.weatherapp.weather.usecases.weatherloader.weatherActualModel
+import com.example.weatherapp.weather.usecases.weatherlocation.ResponseLocation
 import io.reactivex.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -17,13 +22,16 @@ internal class DailyWeatherViewModelTest {
     @Mock
     lateinit var weatherLoader: WeatherLoader
 
+    @Mock
+    lateinit var locations: ResponseLocation
+
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testDisplayDataWeather() = runTest {
         Mockito.`when`(weatherLoader.getWeather(weatherActualModel.cityName))
             .thenReturn(Single.just(weatherActualModel))
 
-        val viewModel = DailyWeatherViewModel(weatherLoader)
+        val viewModel = DailyWeatherViewModel(weatherLoader, locations)
 
         val testMessage = viewModel.message.testIn(this)
         val testHeaderWeather = viewModel.header.testIn(this)
@@ -53,7 +61,7 @@ internal class DailyWeatherViewModelTest {
         Mockito.`when`(weatherLoader.getWeather(weatherActualModel.cityName))
             .thenReturn(Single.error(Throwable()))
 
-        val viewModel = DailyWeatherViewModel(weatherLoader)
+        val viewModel = DailyWeatherViewModel(weatherLoader, locations)
 
         val testMessage = viewModel.message.testIn(this)
         val testHeaderWeather = viewModel.header.testIn(this)
