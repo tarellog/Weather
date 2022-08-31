@@ -11,7 +11,8 @@ object WeatherComponentHolder : ComponentHolder<WeatherFeatureApi, WeatherFeatur
 
     private val componentHolderDelegate =
         ComponentHolderDelegate<WeatherFeatureApi, WeatherFeatureDependencies, WeatherComponent> { dependencies ->
-            DaggerWeatherComponent.factory()
+            DaggerWeatherComponent
+                .factory()
                 .create(dependencies)
         }
 
@@ -20,7 +21,7 @@ object WeatherComponentHolder : ComponentHolder<WeatherFeatureApi, WeatherFeatur
     override fun get(): WeatherFeatureApi =
         componentHolderDelegate.get()
 
-    internal fun getComponent() =
+    internal fun getComponentImpl() =
         componentHolderDelegate.getComponentImpl()
 
 }

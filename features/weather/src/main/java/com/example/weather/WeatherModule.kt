@@ -1,19 +1,20 @@
 package com.example.weather
 
 import androidx.lifecycle.ViewModel
+import com.example.weather.weatherrequest.WeatherRequest
 import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
-import com.example.weatherapp.weather.network.weatherrequest.WeatherRequest
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
+import dagger.MapKey
 import dagger.Module
 import dagger.Provides
-import dagger.multibindings.ClassKey
 import dagger.multibindings.IntoMap
 import retrofit2.Retrofit
 import javax.inject.Singleton
+import kotlin.reflect.KClass
 
-@Module(includes = [RetrofitModule::class])
+@Module
 class WeatherModule {
     @Provides
     @Singleton
@@ -30,11 +31,16 @@ class WeatherModule {
     fun provideLoadDataUseCase(repository: WeatherService): WeatherLoader =
         WeatherLoaderImpl(repository)
 
-    @IntoMap
-    @ClassKey(DailyWeatherViewModel::class)
-    @Provides
     @Singleton
+    @Provides
+    @IntoMap
+    @ViewModelKey(DailyWeatherViewModel::class)
     fun getViewModel(loadData: WeatherLoader): ViewModel {
         return DailyWeatherViewModel(loadData)
     }
 }
+
+@Target(AnnotationTarget.FUNCTION)
+@Retention(AnnotationRetention.RUNTIME)
+@MapKey
+annotation class ViewModelKey(val value: KClass<out ViewModel>)

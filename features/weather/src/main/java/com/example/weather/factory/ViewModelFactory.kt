@@ -2,11 +2,14 @@ package com.example.weather.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.weather.m.WeatherComponentHolder
+import javax.inject.Inject
+import javax.inject.Provider
+import javax.inject.Singleton
 
-class ViewModelFactory : ViewModelProvider.Factory {
+@Singleton
+class ViewModelFactory @Inject constructor(private val viewModels: MutableMap<Class<out ViewModel>, Provider<ViewModel>>) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        val viewModel = WeatherComponentHolder.get().mapModels[modelClass]
-        return viewModel as T
+        val provider = viewModels[modelClass] ?: throw IllegalStateException("model class $modelClass not found")
+        return provider.get() as T
     }
 }

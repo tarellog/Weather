@@ -7,8 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.setFragmentResultListener
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.weather.adapter.dailyweather.DailyItem
@@ -17,11 +17,13 @@ import com.example.weather.databinding.FragmentDailyWeatherBinding
 import com.example.weather.dialogweather.SearchDialogFragment.Companion.BUNDLE_KEY
 import com.example.weather.dialogweather.SearchDialogFragment.Companion.REQUEST_KEY
 import com.example.weather.factory.ViewModelFactory
+import com.example.weather.m.WeatherComponentHolder
 import com.example.weatherapp.common.observe
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.GenericItemAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
+import javax.inject.Inject
 
 class DailyWeatherFragment : Fragment() {
     private var _binding: FragmentDailyWeatherBinding? = null
@@ -31,7 +33,17 @@ class DailyWeatherFragment : Fragment() {
     private val itemAdapter = GenericItemAdapter()
     private val fastAdapter = FastAdapter.with(listOf(headerAdapter, itemAdapter))
 
-    private val viewModel: DailyWeatherViewModel by activityViewModels { ViewModelFactory() }
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val viewModel: DailyWeatherViewModel by viewModels { viewModelFactory }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        WeatherComponentHolder
+            .getComponentImpl()
+            .inject(this)
+
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,

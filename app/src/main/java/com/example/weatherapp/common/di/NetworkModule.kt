@@ -1,4 +1,4 @@
-package com.example.weather
+package com.example.weatherapp.common.di
 
 import dagger.Module
 import dagger.Provides
@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class RetrofitModule {
+class NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit = Retrofit.Builder()
