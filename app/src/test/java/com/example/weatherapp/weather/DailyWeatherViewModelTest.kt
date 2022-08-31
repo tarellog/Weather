@@ -82,4 +82,62 @@ internal class DailyWeatherViewModelTest {
         assertEquals("", testCityName.awaitItem())
         testCityName.cancel()
     }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun getWeatherDataLocationTest() = runTest {
+        Mockito.`when`(locations.getWeatherByLocation())
+            .thenReturn(Single.just(weatherActualModel))
+
+        val viewModel = DailyWeatherViewModel(weatherLoader, locations)
+
+        val testMessage = viewModel.message.testIn(this)
+        val testHeaderWeather = viewModel.header.testIn(this)
+        val testDailyWeather = viewModel.dailyWeather.testIn(this)
+        val testCityName = viewModel.city.testIn(this)
+
+        viewModel.getWeatherDataLocation()
+
+        assertEquals(emptyList<TodayWeather>(), testHeaderWeather.awaitItem())
+        assertEquals(weatherActualModel.headerWeather, testHeaderWeather.awaitItem())
+        testHeaderWeather.cancel()
+
+        assertEquals(emptyList<DailyWeather>(), testDailyWeather.awaitItem())
+        assertEquals(weatherActualModel.dailyWeather, testDailyWeather.awaitItem())
+        testDailyWeather.cancel()
+
+        assertEquals("", testCityName.awaitItem())
+        assertEquals(weatherActualModel.cityName, testCityName.awaitItem())
+        testCityName.cancel()
+
+        testMessage.cancel()
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun getWeatherDataLocationWithExceptionTest() = runTest {
+        Mockito.`when`(locations.getWeatherByLocation())
+            .thenReturn(Single.error(Throwable()))
+
+        val viewModel = DailyWeatherViewModel(weatherLoader, locations)
+
+        val testMessage = viewModel.message.testIn(this)
+        val testHeaderWeather = viewModel.header.testIn(this)
+        val testDailyWeather = viewModel.dailyWeather.testIn(this)
+        val testCityName = viewModel.city.testIn(this)
+
+        viewModel.getWeatherDataLocation()
+
+        assertEquals(messageError, testMessage.awaitItem())
+        testMessage.cancel()
+
+        assertEquals(emptyList<TodayWeather>(), testHeaderWeather.awaitItem())
+        testHeaderWeather.cancel()
+
+        assertEquals(emptyList<DailyWeather>(), testDailyWeather.awaitItem())
+        testDailyWeather.cancel()
+
+        assertEquals("", testCityName.awaitItem())
+        testCityName.cancel()
+    }
 }
