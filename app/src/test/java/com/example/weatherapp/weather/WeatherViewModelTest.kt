@@ -1,6 +1,7 @@
 package com.example.weatherapp.weather
 
 import app.cash.turbine.testIn
+import com.example.weather.DailyWeatherViewModel
 import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
 import com.example.weatherapp.weather.network.weatherrequest.RxImmediateSchedulerRule
 import com.example.weatherapp.weather.network.weatherrequest.WeatherRequest

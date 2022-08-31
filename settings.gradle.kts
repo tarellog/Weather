@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 include(":app")
 rootProject.name = "WeatherApp"
 include(":moduleinjector")
-include(":feature:weather")
+include(":features:weather")

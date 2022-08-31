@@ -45,6 +45,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":features:weather"))
+    implementation(project(":moduleinjector"))
+
     implementation(AppDependencies.appLibraries)
     testImplementation(AppDependencies.testLibraries)
     androidTestImplementation(AppDependencies.androidTestLibraries)

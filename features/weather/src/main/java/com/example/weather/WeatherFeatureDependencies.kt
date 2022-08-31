@@ -1,0 +1,5 @@
+package com.example.weather
+
+import com.example.moduleinjector.BaseFeatureDependencies
+
+interface WeatherFeatureDependencies : BaseFeatureDependencies
