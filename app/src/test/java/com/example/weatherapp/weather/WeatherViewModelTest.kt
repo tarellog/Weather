@@ -2,9 +2,9 @@ package com.example.weatherapp.weather
 
 import app.cash.turbine.testIn
 import com.example.weatherapp.weather.network.common.ApiWeatherService
-import com.example.weatherapp.weather.network.weatherrequest.RxImmediateSchedulerRule
 import com.example.weatherapp.weather.network.weatherrequest.WeatherRequest
 import com.example.weatherapp.weather.usecases.common.DailyWeather
+import com.example.weatherapp.weather.usecases.common.RxImmediateSchedulerRule
 import com.example.weatherapp.weather.usecases.common.TodayWeather
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
 import com.example.weatherapp.weather.usecases.weatherloader.messageError

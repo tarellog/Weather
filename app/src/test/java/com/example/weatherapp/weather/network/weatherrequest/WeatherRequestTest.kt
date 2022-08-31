@@ -1,6 +1,7 @@
 package com.example.weatherapp.weather.network.weatherrequest
 
 import com.example.weatherapp.weather.network.common.ApiWeatherService
+import com.example.weatherapp.weather.usecases.common.RxImmediateSchedulerRule
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
 import com.example.weatherapp.weather.usecases.weatherloader.weatherActualModel
 import com.example.weatherapp.weather.usecases.weatherloader.weatherExpectedModel

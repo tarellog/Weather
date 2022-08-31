@@ -1,4 +1,4 @@
-package com.example.weatherapp.weather.network.weatherrequest
+package com.example.weatherapp.weather.usecases.common
 
 import io.reactivex.android.plugins.RxAndroidPlugins
 import io.reactivex.plugins.RxJavaPlugins
