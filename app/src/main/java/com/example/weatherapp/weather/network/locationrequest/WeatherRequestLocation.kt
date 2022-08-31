@@ -1,7 +1,8 @@
-package com.example.weatherapp.weather.network.weatherrequest
+package com.example.weatherapp.weather.network.locationrequest
 
-import com.example.weatherapp.weather.network.weatherrequest.converters.mapToDisplayModel
-import com.example.weatherapp.weather.network.weatherrequest.converters.mapToHeaderDisplayModel
+import com.example.weatherapp.weather.network.common.ApiWeatherService
+import com.example.weatherapp.weather.network.converters.mapToDisplayModel
+import com.example.weatherapp.weather.network.converters.mapToHeaderDisplayModel
 import com.example.weatherapp.weather.usecases.common.Weather
 import com.example.weatherapp.weather.usecases.common.WeatherLocation
 import com.example.weatherapp.weather.usecases.weatherlocation.RequestLocation

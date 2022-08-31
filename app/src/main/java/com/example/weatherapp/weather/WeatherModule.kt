@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.common.di.RetrofitModule
 import com.example.weatherapp.weather.location.WeatherServiceLocation
-import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
+import com.example.weatherapp.weather.network.common.ApiWeatherService
+import com.example.weatherapp.weather.network.locationrequest.WeatherRequestLocation
 import com.example.weatherapp.weather.network.weatherrequest.WeatherRequest
-import com.example.weatherapp.weather.network.weatherrequest.WeatherRequestLocation
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
