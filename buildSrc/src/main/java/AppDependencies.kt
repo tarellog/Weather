@@ -55,6 +55,11 @@ object AppDependencies {
     private val junit = "junit:junit:${Versions.junit}"
     private val extJUnit = "androidx.test.ext:junit:${Versions.extJunit}"
     private val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espresso}"
+    private val mockito = "org.mockito:mockito-core:${Versions.mockito}"
+    private val junitJupiter = "org.junit.jupiter:junit-jupiter:${Versions.junitJupiter}"
+    private val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.coroutinesTest}"
+    private val coreTest = "androidx.arch.core:core-testing:${Versions.coreTest}"
+    private val turbine = "app.cash.turbine:turbine:${Versions.turbine}"
     //endregion
 
     //region appLibraries list
@@ -98,7 +103,12 @@ object AppDependencies {
 
     //region testLibraries list
     val testLibraries = listOf(
-        junit
+        junit,
+        mockito,
+        junitJupiter,
+        coroutinesTest,
+        coreTest,
+        turbine
     )
     //endregion
 }
