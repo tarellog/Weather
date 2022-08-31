@@ -3,9 +3,9 @@ package com.example.weatherapp.weather
 import app.cash.turbine.testIn
 import com.example.weatherapp.weather.usecases.common.DailyWeather
 import com.example.weatherapp.weather.usecases.common.TodayWeather
+import com.example.weatherapp.weather.usecases.common.messageError
+import com.example.weatherapp.weather.usecases.common.weatherActualModel
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
-import com.example.weatherapp.weather.usecases.weatherloader.messageError
-import com.example.weatherapp.weather.usecases.weatherloader.weatherActualModel
 import com.example.weatherapp.weather.usecases.weatherlocation.ResponseLocation
 import io.reactivex.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi

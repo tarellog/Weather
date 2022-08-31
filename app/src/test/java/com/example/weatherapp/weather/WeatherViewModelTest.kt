@@ -3,13 +3,8 @@ package com.example.weatherapp.weather
 import app.cash.turbine.testIn
 import com.example.weatherapp.weather.network.common.ApiWeatherService
 import com.example.weatherapp.weather.network.weatherrequest.WeatherRequest
-import com.example.weatherapp.weather.usecases.common.DailyWeather
-import com.example.weatherapp.weather.usecases.common.RxImmediateSchedulerRule
-import com.example.weatherapp.weather.usecases.common.TodayWeather
+import com.example.weatherapp.weather.usecases.common.*
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
-import com.example.weatherapp.weather.usecases.weatherloader.messageError
-import com.example.weatherapp.weather.usecases.weatherloader.weatherActualModel
-import com.example.weatherapp.weather.usecases.weatherloader.weatherExpectedModel
 import com.example.weatherapp.weather.usecases.weatherlocation.ResponseLocation
 import io.reactivex.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi

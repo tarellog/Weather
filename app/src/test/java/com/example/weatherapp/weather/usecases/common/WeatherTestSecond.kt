@@ -1,11 +1,7 @@
-package com.example.weatherapp.weather.usecases.weatherloader
+package com.example.weatherapp.weather.usecases.common
 
 import com.example.weatherapp.R
 import com.example.weatherapp.weather.network.common.model.Icon
-import com.example.weatherapp.weather.usecases.common.DailyWeather
-import com.example.weatherapp.weather.usecases.common.TimeWeather
-import com.example.weatherapp.weather.usecases.common.TodayWeather
-import com.example.weatherapp.weather.usecases.common.Weather
 import java.util.*
 
 val messageError = R.string.message
