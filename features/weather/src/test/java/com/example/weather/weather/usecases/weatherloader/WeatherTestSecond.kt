@@ -1,7 +1,7 @@
 package com.example.weather.weather.usecases.weatherloader
 
 import com.example.weather.R
-import com.example.weather.weatherrequest.model.Icon
+import com.example.weather.network.weatherrequest.model.Icon
 import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
 import com.example.weatherapp.weather.usecases.weatherloader.TimeWeather
 import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather

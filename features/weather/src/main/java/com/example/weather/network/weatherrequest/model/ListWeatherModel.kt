@@ -1,7 +1,7 @@
 package com.example.weatherapp.weather.network.weatherrequest.model
 
-import com.example.weather.weatherrequest.model.MainWeatherModel
-import com.example.weather.weatherrequest.model.WeatherInfoModel
+import com.example.weather.network.weatherrequest.model.MainWeatherModel
+import com.example.weather.network.weatherrequest.model.WeatherInfoModel
 import com.google.gson.annotations.SerializedName
 
 data class ListWeatherModel(

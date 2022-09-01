@@ -1,7 +1,7 @@
 package com.example.weather
 
 import androidx.lifecycle.ViewModel
-import com.example.weather.weatherrequest.WeatherRequest
+import com.example.weather.network.weatherrequest.WeatherRequest
 import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl

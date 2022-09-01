@@ -1,4 +1,4 @@
-package com.example.weather.weatherrequest
+package com.example.weather.network.weatherrequest
 
 import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
 import com.example.weatherapp.weather.network.weatherrequest.converters.mapToDisplayModel

@@ -1,8 +1,8 @@
 package com.example.weather.weather.network.weatherrequest
 
+import com.example.weather.network.weatherrequest.WeatherRequest
 import com.example.weather.weather.usecases.weatherloader.weatherActualModel
 import com.example.weather.weather.usecases.weatherloader.weatherExpectedModel
-import com.example.weather.weatherrequest.WeatherRequest
 import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
 import io.reactivex.Single

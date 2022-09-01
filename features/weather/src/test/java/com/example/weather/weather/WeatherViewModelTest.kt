@@ -2,11 +2,11 @@ package com.example.weather.weather
 
 import app.cash.turbine.testIn
 import com.example.weather.DailyWeatherViewModel
+import com.example.weather.network.weatherrequest.WeatherRequest
 import com.example.weather.weather.network.weatherrequest.RxImmediateSchedulerRule
 import com.example.weather.weather.usecases.weatherloader.messageError
 import com.example.weather.weather.usecases.weatherloader.weatherActualModel
 import com.example.weather.weather.usecases.weatherloader.weatherExpectedModel
-import com.example.weather.weatherrequest.WeatherRequest
 import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
 import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
 import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
