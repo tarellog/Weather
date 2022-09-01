@@ -1,5 +1,6 @@
-package com.example.weather
+package com.example.weather.di
 
+import com.example.weather.DailyWeatherFragment
 import com.example.weather.common.WeatherFeatureApi
 import com.example.weather.common.WeatherFeatureDependencies
 import dagger.Component

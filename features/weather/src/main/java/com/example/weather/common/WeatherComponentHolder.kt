@@ -2,8 +2,8 @@ package com.example.weather.common
 
 import com.example.moduleinjector.ComponentHolder
 import com.example.moduleinjector.ComponentHolderDelegate
-import com.example.weather.DaggerWeatherComponent
-import com.example.weather.WeatherComponent
+import com.example.weather.di.DaggerWeatherComponent
+import com.example.weather.di.WeatherComponent
 
 object WeatherComponentHolder : ComponentHolder<WeatherFeatureApi, WeatherFeatureDependencies> {
 
