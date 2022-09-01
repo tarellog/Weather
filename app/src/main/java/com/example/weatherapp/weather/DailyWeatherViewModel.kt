@@ -1,6 +1,7 @@
 package com.example.weatherapp.weather
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.R
 import com.example.weatherapp.common.flow.MutableSingleEventFlow
@@ -36,6 +37,11 @@ class DailyWeatherViewModel(
                 _dailyWeather.tryEmit(listWeatherModel.dailyWeather)
                 _city.tryEmit((listWeatherModel.cityName))
             }, {
+                Log.e(
+                    "DailyWeatherViewModel",
+                    "Не получилось получить погоду по локации",
+                    it
+                )
                 _message.tryEmit(R.string.message)
             })
     }
