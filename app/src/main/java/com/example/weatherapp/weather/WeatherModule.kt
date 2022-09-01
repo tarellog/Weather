@@ -23,20 +23,35 @@ import javax.inject.Singleton
 
 @Module(includes = [RetrofitModule::class])
 class WeatherModule {
+    @IntoMap
+    @ClassKey(DailyWeatherViewModel::class)
     @Provides
     @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiWeatherService =
-        retrofit.create(ApiWeatherService::class.java)
+    fun getViewModel(
+        loadData: WeatherLoader,
+        locations: ResponseLocation,
+    ): ViewModel {
+        return DailyWeatherViewModel(loadData, locations)
+    }
+
+    @Provides
+    @Singleton
+    fun provideLoadDataUseCase(repository: WeatherService): WeatherLoader =
+        WeatherLoaderImpl(repository)
+
+    @Provides
+    @Singleton
+    fun provideWeatherLocation(
+        request: RequestLocation,
+        getLocation: ServiceLocation
+    ): ResponseLocation =
+        WeatherResponseLocation(request, getLocation)
 
     @Provides
     @Singleton
     fun provideRepositoryUseCase(service: ApiWeatherService): WeatherService =
         WeatherRequest(service)
 
-    @Provides
-    @Singleton
-    fun provideLoadDataUseCase(repository: WeatherService): WeatherLoader =
-        WeatherLoaderImpl(repository)
 
     @Provides
     @Singleton
@@ -50,20 +65,6 @@ class WeatherModule {
 
     @Provides
     @Singleton
-    fun provideWeatherLocation(
-        request: RequestLocation,
-        getLocation: ServiceLocation
-    ): ResponseLocation =
-        WeatherResponseLocation(request, getLocation)
-
-    @IntoMap
-    @ClassKey(DailyWeatherViewModel::class)
-    @Provides
-    @Singleton
-    fun getViewModel(
-        loadData: WeatherLoader,
-        locations: ResponseLocation,
-    ): ViewModel {
-        return DailyWeatherViewModel(loadData, locations)
-    }
+    fun provideApiService(retrofit: Retrofit): ApiWeatherService =
+        retrofit.create(ApiWeatherService::class.java)
 }
