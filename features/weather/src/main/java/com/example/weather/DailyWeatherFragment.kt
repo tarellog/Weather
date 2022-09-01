@@ -13,11 +13,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.weather.adapter.dailyweather.DailyItem
 import com.example.weather.adapter.dailyweather.HeaderItem
+import com.example.weather.common.WeatherComponentHolder
 import com.example.weather.databinding.FragmentDailyWeatherBinding
 import com.example.weather.dialogweather.SearchDialogFragment.Companion.BUNDLE_KEY
 import com.example.weather.dialogweather.SearchDialogFragment.Companion.REQUEST_KEY
 import com.example.weather.factory.ViewModelFactory
-import com.example.weather.m.WeatherComponentHolder
 import com.example.weatherapp.common.observe
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.GenericItemAdapter

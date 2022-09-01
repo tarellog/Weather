@@ -1,5 +1,7 @@
 package com.example.weather
 
+import com.example.weather.common.WeatherFeatureApi
+import com.example.weather.common.WeatherFeatureDependencies
 import dagger.Component
 import javax.inject.Singleton
 
