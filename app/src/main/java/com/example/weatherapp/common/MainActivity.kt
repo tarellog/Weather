@@ -2,7 +2,7 @@ package com.example.weatherapp.common
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.example.weather.databinding.ActivityMainBinding
+import com.example.weatherapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
