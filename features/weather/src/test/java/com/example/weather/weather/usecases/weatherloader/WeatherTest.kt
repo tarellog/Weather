@@ -1,6 +1,7 @@
-package com.example.weatherapp.weather.usecases.weatherloader
+package com.example.weather.weather.usecases.weatherloader
 
 import com.example.weather.weatherrequest.model.Icon
+import com.example.weather.weatherrequest.model.MainWeatherModel
 import com.example.weather.weatherrequest.model.WeatherInfoModel
 import com.example.weatherapp.weather.network.weatherrequest.model.*
 

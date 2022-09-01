@@ -1,6 +1,9 @@
-package com.example.weatherapp.weather.usecases.weatherloader
+package com.example.weather.weather.usecases.weatherloader
 
-import com.example.weatherapp.weather.network.weatherrequest.RxImmediateSchedulerRule
+import com.example.weather.weather.network.weatherrequest.RxImmediateSchedulerRule
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
+import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
