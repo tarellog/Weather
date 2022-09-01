@@ -41,17 +41,16 @@ class WeatherModule {
 
     @Provides
     @Singleton
+    fun provideRepositoryUseCase(service: ApiWeatherService): WeatherService =
+        WeatherRequest(service)
+
+    @Provides
+    @Singleton
     fun provideWeatherLocation(
         request: RequestLocation,
         getLocation: ServiceLocation
     ): ResponseLocation =
         WeatherResponseLocation(request, getLocation)
-
-    @Provides
-    @Singleton
-    fun provideRepositoryUseCase(service: ApiWeatherService): WeatherService =
-        WeatherRequest(service)
-
 
     @Provides
     @Singleton
