@@ -19,16 +19,16 @@ class WeatherResponseLocationTest {
     var testSchedulerRule = RxImmediateSchedulerRule()
 
     @Mock
-    lateinit var locationRequest: RequestLocation
+    lateinit var locationRequest: WeatherByLocationGetter
 
     @Mock
-    lateinit var locationService: ServiceLocation
+    lateinit var locationService: WeatherServiceLocation
 
-    lateinit var weatherResponseLocation: ResponseLocation
+    lateinit var weatherResponseLocation: WeatherForReadyLocation
 
     @Before
     fun setUp() {
-        weatherResponseLocation = WeatherResponseLocation(locationRequest, locationService)
+        weatherResponseLocation = WeatherReceiverWithReadyLocation(locationRequest, locationService)
     }
 
     @Test

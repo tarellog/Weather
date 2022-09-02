@@ -6,8 +6,8 @@ import com.example.weatherapp.weather.network.locationrequest.WeatherRequestLoca
 import com.example.weatherapp.weather.network.weatherrequest.WeatherRequest
 import com.example.weatherapp.weather.usecases.common.*
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
-import com.example.weatherapp.weather.usecases.weatherlocation.ServiceLocation
-import com.example.weatherapp.weather.usecases.weatherlocation.WeatherResponseLocation
+import com.example.weatherapp.weather.usecases.weatherlocation.WeatherReceiverWithReadyLocation
+import com.example.weatherapp.weather.usecases.weatherlocation.WeatherServiceLocation
 import io.reactivex.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -29,7 +29,7 @@ class WeatherViewModelTest {
     lateinit var apiWeatherService: ApiWeatherService
 
     @Mock
-    lateinit var locations: ServiceLocation
+    lateinit var locations: WeatherServiceLocation
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
@@ -40,7 +40,7 @@ class WeatherViewModelTest {
         val weatherRequest = WeatherRequest(apiWeatherService)
         val weatherRequestLocation = WeatherRequestLocation(apiWeatherService)
         val weatherLoader = WeatherLoaderImpl(weatherRequest)
-        val weatherResponseLocation = WeatherResponseLocation(weatherRequestLocation, locations)
+        val weatherResponseLocation = WeatherReceiverWithReadyLocation(weatherRequestLocation, locations)
 
         val viewModel = DailyWeatherViewModel(weatherLoader, weatherResponseLocation)
 
@@ -75,7 +75,7 @@ class WeatherViewModelTest {
         val weatherRequest = WeatherRequest(apiWeatherService)
         val weatherRequestLocation = WeatherRequestLocation(apiWeatherService)
         val weatherLoader = WeatherLoaderImpl(weatherRequest)
-        val weatherResponseLocation = WeatherResponseLocation(weatherRequestLocation, locations)
+        val weatherResponseLocation = WeatherReceiverWithReadyLocation(weatherRequestLocation, locations)
 
         val viewModel = DailyWeatherViewModel(weatherLoader, weatherResponseLocation)
 
@@ -111,7 +111,7 @@ class WeatherViewModelTest {
         val weatherRequest = WeatherRequest(apiWeatherService)
         val weatherRequestLocation = WeatherRequestLocation(apiWeatherService)
         val weatherLoader = WeatherLoaderImpl(weatherRequest)
-        val weatherResponseLocation = WeatherResponseLocation(weatherRequestLocation, locations)
+        val weatherResponseLocation = WeatherReceiverWithReadyLocation(weatherRequestLocation, locations)
 
         val viewModel = DailyWeatherViewModel(weatherLoader, weatherResponseLocation)
 
@@ -149,7 +149,7 @@ class WeatherViewModelTest {
         val weatherRequest = WeatherRequest(apiWeatherService)
         val weatherRequestLocation = WeatherRequestLocation(apiWeatherService)
         val weatherLoader = WeatherLoaderImpl(weatherRequest)
-        val weatherResponseLocation = WeatherResponseLocation(weatherRequestLocation, locations)
+        val weatherResponseLocation = WeatherReceiverWithReadyLocation(weatherRequestLocation, locations)
 
         val viewModel = DailyWeatherViewModel(weatherLoader, weatherResponseLocation)
 

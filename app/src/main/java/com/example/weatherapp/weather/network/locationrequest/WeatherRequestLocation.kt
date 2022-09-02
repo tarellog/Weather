@@ -5,12 +5,12 @@ import com.example.weatherapp.weather.network.converters.mapToDisplayModel
 import com.example.weatherapp.weather.network.converters.mapToHeaderDisplayModel
 import com.example.weatherapp.weather.usecases.common.Weather
 import com.example.weatherapp.weather.usecases.common.WeatherLocation
-import com.example.weatherapp.weather.usecases.weatherlocation.RequestLocation
+import com.example.weatherapp.weather.usecases.weatherlocation.WeatherByLocationGetter
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class WeatherRequestLocation(private val api: ApiWeatherService) : RequestLocation {
+class WeatherRequestLocation(private val api: ApiWeatherService) : WeatherByLocationGetter {
     override fun getWeatherLocation(location: WeatherLocation): Single<Weather> {
         return api.getLocation(location.latitude, location.longitude)
             .map { weatherModel ->

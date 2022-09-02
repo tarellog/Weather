@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Location
 import com.example.weatherapp.weather.usecases.common.WeatherLocation
-import com.example.weatherapp.weather.usecases.weatherlocation.ServiceLocation
+import com.example.weatherapp.weather.usecases.weatherlocation.WeatherServiceLocation
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.tasks.OnSuccessListener
 import io.reactivex.Single
 
-class WeatherServiceLocation(context: Context) : ServiceLocation {
+class ServiceLocation(context: Context) : WeatherServiceLocation {
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
 
     @SuppressLint("MissingPermission")

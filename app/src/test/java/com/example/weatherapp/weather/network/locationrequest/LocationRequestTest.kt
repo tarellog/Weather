@@ -5,7 +5,7 @@ import com.example.weatherapp.weather.usecases.common.RxImmediateSchedulerRule
 import com.example.weatherapp.weather.usecases.common.weatherActualModel
 import com.example.weatherapp.weather.usecases.common.weatherExpectedModel
 import com.example.weatherapp.weather.usecases.common.weatherLocation
-import com.example.weatherapp.weather.usecases.weatherlocation.RequestLocation
+import com.example.weatherapp.weather.usecases.weatherlocation.WeatherByLocationGetter
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
@@ -24,7 +24,7 @@ class LocationRequestTest {
     @Mock
     lateinit var apiWeatherService: ApiWeatherService
 
-    lateinit var weatherRequest: RequestLocation
+    lateinit var weatherRequest: WeatherByLocationGetter
 
     @Before
     fun setUp() {
