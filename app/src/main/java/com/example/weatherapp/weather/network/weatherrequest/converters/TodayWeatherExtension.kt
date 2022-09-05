@@ -5,15 +5,19 @@ import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun List<ListWeatherModel>.mapToHeaderDisplayModel() : TodayWeather {
+private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+
+fun List<ListWeatherModel>.mapToHeaderDisplayModel(): TodayWeather {
     return this
         .map {
-        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-        val date = sdf.parse(it.dt_txt)
-        val icon = it.weather.first().icon
-        val temp = it.main.temp.toInt()
-        val description = it.weather.first().description
-        TodayWeather(date, icon, temp, description)
-    }
+            it.toTodayWeather()
+        }
         .first()
 }
+
+fun ListWeatherModel.toTodayWeather(): TodayWeather = TodayWeather(
+    date = simpleDateFormat.parse(dt_txt)!!,
+    icon = weather.first().icon,
+    temp = main.temp.toInt(),
+    description = weather.first().description
+)

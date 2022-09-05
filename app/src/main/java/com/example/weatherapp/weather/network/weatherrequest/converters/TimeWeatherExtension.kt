@@ -5,6 +5,8 @@ import com.example.weatherapp.weather.usecases.weatherloader.TimeWeather
 import java.text.SimpleDateFormat
 import java.util.*
 
+private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+
 fun List<ListWeatherModel>.mapToHoursDisplayModel(hourDate: Date): List<TimeWeather> {
     return this
         .filter {
@@ -18,10 +20,12 @@ fun List<ListWeatherModel>.mapToHoursDisplayModel(hourDate: Date): List<TimeWeat
             day == clickedDay
         }
         .map {
-            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-            val timeHours = sdf.parse(it.dt_txt)
-            val tempHours = it.main.temp.toInt()
-            val iconHours = it.weather.first().icon
-            TimeWeather(timeHours, tempHours, iconHours)
+            it.toTimeWeather()
         }
 }
+
+fun ListWeatherModel.toTimeWeather(): TimeWeather = TimeWeather(
+    timeHours = simpleDateFormat.parse(dt_txt)!!,
+    tempHours = main.temp.toInt(),
+    iconHours = weather.first().icon
+)
