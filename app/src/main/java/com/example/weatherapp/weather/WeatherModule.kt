@@ -3,6 +3,7 @@ package com.example.weatherapp.weather
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.example.weatherapp.common.di.RetrofitModule
+import com.example.weatherapp.weather.location.LocationServiceImpl
 import com.example.weatherapp.weather.network.common.ApiWeatherService
 import com.example.weatherapp.weather.network.locationrequest.WeatherByLocationGetterImpl
 import com.example.weatherapp.weather.network.weatherrequest.WeatherRequest
@@ -11,6 +12,7 @@ import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
 import com.example.weatherapp.weather.usecases.weatherlocation.LocationDataSource
 import com.example.weatherapp.weather.usecases.weatherlocation.LocationDataSourceImpl
+import com.example.weatherapp.weather.usecases.weatherlocation.LocationService
 import com.example.weatherapp.weather.usecases.weatherlocation.WeatherByLocationGetter
 import dagger.Module
 import dagger.Provides
@@ -46,7 +48,7 @@ class WeatherModule {
     @Singleton
     fun provideWeatherLocation(
         request: WeatherByLocationGetter,
-        getLocation: com.example.weatherapp.weather.usecases.weatherlocation.LocationService
+        getLocation: LocationService
     ): LocationDataSource =
         LocationDataSourceImpl(request, getLocation)
 
@@ -57,8 +59,8 @@ class WeatherModule {
 
     @Provides
     @Singleton
-    fun provideGetWeatherByLocation(context: Context): com.example.weatherapp.weather.usecases.weatherlocation.LocationService =
-        com.example.weatherapp.weather.location.LocationServiceImpl(context)
+    fun provideGetWeatherByLocation(context: Context): LocationService =
+        LocationServiceImpl(context)
 
     @Provides
     @Singleton
