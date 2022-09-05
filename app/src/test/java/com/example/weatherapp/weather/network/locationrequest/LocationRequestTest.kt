@@ -28,7 +28,7 @@ class LocationRequestTest {
 
     @Before
     fun setUp() {
-        weatherRequest = WeatherRequestLocation(apiWeatherService)
+        weatherRequest = WeatherByLocationGetterImpl(apiWeatherService)
     }
 
     @Test

@@ -22,13 +22,13 @@ class WeatherResponseLocationTest {
     lateinit var locationRequest: WeatherByLocationGetter
 
     @Mock
-    lateinit var locationService: WeatherServiceLocation
+    lateinit var locationService: LocationService
 
-    lateinit var weatherResponseLocation: WeatherForReadyLocation
+    lateinit var weatherResponseLocation: LocationDataSource
 
     @Before
     fun setUp() {
-        weatherResponseLocation = WeatherReceiverWithReadyLocation(locationRequest, locationService)
+        weatherResponseLocation = LocationDataSourceImpl(locationRequest, locationService)
     }
 
     @Test

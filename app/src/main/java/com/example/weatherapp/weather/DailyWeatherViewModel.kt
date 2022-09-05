@@ -8,14 +8,14 @@ import com.example.weatherapp.common.flow.MutableSingleEventFlow
 import com.example.weatherapp.weather.usecases.common.DailyWeather
 import com.example.weatherapp.weather.usecases.common.TodayWeather
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
-import com.example.weatherapp.weather.usecases.weatherlocation.WeatherForReadyLocation
+import com.example.weatherapp.weather.usecases.weatherlocation.LocationDataSource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class DailyWeatherViewModel(
     private val loadData: WeatherLoader,
-    private val locations: WeatherForReadyLocation
+    private val locations: LocationDataSource
 ) : ViewModel() {
     private var _message = MutableSingleEventFlow<Int>()
     val message get() = _message.asSharedFlow()
