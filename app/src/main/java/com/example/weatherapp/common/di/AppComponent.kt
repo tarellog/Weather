@@ -6,7 +6,11 @@ import dagger.Component
 import javax.inject.Singleton
 
 @Component(
-    modules = [WeatherModule::class])
+    modules = [
+        WeatherModule::class,
+        ContextModule::class
+    ]
+)
 @Singleton
 interface AppComponent {
     val mapModels: Map<Class<*>, ViewModel>
