@@ -6,7 +6,7 @@ import com.example.weatherapp.weather.usecases.common.TodayWeather
 import com.example.weatherapp.weather.usecases.common.messageError
 import com.example.weatherapp.weather.usecases.common.weatherActualModel
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
-import com.example.weatherapp.weather.usecases.weatherlocation.LocationDataSource
+import com.example.weatherapp.weather.usecases.weatherlocation.WeatherByLocationGetter
 import io.reactivex.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
@@ -23,7 +23,7 @@ internal class DailyWeatherViewModelTest {
     lateinit var weatherLoader: WeatherLoader
 
     @Mock
-    lateinit var locations: LocationDataSource
+    lateinit var locations: WeatherByLocationGetter
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test

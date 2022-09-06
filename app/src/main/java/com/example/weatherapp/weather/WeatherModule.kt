@@ -5,15 +5,15 @@ import androidx.lifecycle.ViewModel
 import com.example.weatherapp.common.di.RetrofitModule
 import com.example.weatherapp.weather.location.LocationServiceImpl
 import com.example.weatherapp.weather.network.common.ApiWeatherService
-import com.example.weatherapp.weather.network.locationrequest.WeatherByLocationGetterImpl
+import com.example.weatherapp.weather.network.locationrequest.LocationDataSourceImpl
 import com.example.weatherapp.weather.network.weatherrequest.WeatherRequest
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
 import com.example.weatherapp.weather.usecases.weatherlocation.LocationDataSource
-import com.example.weatherapp.weather.usecases.weatherlocation.LocationDataSourceImpl
 import com.example.weatherapp.weather.usecases.weatherlocation.LocationService
 import com.example.weatherapp.weather.usecases.weatherlocation.WeatherByLocationGetter
+import com.example.weatherapp.weather.usecases.weatherlocation.WeatherByLocationGetterImpl
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.ClassKey
@@ -29,7 +29,7 @@ class WeatherModule {
     @Singleton
     fun getViewModel(
         loadData: WeatherLoader,
-        locations: LocationDataSource,
+        locations: WeatherByLocationGetter,
     ): ViewModel {
         return DailyWeatherViewModel(loadData, locations)
     }
@@ -47,15 +47,15 @@ class WeatherModule {
     @Provides
     @Singleton
     fun provideWeatherLocation(
-        request: WeatherByLocationGetter,
+        request: LocationDataSource,
         getLocation: LocationService
-    ): LocationDataSource =
-        LocationDataSourceImpl(request, getLocation)
+    ): WeatherByLocationGetter =
+        WeatherByLocationGetterImpl(request, getLocation)
 
     @Provides
     @Singleton
-    fun provideWeatherRequestLocation(service: ApiWeatherService): WeatherByLocationGetter =
-        WeatherByLocationGetterImpl(service)
+    fun provideWeatherRequestLocation(service: ApiWeatherService): LocationDataSource =
+        LocationDataSourceImpl(service)
 
     @Provides
     @Singleton

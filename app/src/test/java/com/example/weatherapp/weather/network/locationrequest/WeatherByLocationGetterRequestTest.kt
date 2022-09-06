@@ -5,7 +5,7 @@ import com.example.weatherapp.weather.usecases.common.RxImmediateSchedulerRule
 import com.example.weatherapp.weather.usecases.common.weatherActualModel
 import com.example.weatherapp.weather.usecases.common.weatherExpectedModel
 import com.example.weatherapp.weather.usecases.common.weatherLocation
-import com.example.weatherapp.weather.usecases.weatherlocation.WeatherByLocationGetter
+import com.example.weatherapp.weather.usecases.weatherlocation.LocationDataSource
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
@@ -16,7 +16,7 @@ import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class LocationRequestTest {
+class WeatherByLocationGetterRequestTest {
     @Rule
     @JvmField
     var testSchedulerRule = RxImmediateSchedulerRule()
@@ -24,11 +24,11 @@ class LocationRequestTest {
     @Mock
     lateinit var apiWeatherService: ApiWeatherService
 
-    lateinit var weatherRequest: WeatherByLocationGetter
+    lateinit var weatherRequest: LocationDataSource
 
     @Before
     fun setUp() {
-        weatherRequest = WeatherByLocationGetterImpl(apiWeatherService)
+        weatherRequest = LocationDataSourceImpl(apiWeatherService)
     }
 
     @Test

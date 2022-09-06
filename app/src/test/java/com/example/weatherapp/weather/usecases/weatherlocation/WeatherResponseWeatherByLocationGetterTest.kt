@@ -13,22 +13,22 @@ import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class WeatherResponseLocationTest {
+class WeatherResponseWeatherByLocationGetterTest {
     @Rule
     @JvmField
     var testSchedulerRule = RxImmediateSchedulerRule()
 
     @Mock
-    lateinit var locationRequest: WeatherByLocationGetter
+    lateinit var locationRequest: LocationDataSource
 
     @Mock
     lateinit var locationService: LocationService
 
-    lateinit var weatherResponseLocation: LocationDataSource
+    lateinit var weatherResponseWeatherByLocationGetter: WeatherByLocationGetter
 
     @Before
     fun setUp() {
-        weatherResponseLocation = LocationDataSourceImpl(locationRequest, locationService)
+        weatherResponseWeatherByLocationGetter = WeatherByLocationGetterImpl(locationRequest, locationService)
     }
 
     @Test
@@ -39,7 +39,7 @@ class WeatherResponseLocationTest {
         Mockito.`when`(locationService.getLocation()).thenReturn(
             Single.just(weatherLocation))
 
-        weatherResponseLocation.getWeatherByLocation().test()
+        weatherResponseWeatherByLocationGetter.getWeatherByLocation().test()
             .assertNoErrors()
             .assertValueCount(1)
             .assertValues(weatherActualModel)
@@ -54,7 +54,7 @@ class WeatherResponseLocationTest {
         Mockito.`when`(locationService.getLocation()).thenReturn(
             Single.just(weatherLocation))
 
-        weatherResponseLocation.getWeatherByLocation().test()
+        weatherResponseWeatherByLocationGetter.getWeatherByLocation().test()
             .assertValueCount(0)
             .assertNotComplete()
     }
