@@ -11,16 +11,21 @@ fun List<ListWeatherModel>.mapToDisplayModel(): List<DailyWeather> {
     return this
         .groupBy { it.toDailyWeather().date.day}
         .map {
-            val date = simpleDateFormat.parse(it.value.first().dt_txt)
-            val icon = it.value.first().weather.first().icon
-            val hours = this.mapToHoursDisplayModel(it.value.first().toDailyWeather().date)
-            val maxTemp = hours.map { it1 -> it1.tempHours }.maxOrNull()?.toInt() ?: 0
-            val minTemp = hours.map { it1 -> it1.tempHours }.minOrNull()?.toInt() ?: 0
-            DailyWeather(date, maxTemp, minTemp, icon, hours)
+            toListDailyWeather(it)
         }
 }
 
-fun ListWeatherModel.toDailyWeather() = DailyWeather(
+private fun List<ListWeatherModel>.toListDailyWeather(
+    it: Map.Entry<Int, List<ListWeatherModel>>
+) = DailyWeather(
+    date = simpleDateFormat.parse(it.value.first().dt_txt)!!,
+    minTemp = mapToHoursDisplayModel(it.value.first().toDailyWeather().date).map { it1 -> it1.tempHours }.maxOrNull()?.toInt() ?: 0,
+    maxTemp = mapToHoursDisplayModel(it.value.first().toDailyWeather().date).map { it1 -> it1.tempHours }.minOrNull()?.toInt() ?: 0,
+    icon = it.value.first().weather.first().icon,
+    hoursList = mapToHoursDisplayModel(it.value.first().toDailyWeather().date)
+)
+
+private fun ListWeatherModel.toDailyWeather() = DailyWeather(
     date = simpleDateFormat.parse(dt_txt)!!,
     minTemp = listOf(this.main.temp_min).minOrNull()?.toInt() ?: 0,
     maxTemp = listOf(this.main.temp_max).maxOrNull()?.toInt() ?: 0,
