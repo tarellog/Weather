@@ -19,11 +19,21 @@ private fun List<ListWeatherModel>.toListDailyWeather(
     it: Map.Entry<Int, List<ListWeatherModel>>
 ) = DailyWeather(
     date = simpleDateFormat.parse(it.value.first().dt_txt)!!,
-    minTemp = mapToHoursDisplayModel(it.value.first().toDailyWeather().date).map { it1 -> it1.tempHours }.maxOrNull()?.toInt() ?: 0,
-    maxTemp = mapToHoursDisplayModel(it.value.first().toDailyWeather().date).map { it1 -> it1.tempHours }.minOrNull()?.toInt() ?: 0,
+    minTemp = computeMinTemp(it),
+    maxTemp = computeMaxTemp(it),
     icon = it.value.first().weather.first().icon,
     hoursList = mapToHoursDisplayModel(it.value.first().toDailyWeather().date)
 )
+
+private fun List<ListWeatherModel>.computeMaxTemp(
+    it: Map.Entry<Int, List<ListWeatherModel>>
+) = mapToHoursDisplayModel(it.value.first().toDailyWeather().date).map { it1 -> it1.tempHours }
+        .minOrNull()?.toInt() ?: 0
+
+private fun List<ListWeatherModel>.computeMinTemp(
+    it: Map.Entry<Int, List<ListWeatherModel>>
+) = mapToHoursDisplayModel(it.value.first().toDailyWeather().date).map { it1 -> it1.tempHours }
+        .maxOrNull()?.toInt() ?: 0
 
 private fun ListWeatherModel.toDailyWeather() = DailyWeather(
     date = simpleDateFormat.parse(dt_txt)!!,
