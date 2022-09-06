@@ -46,6 +46,10 @@ object Versions {
     val rxRetrofit = "2.9.0"
     //endregion
 
+    //region location
+    val locationService = "20.0.0"
+    //endregion
+
     //region kapt
     val kaptDagger = "2.42"
     //endregion
