@@ -15,7 +15,7 @@ fun List<ListWeatherModel>.mapToDisplayModel(): List<DailyWeather> {
         }
 }
 
-private fun List<ListWeatherModel>.toListDailyWeather(
+private fun toListDailyWeather(
     it: Map.Entry<Int, List<ListWeatherModel>>
 ) = DailyWeather(
     date = simpleDateFormat.parse(it.value.first().dt_txt)!!,
