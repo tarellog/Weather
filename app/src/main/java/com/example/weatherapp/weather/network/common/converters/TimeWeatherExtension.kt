@@ -5,23 +5,17 @@ import com.example.weatherapp.weather.usecases.common.TimeWeather
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun List<ListWeatherModel>.mapToHoursDisplayModel(hourDate: Date): List<TimeWeather> {
+private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+
+fun List<ListWeatherModel>.mapToHoursDisplayModel(): List<TimeWeather> {
     return this
-        .filter {
-            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-            val date = sdf.parse(it.dt_txt)
-
-            val dd = SimpleDateFormat("dd", Locale.getDefault())
-            val day = dd.format(date)
-
-            val clickedDay = dd.format(hourDate)
-            day == clickedDay
-        }
         .map {
-            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-            val timeHours = sdf.parse(it.dt_txt)
-            val tempHours = it.main.temp.toInt()
-            val iconHours = it.weather.first().icon
-            TimeWeather(timeHours, tempHours, iconHours)
+            it.toTimeWeather()
         }
 }
+
+fun ListWeatherModel.toTimeWeather(): TimeWeather = TimeWeather(
+    timeHours = simpleDateFormat.parse(dt_txt)!!,
+    tempHours = main.temp.toInt(),
+    iconHours = weather.first().icon
+)

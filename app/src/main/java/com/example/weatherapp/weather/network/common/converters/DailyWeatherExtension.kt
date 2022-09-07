@@ -5,27 +5,30 @@ import com.example.weatherapp.weather.usecases.common.DailyWeather
 import java.text.SimpleDateFormat
 import java.util.*
 
-fun List<ListWeatherModel>.mapToDisplayModel(): List<DailyWeather> {
-    var currentDay = Date()
-    return this
-        .map {
-            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-            val date = sdf.parse(it.dt_txt)
-            val hours = this.mapToHoursDisplayModel(date)
-            val maxTemp = hours.map { it1 -> it1.tempHours }.maxOrNull()?.toInt() ?: 0
-            val minTemp = hours.map { it1 -> it1.tempHours }.minOrNull()?.toInt() ?: 0
-            val icon = it.weather.first().icon
+private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
-            DailyWeather(date, maxTemp, minTemp, icon, hours)
-        }
-        .filterIndexed { index, dailyWeatherModel ->
-            if (index == 0) {
-                currentDay = dailyWeatherModel.date
-                true
-            } else if (dailyWeatherModel.date.after(currentDay)) {
-                currentDay = dailyWeatherModel.date
-                true
-            } else false
+fun List<ListWeatherModel>.mapToDisplayModel(): List<DailyWeather> {
+    return this
+        .groupBy { it.toDailyWeather().date.day}
+        .map {
+            toListDailyWeather(it)
         }
 }
 
+private fun toListDailyWeather(
+    it: Map.Entry<Int, List<ListWeatherModel>>
+) = DailyWeather(
+    date = simpleDateFormat.parse(it.value.first().dt_txt)!!,
+    minTemp = it.value.minOfOrNull { it.main.temp_min }?.toInt() ?: 0,
+    maxTemp = it.value.maxOfOrNull { it.main.temp_max }?.toInt() ?: 0,
+    icon = it.value.first().weather.first().icon,
+    hoursList = it.value.mapToHoursDisplayModel()
+)
+
+private fun ListWeatherModel.toDailyWeather() = DailyWeather(
+    date = simpleDateFormat.parse(dt_txt)!!,
+    minTemp = listOf(this.main.temp_min).minOrNull()?.toInt() ?: 0,
+    maxTemp = listOf(this.main.temp_max).maxOrNull()?.toInt() ?: 0,
+    icon = weather.first().icon,
+    hoursList = listOf(toTimeWeather())
+)
