@@ -7,18 +7,8 @@ import java.util.*
 
 private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
 
-fun List<ListWeatherModel>.mapToHoursDisplayModel(hourDate: Date): List<TimeWeather> {
+fun List<ListWeatherModel>.mapToHoursDisplayModel(): List<TimeWeather> {
     return this
-        .filter {
-            val sdf = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
-            val date = sdf.parse(it.dt_txt)
-
-            val dd = SimpleDateFormat("dd", Locale.getDefault())
-            val day = dd.format(date)
-
-            val clickedDay = dd.format(hourDate)
-            day == clickedDay
-        }
         .map {
             it.toTimeWeather()
         }

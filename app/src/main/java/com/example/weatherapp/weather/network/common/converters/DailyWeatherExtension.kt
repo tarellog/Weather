@@ -22,7 +22,7 @@ private fun List<ListWeatherModel>.toListDailyWeather(
     minTemp = it.value.minOfOrNull { it.main.temp_min }?.toInt() ?: 0,
     maxTemp = it.value.maxOfOrNull { it.main.temp_max }?.toInt() ?: 0,
     icon = it.value.first().weather.first().icon,
-    hoursList = mapToHoursDisplayModel(it.value.first().toDailyWeather().date)
+    hoursList = it.value.mapToHoursDisplayModel()
 )
 
 private fun ListWeatherModel.toDailyWeather() = DailyWeather(
