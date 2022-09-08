@@ -1,10 +1,6 @@
 package com.example.weather.weather.usecases.common
 
-import com.example.weather.network.common.model.Icon
-import com.example.weather.network.common.model.ListWeatherModel
-import com.example.weather.network.common.model.MainWeatherModel
-import com.example.weather.network.common.model.WeatherInfoModel
-import com.example.weatherapp.weather.network.common.model.*
+import com.example.weather.network.common.model.*
 
 val weatherExpectedModel = WeatherModel(
     2,

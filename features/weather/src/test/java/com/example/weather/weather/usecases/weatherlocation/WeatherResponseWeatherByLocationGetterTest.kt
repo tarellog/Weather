@@ -1,5 +1,9 @@
 package com.example.weather.weather.usecases.weatherlocation
 
+import com.example.weather.usecases.weatherlocation.LocationDataSource
+import com.example.weather.usecases.weatherlocation.LocationService
+import com.example.weather.usecases.weatherlocation.WeatherByLocationGetter
+import com.example.weather.usecases.weatherlocation.WeatherByLocationGetterImpl
 import com.example.weather.weather.usecases.common.RxImmediateSchedulerRule
 import com.example.weather.weather.usecases.common.weatherActualModel
 import com.example.weather.weather.usecases.common.weatherLocation

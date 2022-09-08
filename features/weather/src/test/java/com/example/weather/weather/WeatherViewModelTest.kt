@@ -2,15 +2,15 @@ package com.example.weather.weather
 
 import app.cash.turbine.testIn
 import com.example.weather.DailyWeatherViewModel
+import com.example.weather.network.common.ApiWeatherService
 import com.example.weather.network.locationrequest.LocationDataSourceImpl
 import com.example.weather.network.weatherrequest.WeatherRequest
 import com.example.weather.usecases.common.DailyWeather
 import com.example.weather.usecases.common.TodayWeather
+import com.example.weather.usecases.weatherloader.WeatherLoaderImpl
+import com.example.weather.usecases.weatherlocation.LocationService
+import com.example.weather.usecases.weatherlocation.WeatherByLocationGetterImpl
 import com.example.weather.weather.usecases.common.*
-import com.example.weather.weather.usecases.weatherlocation.LocationService
-import com.example.weather.weather.usecases.weatherlocation.WeatherByLocationGetterImpl
-import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
-import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
 import io.reactivex.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest

@@ -1,12 +1,12 @@
 package com.example.weather.weather.network.locationrequest
 
+import com.example.weather.network.common.ApiWeatherService
 import com.example.weather.network.locationrequest.LocationDataSourceImpl
+import com.example.weather.usecases.weatherlocation.LocationDataSource
 import com.example.weather.weather.usecases.common.RxImmediateSchedulerRule
 import com.example.weather.weather.usecases.common.weatherActualModel
 import com.example.weather.weather.usecases.common.weatherExpectedModel
 import com.example.weather.weather.usecases.common.weatherLocation
-import com.example.weather.weather.usecases.weatherlocation.LocationDataSource
-import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule

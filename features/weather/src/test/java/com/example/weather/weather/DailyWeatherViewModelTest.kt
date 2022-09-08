@@ -4,10 +4,10 @@ import app.cash.turbine.testIn
 import com.example.weather.DailyWeatherViewModel
 import com.example.weather.usecases.common.DailyWeather
 import com.example.weather.usecases.common.TodayWeather
+import com.example.weather.usecases.weatherloader.WeatherLoader
+import com.example.weather.usecases.weatherlocation.WeatherByLocationGetter
 import com.example.weather.weather.usecases.common.messageError
 import com.example.weather.weather.usecases.common.weatherActualModel
-import com.example.weather.weather.usecases.weatherlocation.WeatherByLocationGetter
-import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
 import io.reactivex.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
