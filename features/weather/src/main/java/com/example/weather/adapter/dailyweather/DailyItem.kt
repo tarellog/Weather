@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import com.example.weather.R
 import com.example.weather.adapter.hoursweather.HoursItem
 import com.example.weather.databinding.DailyItemBinding
-import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
+import com.example.weather.usecases.common.DailyWeather
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
 import com.mikepenz.fastadapter.binding.AbstractBindingItem

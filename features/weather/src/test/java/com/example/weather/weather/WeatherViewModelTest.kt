@@ -2,14 +2,14 @@ package com.example.weather.weather
 
 import app.cash.turbine.testIn
 import com.example.weather.DailyWeatherViewModel
+import com.example.weather.network.locationrequest.LocationDataSourceImpl
 import com.example.weather.network.weatherrequest.WeatherRequest
-import com.example.weather.weather.network.weatherrequest.RxImmediateSchedulerRule
-import com.example.weather.weather.usecases.weatherloader.messageError
-import com.example.weather.weather.usecases.weatherloader.weatherActualModel
-import com.example.weather.weather.usecases.weatherloader.weatherExpectedModel
+import com.example.weather.usecases.common.DailyWeather
+import com.example.weather.usecases.common.TodayWeather
+import com.example.weather.weather.usecases.common.*
+import com.example.weather.weather.usecases.weatherlocation.LocationService
+import com.example.weather.weather.usecases.weatherlocation.WeatherByLocationGetterImpl
 import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
-import com.example.weatherapp.weather.usecases.weatherloader.DailyWeather
-import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
 import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoaderImpl
 import io.reactivex.Single
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -31,6 +31,9 @@ class WeatherViewModelTest {
     @Mock
     lateinit var apiWeatherService: ApiWeatherService
 
+    @Mock
+    lateinit var locations: LocationService
+
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testDisplayDataWeather() = runTest {
@@ -38,8 +41,11 @@ class WeatherViewModelTest {
             Single.just(weatherExpectedModel))
 
         val weatherRequest = WeatherRequest(apiWeatherService)
+        val weatherRequestLocation = LocationDataSourceImpl(apiWeatherService)
         val weatherLoader = WeatherLoaderImpl(weatherRequest)
-        val viewModel = DailyWeatherViewModel(weatherLoader)
+        val weatherResponseLocation = WeatherByLocationGetterImpl(weatherRequestLocation, locations)
+
+        val viewModel = DailyWeatherViewModel(weatherLoader, weatherResponseLocation)
 
         val testMessage = viewModel.message.testIn(this)
         val testHeaderWeather = viewModel.header.testIn(this)
@@ -70,8 +76,11 @@ class WeatherViewModelTest {
             .thenReturn(Single.error(Throwable()))
 
         val weatherRequest = WeatherRequest(apiWeatherService)
+        val weatherRequestLocation = LocationDataSourceImpl(apiWeatherService)
         val weatherLoader = WeatherLoaderImpl(weatherRequest)
-        val viewModel = DailyWeatherViewModel(weatherLoader)
+        val weatherResponseLocation = WeatherByLocationGetterImpl(weatherRequestLocation, locations)
+
+        val viewModel = DailyWeatherViewModel(weatherLoader, weatherResponseLocation)
 
         val testMessage = viewModel.message.testIn(this)
         val testHeaderWeather = viewModel.header.testIn(this)
@@ -79,6 +88,80 @@ class WeatherViewModelTest {
         val testCityName = viewModel.city.testIn(this)
 
         viewModel.displayDataWeather(weatherActualModel.cityName)
+
+        Assertions.assertEquals(messageError, testMessage.awaitItem())
+        testMessage.cancel()
+
+        Assertions.assertEquals(emptyList<TodayWeather>(), testHeaderWeather.awaitItem())
+        testHeaderWeather.cancel()
+
+        Assertions.assertEquals(emptyList<DailyWeather>(), testDailyWeather.awaitItem())
+        testDailyWeather.cancel()
+
+        Assertions.assertEquals("", testCityName.awaitItem())
+        testCityName.cancel()
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun getWeatherDataLocationTest() = runTest {
+        Mockito.`when`(apiWeatherService.getLocation(weatherLocation.latitude, weatherLocation.longitude))
+            .thenReturn(Single.just(weatherExpectedModel))
+
+        Mockito.`when`(locations.getLocation()).thenReturn(
+            Single.just(weatherLocation))
+
+        val weatherRequest = WeatherRequest(apiWeatherService)
+        val weatherRequestLocation = LocationDataSourceImpl(apiWeatherService)
+        val weatherLoader = WeatherLoaderImpl(weatherRequest)
+        val weatherResponseLocation = WeatherByLocationGetterImpl(weatherRequestLocation, locations)
+
+        val viewModel = DailyWeatherViewModel(weatherLoader, weatherResponseLocation)
+
+        val testMessage = viewModel.message.testIn(this)
+        val testHeaderWeather = viewModel.header.testIn(this)
+        val testDailyWeather = viewModel.dailyWeather.testIn(this)
+        val testCityName = viewModel.city.testIn(this)
+
+        viewModel.getWeatherDataLocation()
+
+        Assertions.assertEquals(emptyList<TodayWeather>(), testHeaderWeather.awaitItem())
+        Assertions.assertEquals(weatherActualModel.headerWeather, testHeaderWeather.awaitItem())
+        testHeaderWeather.cancel()
+
+        Assertions.assertEquals(emptyList<DailyWeather>(), testDailyWeather.awaitItem())
+        Assertions.assertEquals(weatherActualModel.dailyWeather, testDailyWeather.awaitItem())
+        testDailyWeather.cancel()
+
+        Assertions.assertEquals("", testCityName.awaitItem())
+        Assertions.assertEquals(weatherActualModel.cityName, testCityName.awaitItem())
+        testCityName.cancel()
+
+        testMessage.cancel()
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun getWeatherDataLocationWithExceptionTest() = runTest {
+        Mockito.`when`(apiWeatherService.getLocation(weatherLocation.latitude, weatherLocation.longitude))
+            .thenReturn(Single.error(Throwable()))
+
+        Mockito.`when`(locations.getLocation()).thenReturn(
+            Single.just(weatherLocation))
+
+        val weatherRequest = WeatherRequest(apiWeatherService)
+        val weatherRequestLocation = LocationDataSourceImpl(apiWeatherService)
+        val weatherLoader = WeatherLoaderImpl(weatherRequest)
+        val weatherResponseLocation = WeatherByLocationGetterImpl(weatherRequestLocation, locations)
+
+        val viewModel = DailyWeatherViewModel(weatherLoader, weatherResponseLocation)
+
+        val testMessage = viewModel.message.testIn(this)
+        val testHeaderWeather = viewModel.header.testIn(this)
+        val testDailyWeather = viewModel.dailyWeather.testIn(this)
+        val testCityName = viewModel.city.testIn(this)
+
+        viewModel.getWeatherDataLocation()
 
         Assertions.assertEquals(messageError, testMessage.awaitItem())
         testMessage.cancel()

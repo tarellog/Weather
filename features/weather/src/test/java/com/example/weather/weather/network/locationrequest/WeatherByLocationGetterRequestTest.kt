@@ -1,11 +1,12 @@
-package com.example.weather.weather.network.weatherrequest
+package com.example.weather.weather.network.locationrequest
 
-import com.example.weather.network.weatherrequest.WeatherRequest
+import com.example.weather.network.locationrequest.LocationDataSourceImpl
 import com.example.weather.weather.usecases.common.RxImmediateSchedulerRule
 import com.example.weather.weather.usecases.common.weatherActualModel
 import com.example.weather.weather.usecases.common.weatherExpectedModel
+import com.example.weather.weather.usecases.common.weatherLocation
+import com.example.weather.weather.usecases.weatherlocation.LocationDataSource
 import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
-import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
 import io.reactivex.Single
 import org.junit.Before
 import org.junit.Rule
@@ -16,7 +17,7 @@ import org.mockito.Mockito
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
-class WeatherRequestTest {
+class WeatherByLocationGetterRequestTest {
     @Rule
     @JvmField
     var testSchedulerRule = RxImmediateSchedulerRule()
@@ -24,19 +25,19 @@ class WeatherRequestTest {
     @Mock
     lateinit var apiWeatherService: ApiWeatherService
 
-    lateinit var weatherRequest: WeatherService
+    lateinit var weatherRequest: LocationDataSource
 
     @Before
     fun setUp() {
-        weatherRequest = WeatherRequest(apiWeatherService)
+        weatherRequest = LocationDataSourceImpl(apiWeatherService)
     }
 
     @Test
-    fun getWeatherTest() {
-        Mockito.`when`(apiWeatherService.getApi(weatherActualModel.cityName)).thenReturn(
+    fun getWeatherLocationTest() {
+        Mockito.`when`(apiWeatherService.getLocation(weatherLocation.latitude, weatherLocation.longitude)).thenReturn(
             Single.just(weatherExpectedModel))
 
-        weatherRequest.getWeather(weatherActualModel.cityName).test()
+        weatherRequest.getWeatherLocation(weatherLocation).test()
             .assertNoErrors()
             .assertValueCount(1)
             .assertValues(weatherActualModel)
@@ -44,11 +45,11 @@ class WeatherRequestTest {
     }
 
     @Test
-    fun getWeatherExceptionTest() {
-        Mockito.`when`(apiWeatherService.getApi(weatherActualModel.cityName))
+    fun getWeatherLocationExceptionTest() {
+        Mockito.`when`(apiWeatherService.getLocation(weatherLocation.latitude, weatherLocation.longitude))
             .thenReturn(Single.error(Throwable()))
 
-        weatherRequest.getWeather(weatherActualModel.cityName).test()
+        weatherRequest.getWeatherLocation(weatherLocation).test()
             .assertValueCount(0)
             .assertNotComplete()
     }

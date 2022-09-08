@@ -1,17 +1,18 @@
-package com.example.weather.network.weatherrequest
+package com.example.weather.network.locationrequest
 
 import com.example.weather.network.common.converters.mapToDisplayModel
 import com.example.weather.usecases.common.Weather
+import com.example.weather.weather.usecases.common.WeatherLocation
+import com.example.weather.weather.usecases.weatherlocation.LocationDataSource
 import com.example.weatherapp.weather.network.converters.mapToHeaderDisplayModel
 import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
-import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class WeatherRequest(private val api: ApiWeatherService) : WeatherService {
-    override fun getWeather(cityName: String): Single<Weather> {
-        return api.getApi(cityName)
+class LocationDataSourceImpl(private val api: ApiWeatherService) : LocationDataSource {
+    override fun getWeatherLocation(location: WeatherLocation): Single<Weather> {
+        return api.getLocation(location.latitude, location.longitude)
             .map { weatherModel ->
                 Weather(
                     headerWeather = buildList {

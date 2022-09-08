@@ -1,5 +1,6 @@
 package com.example.weatherapp.weather.usecases.weatherloader
 
+import com.example.weather.usecases.common.Weather
 import io.reactivex.Single
 
 class WeatherLoaderImpl(private val weatherService: WeatherService) : WeatherLoader {

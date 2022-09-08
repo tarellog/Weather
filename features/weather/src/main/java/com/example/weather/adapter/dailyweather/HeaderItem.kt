@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.example.weather.R
 import com.example.weather.databinding.HeaderItemBinding
-import com.example.weatherapp.weather.usecases.weatherloader.TodayWeather
+import com.example.weather.usecases.common.TodayWeather
 import com.mikepenz.fastadapter.binding.AbstractBindingItem
 import java.text.SimpleDateFormat
 import java.util.*

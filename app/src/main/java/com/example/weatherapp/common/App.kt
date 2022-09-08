@@ -1,8 +1,9 @@
 package com.example.weatherapp.common
 
 import android.app.Application
+import android.content.Context
 import com.example.moduleinjector.BaseDependencyHolder
-import com.example.moduleinjector.DependencyHolder0
+import com.example.moduleinjector.DependencyHolder1
 import com.example.weather.common.WeatherComponentHolder
 import com.example.weather.common.WeatherFeatureDependencies
 import com.example.weatherapp.common.di.AppComponent
@@ -11,12 +12,13 @@ import retrofit2.Retrofit
 
 
 class App : Application() {
-    companion object {
-        lateinit var appComponent: AppComponent
-    }
+    lateinit var appComponent: AppComponent
 
     override fun onCreate() {
-        appComponent = DaggerAppComponent.create()
+        appComponent = DaggerAppComponent
+            .factory()
+            .create(this)
+
         super.onCreate()
 
         connectModules()
@@ -24,13 +26,15 @@ class App : Application() {
 
     private fun connectModules() {
         WeatherComponentHolder.dependencyProvider = {
-            DependencyHolder0 { holder: BaseDependencyHolder<WeatherFeatureDependencies> ->
+            DependencyHolder1(
+                api1 = appComponent
+            ) { holder, appComponent ->
                 object : WeatherFeatureDependencies {
                     override val retrofit: Retrofit = appComponent.retrofit
-                    override val dependencyHolder = holder
+                    override val context: Context = appComponent.context
+                    override val dependencyHolder: BaseDependencyHolder<WeatherFeatureDependencies> = holder
                 }
             }.dependencies
         }
     }
-
 }

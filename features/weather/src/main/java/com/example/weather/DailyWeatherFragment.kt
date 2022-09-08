@@ -1,11 +1,13 @@
 package com.example.weather
 
+import android.Manifest
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -45,6 +47,22 @@ class DailyWeatherFragment : Fragment() {
         super.onCreate(savedInstanceState)
     }
 
+    private val locationPermissionRequest = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        if (permissions[Manifest.permission.ACCESS_FINE_LOCATION] == true) {
+            viewModel.getWeatherDataLocation()
+        } else if (permissions[Manifest.permission.ACCESS_COARSE_LOCATION] == true) {
+            viewModel.getWeatherDataLocation()
+        } else {
+            Toast.makeText(
+                requireContext(),
+                "Доступ к местоположению не предоставлен",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -62,6 +80,8 @@ class DailyWeatherFragment : Fragment() {
                 DailyWeatherFragmentDirections.actionDailyWeatherFragmentToSearchDialogFragment()
             findNavController().navigate(action)
         }
+
+        getWeatherByLocation()
 
         binding.recycler.adapter = fastAdapter
 
@@ -90,5 +110,16 @@ class DailyWeatherFragment : Fragment() {
             action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() },
             onError = { Log.e("log", "error") }
         )
+    }
+
+    private fun getWeatherByLocation() {
+        binding.location.setOnClickListener {
+                locationPermissionRequest.launch(
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    )
+                )
+        }
     }
 }
