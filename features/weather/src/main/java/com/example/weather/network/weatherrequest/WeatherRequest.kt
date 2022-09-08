@@ -1,10 +1,10 @@
 package com.example.weather.network.weatherrequest
 
+import com.example.weather.network.common.ApiWeatherService
 import com.example.weather.network.common.converters.mapToDisplayModel
+import com.example.weather.network.common.converters.mapToHeaderDisplayModel
 import com.example.weather.usecases.common.Weather
-import com.example.weatherapp.weather.network.converters.mapToHeaderDisplayModel
-import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
-import com.example.weatherapp.weather.usecases.weatherloader.WeatherService
+import com.example.weather.usecases.weatherloader.WeatherService
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

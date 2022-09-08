@@ -1,4 +1,4 @@
-package com.example.weatherapp.weather.usecases.weatherloader
+package com.example.weather.usecases.weatherloader
 
 import com.example.weather.usecases.common.Weather
 import io.reactivex.Single

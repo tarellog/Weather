@@ -3,11 +3,11 @@ package com.example.weather
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.weather.common.extentions.MutableSingleEventFlow
 import com.example.weather.usecases.common.DailyWeather
 import com.example.weather.usecases.common.TodayWeather
-import com.example.weather.weather.usecases.weatherlocation.WeatherByLocationGetter
-import com.example.weatherapp.common.flow.MutableSingleEventFlow
-import com.example.weatherapp.weather.usecases.weatherloader.WeatherLoader
+import com.example.weather.usecases.weatherloader.WeatherLoader
+import com.example.weather.usecases.weatherlocation.WeatherByLocationGetter
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow

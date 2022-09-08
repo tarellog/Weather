@@ -3,8 +3,6 @@ package com.example.weather.network.common.converters
 
 import com.example.weather.network.common.model.ListWeatherModel
 import com.example.weather.usecases.common.DailyWeather
-import com.example.weatherapp.weather.network.converters.mapToHoursDisplayModel
-import com.example.weatherapp.weather.network.converters.toTimeWeather
 import java.text.SimpleDateFormat
 import java.util.*
 

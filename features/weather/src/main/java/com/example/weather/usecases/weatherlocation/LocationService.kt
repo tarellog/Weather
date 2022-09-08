@@ -1,6 +1,6 @@
-package com.example.weather.weather.usecases.weatherlocation
+package com.example.weather.usecases.weatherlocation
 
-import com.example.weather.weather.usecases.common.WeatherLocation
+import com.example.weather.usecases.common.WeatherLocation
 import io.reactivex.Single
 
 interface LocationService {

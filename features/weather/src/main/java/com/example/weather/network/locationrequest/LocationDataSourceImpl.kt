@@ -1,11 +1,11 @@
 package com.example.weather.network.locationrequest
 
+import com.example.weather.network.common.ApiWeatherService
 import com.example.weather.network.common.converters.mapToDisplayModel
+import com.example.weather.network.common.converters.mapToHeaderDisplayModel
 import com.example.weather.usecases.common.Weather
-import com.example.weather.weather.usecases.common.WeatherLocation
-import com.example.weather.weather.usecases.weatherlocation.LocationDataSource
-import com.example.weatherapp.weather.network.converters.mapToHeaderDisplayModel
-import com.example.weatherapp.weather.network.weatherrequest.ApiWeatherService
+import com.example.weather.usecases.common.WeatherLocation
+import com.example.weather.usecases.weatherlocation.LocationDataSource
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers

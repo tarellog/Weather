@@ -1,6 +1,6 @@
-package com.example.weatherapp.weather.network.weatherrequest
+package com.example.weather.network.common
 
-import com.example.weatherapp.weather.network.common.model.WeatherModel
+import com.example.weather.network.common.model.WeatherModel
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query

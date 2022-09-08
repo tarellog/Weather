@@ -1,4 +1,4 @@
-package com.example.weatherapp.common.flow
+package com.example.weather.common.extentions
 
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow

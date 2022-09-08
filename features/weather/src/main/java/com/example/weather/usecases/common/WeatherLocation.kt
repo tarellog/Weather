@@ -1,4 +1,4 @@
-package com.example.weather.weather.usecases.common
+package com.example.weather.usecases.common
 
 data class WeatherLocation(
     val latitude: Double,

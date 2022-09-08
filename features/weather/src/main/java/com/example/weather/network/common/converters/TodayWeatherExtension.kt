@@ -1,4 +1,4 @@
-package com.example.weatherapp.weather.network.converters
+package com.example.weather.network.common.converters
 
 import com.example.weather.network.common.model.ListWeatherModel
 import com.example.weather.usecases.common.TodayWeather
