@@ -1,5 +1,5 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("kotlin-android")
@@ -11,11 +11,8 @@ android {
     buildToolsVersion = AppConfig.buildToolsVersion
 
     defaultConfig {
-        applicationId = "com.example.weatherapp"
         minSdk = AppConfig.minSdk
         targetSdk = AppConfig.targetSdk
-        versionCode = AppConfig.versionCode
-        versionName = AppConfig.versionName
 
         testInstrumentationRunner = AppConfig.androidTestInstrumentation
     }
@@ -45,7 +42,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":features:weather"))
     implementation(project(":moduleinjector"))
 
     implementation(AppDependencies.appLibraries)
