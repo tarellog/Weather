@@ -1,4 +1,4 @@
-package com.example.cities
+package com.example.cities.di
 
 import com.example.cities.dimodule.CityFeatureApi
 
