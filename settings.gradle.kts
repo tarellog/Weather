@@ -16,3 +16,4 @@ include(":app")
 rootProject.name = "WeatherApp"
 include(":moduleinjector")
 include(":features:weather")
+include(":features:cities")
