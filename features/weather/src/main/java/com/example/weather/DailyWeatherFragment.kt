@@ -81,6 +81,7 @@ class DailyWeatherFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        Log.i("dsad", BuildConfig.BUTTON.toString())
         getWeatherByLocation()
 
         binding.recycler.adapter = fastAdapter

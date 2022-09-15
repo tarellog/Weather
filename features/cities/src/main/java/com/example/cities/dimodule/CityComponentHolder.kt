@@ -1,6 +1,7 @@
 package com.example.cities.dimodule
 
 import com.example.cities.di.CityComponent
+import com.example.cities.di.DaggerCityComponent
 import com.example.moduleinjector.ComponentHolder
 import com.example.moduleinjector.ComponentHolderDelegate
 
