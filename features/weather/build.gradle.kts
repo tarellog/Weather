@@ -19,14 +19,16 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("Boolean", "BUTTON", "false")
         }
         debug {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            buildConfigField("Boolean", "BUTTON", "false")
         }
     }
     compileOptions {
