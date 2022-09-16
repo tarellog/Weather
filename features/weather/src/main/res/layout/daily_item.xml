@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/daily_item"
     android:layout_width="343dp"
     android:layout_height="206dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginHorizontal="25dp"
-    android:layout_marginTop="8dp"
+    android:layout_gravity="center_horizontal"
+    android:layout_marginBottom="8dp"
     android:background="@drawable/rounded_corner"
     android:orientation="vertical"
     android:paddingHorizontal="20dp"
@@ -67,8 +67,8 @@
         android:id="@+id/recyclerHours"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
-        tools:listitem="@layout/hours_item"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/hours_item" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

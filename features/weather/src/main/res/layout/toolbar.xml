@@ -17,11 +17,11 @@
             android:layout_height="32dp"
             android:background="@drawable/rounded_corner"
             android:src="@drawable/location"
-            app:tint="#8F96A1"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/city"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#8F96A1" />
 
         <TextView
             android:id="@+id/city"
@@ -31,24 +31,23 @@
             android:textColor="#2A2D33"
             android:textSize="18sp"
             android:textStyle="bold"
-            tools:text="@tools:sample/lorem"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/loader"
             app:layout_constraintStart_toEndOf="@id/location"
-            app:layout_constraintEnd_toStartOf="@id/loader"/>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@tools:sample/lorem" />
 
         <ImageButton
             android:id="@+id/loader"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:layout_marginEnd="8dp"
             android:background="@drawable/rounded_corner"
             android:src="@drawable/loader"
-            app:tint="#8F96A1"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/search"
             app:layout_constraintStart_toEndOf="@id/city"
-            app:layout_constraintEnd_toStartOf="@id/search"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#8F96A1" />
 
         <ImageButton
             android:id="@+id/search"
@@ -56,12 +55,11 @@
             android:layout_height="32dp"
             android:background="@drawable/rounded_corner"
             android:src="@drawable/search"
-            app:tint="#8F96A1"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/loader"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#8F96A1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.appcompat.widget.Toolbar>
