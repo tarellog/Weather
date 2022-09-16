@@ -9,7 +9,7 @@
     <include
         android:id="@+id/custom_toolbar"
         layout="@layout/toolbar"
-        android:layout_width="match_parent"
+        android:layout_width="375dp"
         android:layout_height="?android:attr/actionBarSize"
         app:layout_constraintBottom_toTopOf="@id/recycler"
         app:layout_constraintEnd_toEndOf="parent"
