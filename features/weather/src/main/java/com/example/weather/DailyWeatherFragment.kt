@@ -75,7 +75,7 @@ class DailyWeatherFragment : Fragment() {
             viewModel.displayDataWeather(result.toString())
         }
 
-        binding.search.setOnClickListener {
+        binding.customToolbar.search.setOnClickListener {
             val action =
                 DailyWeatherFragmentDirections.actionDailyWeatherFragmentToSearchDialogFragment()
             findNavController().navigate(action)
@@ -103,7 +103,7 @@ class DailyWeatherFragment : Fragment() {
         )
         viewModel.city.observe(
             lifecycleScope,
-            action = { binding.city.text = it },
+            action = { binding.customToolbar.city.text = it },
             onError = { Log.e("log", "error") }
         )
         viewModel.message.observe(
@@ -114,7 +114,7 @@ class DailyWeatherFragment : Fragment() {
     }
 
     private fun getWeatherByLocation() {
-        binding.location.setOnClickListener {
+        binding.customToolbar.location.setOnClickListener {
                 locationPermissionRequest.launch(
                     arrayOf(
                         Manifest.permission.ACCESS_FINE_LOCATION,
