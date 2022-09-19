@@ -81,6 +81,11 @@ class DailyWeatherFragment : Fragment() {
             findNavController().navigate(action)
         }
 
+        binding.customToolbar.city.setOnClickListener {
+            val act = DailyWeatherFragmentDirections.actionDailyWeatherFragmentToNavGraphCity()
+            findNavController().navigate(act)
+        }
+
         Log.i("dsad", BuildConfig.BUTTON.toString())
         getWeatherByLocation()
 
