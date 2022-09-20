@@ -28,7 +28,7 @@ android {
         }
         debug {
             isMinifyEnabled = true
-            buildConfigField("Boolean", "BUTTON", "false")
+            buildConfigField("Boolean", "BUTTON", "true")
         }
     }
     compileOptions {

@@ -75,18 +75,7 @@ class DailyWeatherFragment : Fragment() {
             viewModel.displayDataWeather(result.toString())
         }
 
-        binding.customToolbar.search.setOnClickListener {
-            val action =
-                DailyWeatherFragmentDirections.actionDailyWeatherFragmentToSearchDialogFragment()
-            findNavController().navigate(action)
-        }
-
-        binding.customToolbar.city.setOnClickListener {
-            val act = DailyWeatherFragmentDirections.actionDailyWeatherFragmentToNavGraphCity()
-            findNavController().navigate(act)
-        }
-
-        Log.i("dsad", BuildConfig.BUTTON.toString())
+        includeBuildConfig()
         getWeatherByLocation()
 
         binding.recycler.adapter = fastAdapter
@@ -120,12 +109,28 @@ class DailyWeatherFragment : Fragment() {
 
     private fun getWeatherByLocation() {
         binding.customToolbar.location.setOnClickListener {
-                locationPermissionRequest.launch(
-                    arrayOf(
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.ACCESS_COARSE_LOCATION
-                    )
+            locationPermissionRequest.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
                 )
+            )
         }
     }
+
+    private fun includeBuildConfig() {
+        if (BuildConfig.BUTTON == true) {
+            binding.customToolbar.search.setOnClickListener {
+                val act = DailyWeatherFragmentDirections.actionDailyWeatherFragmentToNavGraphCity()
+                findNavController().navigate(act)
+            }
+        } else {
+            binding.customToolbar.search.setOnClickListener {
+                val action =
+                    DailyWeatherFragmentDirections.actionDailyWeatherFragmentToSearchDialogFragment()
+                findNavController().navigate(action)
+            }
+        }
+    }
+
 }
