@@ -27,7 +27,7 @@ class CityFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCityBinding.inflate(inflater, container, false)
-        binding.customToolbar.back.visibility = View.VISIBLE
+        binding.customToolbar.city.text = getString(R.string.my_city)
         binding.customToolbar.back.setOnClickListener {
             findNavController().navigateUp()
         }

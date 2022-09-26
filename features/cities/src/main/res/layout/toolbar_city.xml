@@ -13,24 +13,11 @@
         android:layout_height="match_parent">
 
         <ImageButton
-            android:id="@+id/location"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/rounded_corner"
-            android:src="@drawable/location"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/city"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="#8F96A1" />
-
-        <ImageButton
             android:id="@+id/back"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:background="@drawable/rounded_corner"
             android:src="@drawable/back"
-            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/city"
             app:layout_constraintStart_toStartOf="parent"
@@ -47,8 +34,8 @@
             android:textStyle="bold"
             android:maxLines="1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/search"
-            app:layout_constraintStart_toEndOf="@id/location"
+            app:layout_constraintEnd_toStartOf="@id/loader"
+            app:layout_constraintStart_toEndOf="@id/back"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="@tools:sample/lorem" />
 
@@ -58,22 +45,12 @@
             android:layout_height="32dp"
             android:background="@drawable/rounded_corner"
             android:src="@drawable/loader"
-            android:layout_marginEnd="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/city"
+            app:layout_constraintStart_toEndOf="@id/city"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="#8F96A1" />
 
-        <ImageButton
-            android:id="@+id/search"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:background="@drawable/rounded_corner"
-            android:src="@drawable/search"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/city"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="#8F96A1" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.appcompat.widget.Toolbar>
