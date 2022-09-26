@@ -45,6 +45,11 @@ class DailyWeatherFragment : Fragment() {
             .getComponentImpl()
             .inject(this)
 
+        viewModel.navigationCommand.observe(
+            lifecycleScope,
+            action = { findNavController().navigate(it) },
+            onError = { Log.e("log","error", it) }
+        )
         super.onCreate(savedInstanceState)
     }
 
@@ -77,6 +82,7 @@ class DailyWeatherFragment : Fragment() {
         }
 
         getWeatherByLocation()
+        includeBuildConfig()
 
         binding.recycler.adapter = fastAdapter
 
@@ -85,8 +91,6 @@ class DailyWeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        includeBuildConfig()
         with(viewModel) {
             header.observe(
                 lifecycleScope,
@@ -107,11 +111,6 @@ class DailyWeatherFragment : Fragment() {
                 lifecycleScope,
                 action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() },
                 onError = { Log.e("log", "error") }
-            )
-            navigationCommon.observe(
-                lifecycleScope,
-                action = { findNavController().navigate(it)},
-                onError = { Log.e("log","error", it) }
             )
         }
     }

@@ -18,8 +18,8 @@ class DailyWeatherViewModel(
     private val navigationProvider: DailyWeatherNavigationProvider
 ) : ViewModel() {
 
-    private var _navigationCommon = MutableSingleEventFlow<NavCommand>()
-    val navigationCommon get() = _navigationCommon.asSharedFlow()
+    private var _navigationCommand = MutableSingleEventFlow<NavCommand>()
+    val navigationCommand get() = _navigationCommand.asSharedFlow()
 
     private var _message = MutableSingleEventFlow<Int>()
     val message get() = _message.asSharedFlow()
@@ -63,6 +63,6 @@ class DailyWeatherViewModel(
     }
 
     fun actionNavigationCity() {
-        _navigationCommon.tryEmit(navigationProvider.navigateToCity())
+        _navigationCommand.tryEmit(navigationProvider.navigateToCity())
     }
 }
