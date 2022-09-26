@@ -14,8 +14,13 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class DailyWeatherViewModel(
     private val loadData: WeatherLoader,
-    private val locations: WeatherByLocationGetter
+    private val locations: WeatherByLocationGetter,
+    private val navigationProvider: DailyWeatherNavigationProvider
 ) : ViewModel() {
+
+    private var _navigationCommon = MutableSingleEventFlow<NavCommand>()
+    val navigationCommon get() = _navigationCommon.asSharedFlow()
+
     private var _message = MutableSingleEventFlow<Int>()
     val message get() = _message.asSharedFlow()
 
@@ -55,5 +60,9 @@ class DailyWeatherViewModel(
             }, {
                 _message.tryEmit(R.string.message)
             })
+    }
+
+    fun actionNavigationCity() {
+        _navigationCommon.tryEmit(navigationProvider.navigateToCity())
     }
 }

@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_dailyWeatherFragment_to_searchDialogFragment"
             app:destination="@id/searchDialogFragment" />
-        <action
-            android:id="@+id/action_dailyWeatherFragment_to_nav_graph_city"
-            app:destination="@id/nav_graph_city" />
     </fragment>
     <dialog
         android:id="@+id/searchDialogFragment"
@@ -23,6 +20,5 @@
         android:label="fragment_search_dialog"
         tools:layout="@layout/fragment_search_dialog" >
     </dialog>
-    <include app:graph="@navigation/city_nav_graph" />
 
 </navigation>

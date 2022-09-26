@@ -34,6 +34,7 @@ class App : Application() {
                 object : WeatherFeatureDependencies {
                     override val retrofit: Retrofit = appComponent.retrofit
                     override val context: Context = appComponent.context
+                    override val navigation: DailyWeatherNavigationProviderImpl = appComponent.navigation
                     override val dependencyHolder: BaseDependencyHolder<WeatherFeatureDependencies> = holder
                 }
             }.dependencies

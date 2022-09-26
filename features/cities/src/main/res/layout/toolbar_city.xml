@@ -24,6 +24,19 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="#8F96A1" />
 
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/rounded_corner"
+            android:src="@drawable/back"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/city"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#8F96A1" />
+
         <TextView
             android:id="@+id/city"
             android:layout_width="279dp"

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/app_nav_graph"
+    app:startDestination="@id/nav_graph_weather">
+
+    <include
+        app:graph="@navigation/weather_nav_graph">
+    </include>
+    <include app:graph="@navigation/city_nav_graph" />
+    <action
+        android:id="@+id/action_dailyWeatherFragment_to_cityFragment"
+        app:destination="@id/city_nav_graph" />
+</navigation>

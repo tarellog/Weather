@@ -17,6 +17,7 @@ import com.example.weather.adapter.dailyweather.DailyItem
 import com.example.weather.adapter.dailyweather.HeaderItem
 import com.example.weather.common.WeatherComponentHolder
 import com.example.weather.common.extentions.observe
+import com.example.weather.core.navigate
 import com.example.weather.databinding.FragmentDailyWeatherBinding
 import com.example.weather.dialogweather.SearchDialogFragment.Companion.BUNDLE_KEY
 import com.example.weather.dialogweather.SearchDialogFragment.Companion.REQUEST_KEY
@@ -75,7 +76,6 @@ class DailyWeatherFragment : Fragment() {
             viewModel.displayDataWeather(result.toString())
         }
 
-        includeBuildConfig()
         getWeatherByLocation()
 
         binding.recycler.adapter = fastAdapter
@@ -85,26 +85,35 @@ class DailyWeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.header.observe(
-            lifecycleScope,
-            action = { FastAdapterDiffUtil[headerAdapter] = it.map(::HeaderItem) },
-            onError = { Log.e("log", "error") }
-        )
-        viewModel.dailyWeather.observe(
-            lifecycleScope,
-            action = { FastAdapterDiffUtil[itemAdapter] = it.map(::DailyItem) },
-            onError = { Log.e("log", "error") }
-        )
-        viewModel.city.observe(
-            lifecycleScope,
-            action = { binding.customToolbar.city.text = it },
-            onError = { Log.e("log", "error") }
-        )
-        viewModel.message.observe(
-            lifecycleScope,
-            action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() },
-            onError = { Log.e("log", "error") }
-        )
+
+        includeBuildConfig()
+        with(viewModel) {
+            header.observe(
+                lifecycleScope,
+                action = { FastAdapterDiffUtil[headerAdapter] = it.map(::HeaderItem) },
+                onError = { Log.e("log", "error") }
+            )
+            dailyWeather.observe(
+                lifecycleScope,
+                action = { FastAdapterDiffUtil[itemAdapter] = it.map(::DailyItem) },
+                onError = { Log.e("log", "error") }
+            )
+            city.observe(
+                lifecycleScope,
+                action = { binding.customToolbar.city.text = it },
+                onError = { Log.e("log", "error") }
+            )
+            message.observe(
+                lifecycleScope,
+                action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() },
+                onError = { Log.e("log", "error") }
+            )
+            navigationCommon.observe(
+                lifecycleScope,
+                action = { findNavController().navigate(it)},
+                onError = { Log.e("log","error", it) }
+            )
+        }
     }
 
     private fun getWeatherByLocation() {
@@ -121,8 +130,7 @@ class DailyWeatherFragment : Fragment() {
     private fun includeBuildConfig() {
         if (BuildConfig.BUTTON == true) {
             binding.customToolbar.search.setOnClickListener {
-                val act = DailyWeatherFragmentDirections.actionDailyWeatherFragmentToNavGraphCity()
-                findNavController().navigate(act)
+                viewModel.actionNavigationCity()
             }
         } else {
             binding.customToolbar.search.setOnClickListener {
@@ -132,5 +140,4 @@ class DailyWeatherFragment : Fragment() {
             }
         }
     }
-
 }
