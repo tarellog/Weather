@@ -1,4 +1,4 @@
-package com.example.weather.core
+package com.example.weather.common.extentions
 
 import androidx.navigation.NavController
 import com.example.weather.NavCommand
