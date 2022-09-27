@@ -91,28 +91,26 @@ class DailyWeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(viewModel) {
-            header.observe(
+            viewModel.header.observe(
                 lifecycleScope,
                 action = { FastAdapterDiffUtil[headerAdapter] = it.map(::HeaderItem) },
                 onError = { Log.e("log", "error") }
             )
-            dailyWeather.observe(
+            viewModel.dailyWeather.observe(
                 lifecycleScope,
                 action = { FastAdapterDiffUtil[itemAdapter] = it.map(::DailyItem) },
                 onError = { Log.e("log", "error") }
             )
-            city.observe(
+            viewModel.city.observe(
                 lifecycleScope,
                 action = { binding.customToolbar.city.text = it },
                 onError = { Log.e("log", "error") }
             )
-            message.observe(
+            viewModel.message.observe(
                 lifecycleScope,
                 action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() },
                 onError = { Log.e("log", "error") }
             )
-        }
     }
 
     private fun getWeatherByLocation() {
@@ -127,7 +125,7 @@ class DailyWeatherFragment : Fragment() {
     }
 
     private fun includeBuildConfig() {
-        if (BuildConfig.BUTTON == true) {
+        if (BuildConfig.ENABLING_SCREEN_CITY == true) {
             binding.customToolbar.search.setOnClickListener {
                 viewModel.actionNavigationCity()
             }
