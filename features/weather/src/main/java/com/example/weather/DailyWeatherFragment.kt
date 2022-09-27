@@ -81,8 +81,15 @@ class DailyWeatherFragment : Fragment() {
             viewModel.displayDataWeather(result.toString())
         }
 
+        binding.customToolbar.search.setOnClickListener {
+            viewModel.includeBuildConfig()
+        }
+
+        binding.customToolbar.search.setOnClickListener {
+            viewModel.includeBuildConfig()
+        }
+
         getWeatherByLocation()
-        includeBuildConfig()
 
         binding.recycler.adapter = fastAdapter
 
@@ -111,6 +118,11 @@ class DailyWeatherFragment : Fragment() {
                 action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() },
                 onError = { Log.e("log", "error") }
             )
+            viewModel.navigationDialogWindow.observe(
+                lifecycleScope,
+                action = { findNavController().navigate(it) },
+                onError = { Log.e("log","error", it) }
+            )
     }
 
     private fun getWeatherByLocation() {
@@ -121,20 +133,6 @@ class DailyWeatherFragment : Fragment() {
                     Manifest.permission.ACCESS_COARSE_LOCATION
                 )
             )
-        }
-    }
-
-    private fun includeBuildConfig() {
-        if (BuildConfig.ENABLING_SCREEN_CITY == true) {
-            binding.customToolbar.search.setOnClickListener {
-                viewModel.actionNavigationCity()
-            }
-        } else {
-            binding.customToolbar.search.setOnClickListener {
-                val action =
-                    DailyWeatherFragmentDirections.actionDailyWeatherFragmentToSearchDialogFragment()
-                findNavController().navigate(action)
-            }
         }
     }
 }

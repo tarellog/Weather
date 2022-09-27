@@ -11,4 +11,8 @@ class DailyWeatherNavigationProviderImpl @Inject constructor(): DailyWeatherNavi
     override fun navigateToCity(): NavCommand {
         return NavCommand(R.id.action_dailyWeatherFragment_to_cityFragment)
     }
+
+    override fun navigateToDialogWindow(): NavCommand {
+        return NavCommand(com.example.weather.R.id.action_dailyWeatherFragment_to_searchDialogFragment)
+    }
 }
