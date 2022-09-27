@@ -67,9 +67,4 @@ class WeatherModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiWeatherService =
         retrofit.create(ApiWeatherService::class.java)
-
-//    @Provides
-//    fun provideNavigation(): DailyWeatherNavigationProvider =
-//        DailyWeatherNavigationProviderImpl()
-
 }
