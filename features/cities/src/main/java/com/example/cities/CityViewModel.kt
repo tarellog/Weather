@@ -14,6 +14,18 @@ class CityViewModel : ViewModel() {
     private val _citiesList = MutableStateFlow<List<CityElement>>(emptyList())
     val citiesList get() = _citiesList.asStateFlow()
 
+    private val _navigationBack = MutableStateFlow<List<NavigationByScreen>>(emptyList())
+    val navigationBack get() = _navigationBack.asStateFlow()
+
+    private val _navigationByScreenSelectCity = MutableStateFlow<List<NavigationByScreen>>(emptyList())
+    val navigationByScreenSelectCity get() = _navigationByScreenSelectCity.asStateFlow()
+
+    private val _navigationByScreenSelectCityToMap = MutableStateFlow<List<NavigationByScreen>>(emptyList())
+    val navigationByScreenSelectCityToMap get() = _navigationByScreenSelectCityToMap.asStateFlow()
+
+    private val _navigationByScreenWeather = MutableStateFlow<List<NavigationByScreen>>(emptyList())
+    val navigationByScreenWeather get() = _navigationByScreenWeather.asStateFlow()
+
     fun loadData() {
 
     }
