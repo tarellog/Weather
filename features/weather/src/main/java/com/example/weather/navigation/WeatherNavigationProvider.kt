@@ -1,6 +1,6 @@
-package com.example.weather
+package com.example.weather.navigation
 
-interface DailyWeatherNavigationProvider {
+interface WeatherNavigationProvider {
     fun navigateToCity(): NavCommand
     fun navigateToDialogWindow(): NavCommand
 }

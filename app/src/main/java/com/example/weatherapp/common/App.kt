@@ -6,9 +6,9 @@ import com.example.cities.dimodule.CityComponentHolder
 import com.example.cities.dimodule.CityFeatureDependencies
 import com.example.moduleinjector.BaseDependencyHolder
 import com.example.moduleinjector.DependencyHolder1
-import com.example.weather.DailyWeatherNavigationProvider
 import com.example.weather.common.WeatherComponentHolder
 import com.example.weather.common.WeatherFeatureDependencies
+import com.example.weather.navigation.WeatherNavigationProvider
 import com.example.weatherapp.common.di.AppComponent
 import com.example.weatherapp.common.di.DaggerAppComponent
 import retrofit2.Retrofit
@@ -35,7 +35,7 @@ class App : Application() {
                 object : WeatherFeatureDependencies {
                     override val retrofit: Retrofit = appComponent.retrofit
                     override val context: Context = appComponent.context
-                    override val navigation: DailyWeatherNavigationProvider = appComponent.navigationRouter()
+                    override val navigation: WeatherNavigationProvider = appComponent.navigationRouter()
                     override val dependencyHolder: BaseDependencyHolder<WeatherFeatureDependencies> = holder
                 }
             }.dependencies
