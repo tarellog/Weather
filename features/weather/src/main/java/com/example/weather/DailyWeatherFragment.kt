@@ -81,11 +81,11 @@ class DailyWeatherFragment : Fragment() {
             viewModel.displayDataWeather(result.toString())
         }
 
-        binding.customToolbar.search.setOnClickListener {
+        binding.search.setOnClickListener {
             viewModel.includeBuildConfig()
         }
 
-        binding.customToolbar.search.setOnClickListener {
+        binding.search.setOnClickListener {
             viewModel.includeBuildConfig()
         }
 
@@ -110,7 +110,7 @@ class DailyWeatherFragment : Fragment() {
         )
         viewModel.city.observe(
             lifecycleScope,
-            action = { binding.customToolbar.city.text = it },
+            action = { binding.city.text = it },
             onError = { Log.e("log", "error") }
         )
         viewModel.message.observe(
@@ -121,7 +121,7 @@ class DailyWeatherFragment : Fragment() {
     }
 
     private fun getWeatherByLocation() {
-        binding.customToolbar.location.setOnClickListener {
+        binding.location.setOnClickListener {
             locationPermissionRequest.launch(
                 arrayOf(
                     Manifest.permission.ACCESS_FINE_LOCATION,

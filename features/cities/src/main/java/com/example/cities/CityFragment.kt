@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.example.cities.databinding.FragmentCityBinding
 import com.example.cities.dimodule.CityComponentHolder
 
@@ -27,10 +26,7 @@ class CityFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCityBinding.inflate(inflater, container, false)
-        binding.customToolbar.city.text = getString(R.string.my_city)
-        binding.customToolbar.back.setOnClickListener {
-            findNavController().navigateUp()
-        }
+
         return binding.root
     }
 }
