@@ -69,6 +69,6 @@
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="horizontal"
-        tools:listitem="@layout/hours_item" />
+        tools:listitem="@layout/hours_item"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>
