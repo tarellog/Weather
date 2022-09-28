@@ -98,26 +98,26 @@ class DailyWeatherFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-            viewModel.header.observe(
-                lifecycleScope,
-                action = { FastAdapterDiffUtil[headerAdapter] = it.map(::HeaderItem) },
-                onError = { Log.e("log", "error") }
-            )
-            viewModel.dailyWeather.observe(
-                lifecycleScope,
-                action = { FastAdapterDiffUtil[itemAdapter] = it.map(::DailyItem) },
-                onError = { Log.e("log", "error") }
-            )
-            viewModel.city.observe(
-                lifecycleScope,
-                action = { binding.customToolbar.city.text = it },
-                onError = { Log.e("log", "error") }
-            )
-            viewModel.message.observe(
-                lifecycleScope,
-                action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() },
-                onError = { Log.e("log", "error") }
-            )
+        viewModel.header.observe(
+            lifecycleScope,
+            action = { FastAdapterDiffUtil[headerAdapter] = it.map(::HeaderItem) },
+            onError = { Log.e("log", "error") }
+        )
+        viewModel.dailyWeather.observe(
+            lifecycleScope,
+            action = { FastAdapterDiffUtil[itemAdapter] = it.map(::DailyItem) },
+            onError = { Log.e("log", "error") }
+        )
+        viewModel.city.observe(
+            lifecycleScope,
+            action = { binding.customToolbar.city.text = it },
+            onError = { Log.e("log", "error") }
+        )
+        viewModel.message.observe(
+            lifecycleScope,
+            action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() },
+            onError = { Log.e("log", "error") }
+        )
     }
 
     private fun getWeatherByLocation() {
