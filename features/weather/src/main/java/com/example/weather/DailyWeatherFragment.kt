@@ -118,11 +118,6 @@ class DailyWeatherFragment : Fragment() {
                 action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() },
                 onError = { Log.e("log", "error") }
             )
-            viewModel.navigationDialogWindow.observe(
-                lifecycleScope,
-                action = { findNavController().navigate(it) },
-                onError = { Log.e("log","error", it) }
-            )
     }
 
     private fun getWeatherByLocation() {

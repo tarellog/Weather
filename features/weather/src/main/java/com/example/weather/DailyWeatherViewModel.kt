@@ -21,9 +21,6 @@ class DailyWeatherViewModel(
     private var _navigationCommand = MutableSingleEventFlow<NavCommand>()
     val navigationCommand get() = _navigationCommand.asSharedFlow()
 
-    private var _navigationDialogWindow = MutableSingleEventFlow<NavCommand>()
-    val navigationDialogWindow get() = _navigationDialogWindow.asSharedFlow()
-
     private var _message = MutableSingleEventFlow<Int>()
     val message get() = _message.asSharedFlow()
 
@@ -70,7 +67,7 @@ class DailyWeatherViewModel(
     }
 
     private fun actionNavigationDialogWindow() {
-        _navigationDialogWindow.tryEmit(navigationProvider.navigateToDialogWindow())
+        _navigationCommand.tryEmit(navigationProvider.navigateToDialogWindow())
     }
 
     fun includeBuildConfig() {

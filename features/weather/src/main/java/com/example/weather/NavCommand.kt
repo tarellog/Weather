@@ -1,10 +1,7 @@
 package com.example.weather
 
-import android.os.Bundle
-import androidx.navigation.NavOptions
+import androidx.navigation.NavDirections
 
 data class NavCommand(
-    val action: Int,
-    var args: Bundle? = null,
-    val navOptions: NavOptions? = null
+    val action: NavDirections
 )

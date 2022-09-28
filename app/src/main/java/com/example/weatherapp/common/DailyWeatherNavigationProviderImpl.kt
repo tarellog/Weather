@@ -1,18 +1,19 @@
 package com.example.weatherapp.common
 
+import com.example.weather.DailyWeatherFragmentDirections
 import com.example.weather.DailyWeatherNavigationProvider
 import com.example.weather.NavCommand
-import com.example.weatherapp.R
-import javax.inject.Inject
-import javax.inject.Singleton
+import com.example.weatherapp.AppNavGraphDirections
 
-@Singleton
-class DailyWeatherNavigationProviderImpl @Inject constructor(): DailyWeatherNavigationProvider {
+class DailyWeatherNavigationProviderImpl : DailyWeatherNavigationProvider {
     override fun navigateToCity(): NavCommand {
-        return NavCommand(R.id.action_dailyWeatherFragment_to_cityFragment)
+        val action = AppNavGraphDirections.actionDailyWeatherFragmentToCityFragment()
+        return NavCommand(action)
     }
 
     override fun navigateToDialogWindow(): NavCommand {
-        return NavCommand(com.example.weather.R.id.action_dailyWeatherFragment_to_searchDialogFragment)
+        val action =
+            DailyWeatherFragmentDirections.actionDailyWeatherFragmentToSearchDialogFragment()
+        return NavCommand(action)
     }
 }
