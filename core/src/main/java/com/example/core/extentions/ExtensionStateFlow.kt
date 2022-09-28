@@ -1,4 +1,4 @@
-package com.example.weather.common.extentions
+package com.example.core.extentions
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow

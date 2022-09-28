@@ -3,7 +3,7 @@ package com.example.weather
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.weather.common.extentions.MutableSingleEventFlow
+import com.example.core.extentions.MutableSingleEventFlow
 import com.example.weather.usecases.common.DailyWeather
 import com.example.weather.usecases.common.TodayWeather
 import com.example.weather.usecases.weatherloader.WeatherLoader
