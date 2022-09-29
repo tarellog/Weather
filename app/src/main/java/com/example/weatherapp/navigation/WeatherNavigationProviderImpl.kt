@@ -6,14 +6,14 @@ import com.example.weather.navigation.WeatherNavigationProvider
 import com.example.weatherapp.AppNavGraphDirections
 
 class WeatherNavigationProviderImpl : WeatherNavigationProvider {
-    override fun navigateToCity(): com.example.core.common.NavCommand {
+    override fun navigateToCity(): NavCommand {
         val action = AppNavGraphDirections.actionDailyWeatherFragmentToCityFragment()
-        return com.example.core.common.NavCommand(action.actionId, action.arguments)
+        return NavCommand(action.actionId, action.arguments)
     }
 
-    override fun navigateToDialogWindow(): com.example.core.common.NavCommand {
+    override fun navigateToDialogWindow(): NavCommand {
         val action =
             DailyWeatherFragmentDirections.actionDailyWeatherFragmentToSearchDialogFragment()
-        return com.example.core.common.NavCommand(action.actionId, action.arguments)
+        return NavCommand(action.actionId, action.arguments)
     }
 }

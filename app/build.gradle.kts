@@ -48,6 +48,7 @@ dependencies {
     implementation(project(":features:weather"))
     implementation(project(":features:cities"))
     implementation(project(":moduleinjector"))
+    implementation(project(":core"))
 
     implementation(AppDependencies.appLibraries)
     testImplementation(AppDependencies.testLibraries)
