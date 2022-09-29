@@ -8,23 +8,27 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class CityViewModel : ViewModel() {
-    private var _messageError = MutableSharedFlow<Int>(0, 1, BufferOverflow.DROP_OLDEST)
-    val messageError get() = _messageError.asSharedFlow()
-
     private val _citiesList = MutableStateFlow<List<CityElement>>(emptyList())
     val citiesList get() = _citiesList.asStateFlow()
 
-    private val _navigationBack = MutableStateFlow<List<NavigationByScreen>>(emptyList())
-    val navigationBack get() = _navigationBack.asStateFlow()
+    private val _navigationBack =
+        MutableSharedFlow<NavigationByScreen>(0, 1, BufferOverflow.DROP_OLDEST)
+    val navigationBack get() = _navigationBack.asSharedFlow()
 
-    private val _navigationByScreenSelectCity = MutableStateFlow<List<NavigationByScreen>>(emptyList())
-    val navigationByScreenSelectCity get() = _navigationByScreenSelectCity.asStateFlow()
+    private val _navigationByScreenSelectCity =
+        MutableSharedFlow<NavigationByScreen>(0, 1, BufferOverflow.DROP_OLDEST)
+    val navigationByScreenSelectCity get() = _navigationByScreenSelectCity.asSharedFlow()
 
-    private val _navigationByScreenSelectCityToMap = MutableStateFlow<List<NavigationByScreen>>(emptyList())
-    val navigationByScreenSelectCityToMap get() = _navigationByScreenSelectCityToMap.asStateFlow()
+    private val _navigationByScreenSelectCityToMap =
+        MutableSharedFlow<NavigationByScreen>(0, 1, BufferOverflow.DROP_OLDEST)
+    val navigationByScreenSelectCityToMap get() = _navigationByScreenSelectCityToMap.asSharedFlow()
 
-    private val _navigationByScreenWeather = MutableStateFlow<List<NavigationByScreen>>(emptyList())
-    val navigationByScreenWeather get() = _navigationByScreenWeather.asStateFlow()
+    private val _navigationByScreenWeather =
+        MutableSharedFlow<NavigationByScreen>(0, 1, BufferOverflow.DROP_OLDEST)
+    val navigationByScreenWeather get() = _navigationByScreenWeather.asSharedFlow()
+
+    private var _messageError = MutableSharedFlow<Int>(0, 1, BufferOverflow.DROP_OLDEST)
+    val messageError get() = _messageError.asSharedFlow()
 
     fun loadData() {
 
