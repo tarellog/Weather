@@ -82,11 +82,11 @@ class DailyWeatherFragment : Fragment() {
         }
 
         binding.search.setOnClickListener {
-            viewModel.includeBuildConfig()
+            viewModel.actionToCity()
         }
 
         binding.search.setOnClickListener {
-            viewModel.includeBuildConfig()
+            viewModel.actionToCity()
         }
 
         getWeatherByLocation()

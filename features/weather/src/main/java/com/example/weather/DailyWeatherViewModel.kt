@@ -64,19 +64,11 @@ class DailyWeatherViewModel(
             })
     }
 
-    private fun actionNavigationCity() {
-        _navigationCommand.tryEmit(navigationProvider.navigateToCity())
-    }
-
-    private fun actionNavigationDialogWindow() {
-        _navigationCommand.tryEmit(navigationProvider.navigateToDialogWindow())
-    }
-
-    fun includeBuildConfig() {
+    fun actionToCity() {
         if (BuildConfig.ENABLING_SCREEN_CITY == true) {
-            actionNavigationCity()
+            _navigationCommand.tryEmit(navigationProvider.navigateToCity())
         } else {
-            actionNavigationDialogWindow()
+            _navigationCommand.tryEmit(navigationProvider.navigateToDialogWindow())
         }
     }
 }
