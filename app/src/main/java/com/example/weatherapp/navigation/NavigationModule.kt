@@ -1,7 +1,6 @@
-package com.example.weatherapp.common.di
+package com.example.weatherapp.navigation
 
 import com.example.weather.navigation.WeatherNavigationProvider
-import com.example.weatherapp.navigation.WeatherNavigationProviderImpl
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

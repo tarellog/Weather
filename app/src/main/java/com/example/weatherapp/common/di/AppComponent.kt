@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.moduleinjector.BaseFeatureApi
 import com.example.weather.navigation.WeatherNavigationProvider
 import com.example.weatherapp.common.App
+import com.example.weatherapp.navigation.NavigationModule
 import dagger.BindsInstance
 import dagger.Component
 import retrofit2.Retrofit
