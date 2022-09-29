@@ -1,13 +1,13 @@
 package com.example.weather.common.extentions
 
-import kotlinx.coroutines.CoroutineScope
+import androidx.lifecycle.LifecycleCoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 fun <T> Flow<T>.observe(
-    scope: CoroutineScope,
+    scope: LifecycleCoroutineScope,
     action: suspend (T) -> Unit,
     onError: (Throwable) -> Unit
 ) = this
