@@ -64,7 +64,7 @@ class DailyWeatherViewModel(
             })
     }
 
-    fun actionToCity() {
+    fun actionToScreenCity() {
         if (BuildConfig.ENABLING_SCREEN_CITY == true) {
             _navigationCommand.tryEmit(navigationProvider.navigateToCity())
         } else {
