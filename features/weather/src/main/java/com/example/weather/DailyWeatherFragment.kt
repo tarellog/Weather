@@ -85,10 +85,6 @@ class DailyWeatherFragment : Fragment() {
             viewModel.actionToScreenCity()
         }
 
-        binding.search.setOnClickListener {
-            viewModel.actionToScreenCity()
-        }
-
         getWeatherByLocation()
 
         binding.recycler.adapter = fastAdapter
