@@ -3,6 +3,7 @@ package com.example.weather.di
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.example.weather.DailyWeatherViewModel
+import com.example.weather.navigation.WeatherNavigationProvider
 import com.example.weather.network.common.ApiWeatherService
 import com.example.weather.network.locationrequest.LocationDataSourceImpl
 import com.example.weather.network.weatherrequest.WeatherRequest
@@ -29,8 +30,9 @@ class WeatherModule {
     fun getViewModel(
         loadData: WeatherLoader,
         locations: WeatherByLocationGetter,
+        navigation: WeatherNavigationProvider
     ): ViewModel {
-        return DailyWeatherViewModel(loadData, locations)
+        return DailyWeatherViewModel(loadData, locations, navigation)
     }
 
     @Provides
