@@ -6,10 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.cities.databinding.FragmentCityBinding
+import com.example.cities.dimodule.CityComponentHolder
 
 class CityFragment : Fragment() {
     private var _binding: FragmentCityBinding? = null
     private val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        CityComponentHolder
+            .getComponentImpl()
+            .inject(this)
+
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
