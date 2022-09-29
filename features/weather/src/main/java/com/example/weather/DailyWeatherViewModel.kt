@@ -3,7 +3,9 @@ package com.example.weather
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.core.common.NavCommand
 import com.example.core.extentions.MutableSingleEventFlow
+import com.example.weather.navigation.WeatherNavigationProvider
 import com.example.weather.usecases.common.DailyWeather
 import com.example.weather.usecases.common.TodayWeather
 import com.example.weather.usecases.weatherloader.WeatherLoader
@@ -14,8 +16,12 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class DailyWeatherViewModel(
     private val loadData: WeatherLoader,
-    private val locations: WeatherByLocationGetter
+    private val locations: WeatherByLocationGetter,
+    private val navigationProvider: WeatherNavigationProvider
 ) : ViewModel() {
+    private var _navigationCommand = MutableSingleEventFlow<NavCommand>()
+    val navigationCommand get() = _navigationCommand.asSharedFlow()
+
     private var _message = MutableSingleEventFlow<Int>()
     val message get() = _message.asSharedFlow()
 
@@ -55,5 +61,13 @@ class DailyWeatherViewModel(
             }, {
                 _message.tryEmit(R.string.message)
             })
+    }
+
+    fun actionToScreenCity() {
+        if (BuildConfig.ENABLING_SCREEN_CITY == true) {
+            _navigationCommand.tryEmit(navigationProvider.navigateToCity())
+        } else {
+            _navigationCommand.tryEmit(navigationProvider.navigateToDialogWindow())
+        }
     }
 }

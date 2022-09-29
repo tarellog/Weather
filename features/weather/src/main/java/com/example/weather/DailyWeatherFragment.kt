@@ -13,6 +13,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.core.extentions.navigate
 import com.example.core.extentions.observe
 import com.example.weather.adapter.dailyweather.DailyItem
 import com.example.weather.adapter.dailyweather.HeaderItem
@@ -44,6 +45,11 @@ class DailyWeatherFragment : Fragment() {
             .getComponentImpl()
             .inject(this)
 
+        viewModel.navigationCommand.observe(
+            lifecycleScope,
+            action = { findNavController().navigate(it) },
+            onError = { Log.e("log","error", it) }
+        )
         super.onCreate(savedInstanceState)
     }
 
@@ -76,9 +82,7 @@ class DailyWeatherFragment : Fragment() {
         }
 
         binding.search.setOnClickListener {
-            val action =
-                DailyWeatherFragmentDirections.actionDailyWeatherFragmentToSearchDialogFragment()
-            findNavController().navigate(action)
+            viewModel.actionToScreenCity()
         }
 
         getWeatherByLocation()
@@ -114,12 +118,12 @@ class DailyWeatherFragment : Fragment() {
 
     private fun getWeatherByLocation() {
         binding.location.setOnClickListener {
-                locationPermissionRequest.launch(
-                    arrayOf(
-                        Manifest.permission.ACCESS_FINE_LOCATION,
-                        Manifest.permission.ACCESS_COARSE_LOCATION
-                    )
+            locationPermissionRequest.launch(
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
                 )
+            )
         }
     }
 }
