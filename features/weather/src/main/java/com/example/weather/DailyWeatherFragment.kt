@@ -88,22 +88,22 @@ class DailyWeatherFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.header.observe(
-            lifecycleScope,
+            viewLifecycleOwner.lifecycleScope,
             action = { FastAdapterDiffUtil[headerAdapter] = it.map(::HeaderItem) },
             onError = { Log.e("log", "error") }
         )
         viewModel.dailyWeather.observe(
-            lifecycleScope,
+            viewLifecycleOwner.lifecycleScope,
             action = { FastAdapterDiffUtil[itemAdapter] = it.map(::DailyItem) },
             onError = { Log.e("log", "error") }
         )
         viewModel.city.observe(
-            lifecycleScope,
+            viewLifecycleOwner.lifecycleScope,
             action = { binding.city.text = it },
             onError = { Log.e("log", "error") }
         )
         viewModel.message.observe(
-            lifecycleScope,
+            viewLifecycleOwner.lifecycleScope,
             action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() },
             onError = { Log.e("log", "error") }
         )
