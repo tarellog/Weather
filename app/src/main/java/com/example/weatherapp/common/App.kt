@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.example.cities.dimodule.CityComponentHolder
 import com.example.cities.dimodule.CityFeatureDependencies
+import com.example.core.common.NavCommand
 import com.example.moduleinjector.BaseDependencyHolder
 import com.example.moduleinjector.DependencyHolder1
 import com.example.weather.common.WeatherComponentHolder
@@ -11,6 +12,7 @@ import com.example.weather.common.WeatherFeatureDependencies
 import com.example.weather.navigation.WeatherNavigationProvider
 import com.example.weatherapp.common.di.AppComponent
 import com.example.weatherapp.common.di.DaggerAppComponent
+import kotlinx.coroutines.flow.MutableSharedFlow
 import retrofit2.Retrofit
 
 
@@ -36,6 +38,7 @@ class App : Application() {
                     override val retrofit: Retrofit = appComponent.retrofit
                     override val context: Context = appComponent.context
                     override val navigation: WeatherNavigationProvider = appComponent.navigationRouter()
+                    override val router: MutableSharedFlow<NavCommand> = appComponent.navigationCommand()
                     override val dependencyHolder: BaseDependencyHolder<WeatherFeatureDependencies> = holder
                 }
             }.dependencies
