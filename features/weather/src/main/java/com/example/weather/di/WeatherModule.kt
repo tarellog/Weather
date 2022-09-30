@@ -3,7 +3,10 @@ package com.example.weather.di
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.example.weather.DailyWeatherViewModel
+import com.example.weather.navigation.NavCommand
 import com.example.weather.navigation.WeatherNavigationProvider
+import com.example.weather.navigation.WeatherRouter
+import com.example.weather.navigation.WeatherRouterImpl
 import com.example.weather.network.common.ApiWeatherService
 import com.example.weather.network.locationrequest.LocationDataSourceImpl
 import com.example.weather.network.weatherrequest.WeatherRequest
@@ -18,6 +21,7 @@ import com.example.weatherapp.weather.location.LocationServiceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
+import kotlinx.coroutines.flow.MutableSharedFlow
 import retrofit2.Retrofit
 import javax.inject.Singleton
 
@@ -30,9 +34,9 @@ class WeatherModule {
     fun getViewModel(
         loadData: WeatherLoader,
         locations: WeatherByLocationGetter,
-        navigation: WeatherNavigationProvider
+        router: WeatherRouter
     ): ViewModel {
-        return DailyWeatherViewModel(loadData, locations, navigation)
+        return DailyWeatherViewModel(loadData, locations, router)
     }
 
     @Provides
@@ -67,4 +71,11 @@ class WeatherModule {
     @Singleton
     fun provideApiService(retrofit: Retrofit): ApiWeatherService =
         retrofit.create(ApiWeatherService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideWeatherRouter(
+        navigationCommand: MutableSharedFlow<NavCommand>,
+        navigationProvider: WeatherNavigationProvider
+    ): WeatherRouter = WeatherRouterImpl(navigationCommand, navigationProvider)
 }

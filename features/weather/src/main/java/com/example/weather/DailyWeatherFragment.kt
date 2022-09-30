@@ -12,11 +12,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.example.weather.adapter.dailyweather.DailyItem
 import com.example.weather.adapter.dailyweather.HeaderItem
 import com.example.weather.common.WeatherComponentHolder
-import com.example.weather.common.extentions.navigate
 import com.example.weather.common.extentions.observe
 import com.example.weather.databinding.FragmentDailyWeatherBinding
 import com.example.weather.dialogweather.SearchDialogFragment.Companion.BUNDLE_KEY
@@ -45,11 +43,6 @@ class DailyWeatherFragment : Fragment() {
             .getComponentImpl()
             .inject(this)
 
-        viewModel.navigationCommand.observe(
-            lifecycleScope,
-            action = { findNavController().navigate(it) },
-            onError = { Log.e("log","error", it) }
-        )
         super.onCreate(savedInstanceState)
     }
 
