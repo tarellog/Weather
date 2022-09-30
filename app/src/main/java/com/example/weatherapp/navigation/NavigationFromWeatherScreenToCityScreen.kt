@@ -5,7 +5,7 @@ import com.example.weather.navigation.WeatherNavigationProvider
 import com.example.weatherapp.AppNavGraphDirections
 
 class NavigationFromWeatherScreenToCityScreen : WeatherNavigationProvider {
-    override fun navigateByScreen(): NavCommand {
+    override fun createCommandNavigationToScreenCity(): NavCommand {
         val action = AppNavGraphDirections.actionDailyWeatherFragmentToCityFragment()
         return NavCommand(action.actionId, action.arguments)
     }

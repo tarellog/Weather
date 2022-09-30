@@ -7,6 +7,6 @@ class WeatherRouterImpl(
     private val navigationProvider: WeatherNavigationProvider
 ) : WeatherRouter {
     override fun openScreenCity() {
-            navigationCommand.tryEmit(navigationProvider.navigateByScreen())
+        navigationCommand.tryEmit(navigationProvider.createCommandNavigationToScreenCity())
     }
 }
