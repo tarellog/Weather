@@ -2,6 +2,7 @@ package com.example.weatherapp.navigation
 
 import com.example.weather.navigation.NavCommand
 import com.example.weather.navigation.WeatherNavigationProvider
+import com.example.weatherapp.BuildConfig
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.channels.BufferOverflow
@@ -12,8 +13,13 @@ import javax.inject.Singleton
 class NavigationModule {
     @Provides
     @Singleton
-    fun providesNavigationScreen(): WeatherNavigationProvider =
-        WeatherNavigationProviderImpl()
+    fun providesNavigationScreen(): WeatherNavigationProvider {
+        return if (BuildConfig.ENABLING_SCREEN_CITY == true) {
+            NavigationFromWeatherScreenToCityScreen()
+        } else {
+            NavigationFromWeatherScreenToDialogScreen()
+        }
+    }
 
     @Provides
     @Singleton
