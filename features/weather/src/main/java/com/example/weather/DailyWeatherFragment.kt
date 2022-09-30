@@ -13,13 +13,13 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.core.extentions.observe
+import com.example.core.factory.ViewModelFactory
 import com.example.weather.adapter.dailyweather.DailyItem
 import com.example.weather.adapter.dailyweather.HeaderItem
 import com.example.weather.common.WeatherComponentHolder
 import com.example.weather.databinding.FragmentDailyWeatherBinding
 import com.example.weather.dialogweather.SearchDialogFragment.Companion.BUNDLE_KEY
 import com.example.weather.dialogweather.SearchDialogFragment.Companion.REQUEST_KEY
-import com.example.weather.factory.ViewModelFactory
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.GenericItemAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter

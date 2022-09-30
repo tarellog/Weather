@@ -1,4 +1,4 @@
-package com.example.weather.factory
+package com.example.core.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
