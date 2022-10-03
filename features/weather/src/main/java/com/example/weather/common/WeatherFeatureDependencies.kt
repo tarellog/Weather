@@ -1,7 +1,7 @@
 package com.example.weather.common
 
 import android.content.Context
-import com.example.core.common.NavCommand
+import com.example.core.navigation.NavCommand
 import com.example.moduleinjector.BaseFeatureDependencies
 import com.example.weather.navigation.WeatherNavigationProvider
 import kotlinx.coroutines.flow.MutableSharedFlow
