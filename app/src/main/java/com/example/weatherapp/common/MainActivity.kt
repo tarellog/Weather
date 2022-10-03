@@ -5,7 +5,7 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
-import com.example.core.extentions.observe
+import com.example.core.flow.observe
 import com.example.core.navigation.NavCommand
 import com.example.core.navigation.navigate
 import com.example.weatherapp.R

@@ -1,4 +1,4 @@
-package com.example.core.extentions
+package com.example.core.flow
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow

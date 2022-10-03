@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.core.extentions.observe
-import com.example.core.factory.ViewModelFactory
+import com.example.core.flow.observe
+import com.example.core.viewmodel.ViewModelFactory
 import com.example.weather.adapter.dailyweather.DailyItem
 import com.example.weather.adapter.dailyweather.HeaderItem
 import com.example.weather.common.WeatherComponentHolder

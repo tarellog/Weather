@@ -1,4 +1,4 @@
-package com.example.core.extentions
+package com.example.core.flow
 
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.flow.MutableSharedFlow
