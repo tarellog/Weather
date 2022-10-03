@@ -1,4 +1,4 @@
-package com.example.core.common
+package com.example.core.navigation
 
 import android.os.Bundle
 import androidx.navigation.NavOptions

@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.example.cities.dimodule.CityComponentHolder
 import com.example.cities.dimodule.CityFeatureDependencies
-import com.example.core.common.NavCommand
+import com.example.core.navigation.NavCommand
 import com.example.moduleinjector.BaseDependencyHolder
 import com.example.moduleinjector.DependencyHolder1
 import com.example.weather.common.WeatherComponentHolder

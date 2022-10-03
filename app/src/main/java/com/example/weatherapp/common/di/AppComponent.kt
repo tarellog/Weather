@@ -1,7 +1,7 @@
 package com.example.weatherapp.common.di
 
 import android.content.Context
-import com.example.core.common.NavCommand
+import com.example.core.navigation.NavCommand
 import com.example.moduleinjector.BaseFeatureApi
 import com.example.weather.navigation.WeatherNavigationProvider
 import com.example.weatherapp.common.App

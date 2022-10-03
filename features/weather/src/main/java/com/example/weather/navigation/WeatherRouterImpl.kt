@@ -1,6 +1,6 @@
 package com.example.weather.navigation
 
-import com.example.core.common.NavCommand
+import com.example.core.navigation.NavCommand
 import kotlinx.coroutines.flow.MutableSharedFlow
 
 class WeatherRouterImpl(
