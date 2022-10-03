@@ -4,11 +4,11 @@ import android.app.Application
 import android.content.Context
 import com.example.cities.dimodule.CityComponentHolder
 import com.example.cities.dimodule.CityFeatureDependencies
+import com.example.core.navigation.NavCommand
 import com.example.moduleinjector.BaseDependencyHolder
 import com.example.moduleinjector.DependencyHolder1
 import com.example.weather.common.WeatherComponentHolder
 import com.example.weather.common.WeatherFeatureDependencies
-import com.example.weather.navigation.NavCommand
 import com.example.weather.navigation.WeatherNavigationProvider
 import com.example.weatherapp.common.di.AppComponent
 import com.example.weatherapp.common.di.DaggerAppComponent

@@ -1,7 +1,7 @@
 package com.example.weatherapp.navigation
 
+import com.example.core.navigation.NavCommand
 import com.example.weather.DailyWeatherFragmentDirections
-import com.example.weather.navigation.NavCommand
 import com.example.weather.navigation.WeatherNavigationProvider
 
 class NavigationFromWeatherScreenToDialogScreen : WeatherNavigationProvider{

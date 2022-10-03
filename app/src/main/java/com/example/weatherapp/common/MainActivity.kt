@@ -5,9 +5,9 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
-import com.example.weather.common.extentions.navigate
-import com.example.weather.common.extentions.observe
-import com.example.weather.navigation.NavCommand
+import com.example.core.flow.observe
+import com.example.core.navigation.NavCommand
+import com.example.core.navigation.navigate
 import com.example.weatherapp.R
 import com.example.weatherapp.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.MutableSharedFlow

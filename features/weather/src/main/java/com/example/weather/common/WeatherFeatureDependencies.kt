@@ -1,8 +1,8 @@
 package com.example.weather.common
 
 import android.content.Context
+import com.example.core.navigation.NavCommand
 import com.example.moduleinjector.BaseFeatureDependencies
-import com.example.weather.navigation.NavCommand
 import com.example.weather.navigation.WeatherNavigationProvider
 import kotlinx.coroutines.flow.MutableSharedFlow
 import retrofit2.Retrofit

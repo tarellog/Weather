@@ -2,8 +2,8 @@ package com.example.weather.di
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
+import com.example.core.navigation.NavCommand
 import com.example.weather.DailyWeatherViewModel
-import com.example.weather.navigation.NavCommand
 import com.example.weather.navigation.WeatherNavigationProvider
 import com.example.weather.navigation.WeatherRouter
 import com.example.weather.navigation.WeatherRouterImpl
