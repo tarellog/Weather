@@ -24,11 +24,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("Boolean", "ENABLING_SCREEN_CITY", "false")
         }
         debug {
             isMinifyEnabled = false
-            buildConfigField("Boolean", "ENABLING_SCREEN_CITY", "true")
         }
     }
     compileOptions {
@@ -45,6 +43,7 @@ android {
 
 dependencies {
     implementation(project(":moduleinjector"))
+    implementation(project(":core"))
 
     implementation(AppDependencies.appLibraries)
     testImplementation(AppDependencies.testLibraries)
