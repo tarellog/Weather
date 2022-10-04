@@ -18,8 +18,6 @@ import com.example.weather.adapter.dailyweather.DailyItem
 import com.example.weather.adapter.dailyweather.HeaderItem
 import com.example.weather.common.WeatherComponentHolder
 import com.example.weather.databinding.FragmentDailyWeatherBinding
-import com.example.weather.dialogweather.SearchDialogFragment.Companion.BUNDLE_KEY
-import com.example.weather.dialogweather.SearchDialogFragment.Companion.REQUEST_KEY
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.GenericItemAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
@@ -118,5 +116,9 @@ class DailyWeatherFragment : Fragment() {
                 )
             )
         }
+    }
+    companion object {
+        const val REQUEST_KEY = "requestKey"
+        const val BUNDLE_KEY = "bundleKey"
     }
 }

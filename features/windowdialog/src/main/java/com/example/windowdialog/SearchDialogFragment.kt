@@ -1,4 +1,4 @@
-package com.example.weather.dialogweather
+package com.example.windowdialog
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
-import com.example.weather.R
-import com.example.weather.databinding.FragmentSearchDialogBinding
+import com.example.windowdialog.databinding.FragmentSearchDialogBinding
 
 class SearchDialogFragment : DialogFragment() {
 
