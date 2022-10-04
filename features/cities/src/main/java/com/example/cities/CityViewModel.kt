@@ -11,22 +11,6 @@ class CityViewModel : ViewModel() {
     private val _citiesList = MutableStateFlow<List<CityElement>>(emptyList())
     val citiesList get() = _citiesList.asStateFlow()
 
-    private val _navigationBack =
-        MutableSharedFlow<NavigationByScreen>(0, 1, BufferOverflow.DROP_OLDEST)
-    val navigationBack get() = _navigationBack.asSharedFlow()
-
-    private val _navigationByScreenSelectCity =
-        MutableSharedFlow<NavigationByScreen>(0, 1, BufferOverflow.DROP_OLDEST)
-    val navigationByScreenSelectCity get() = _navigationByScreenSelectCity.asSharedFlow()
-
-    private val _navigationByScreenSelectCityToMap =
-        MutableSharedFlow<NavigationByScreen>(0, 1, BufferOverflow.DROP_OLDEST)
-    val navigationByScreenSelectCityToMap get() = _navigationByScreenSelectCityToMap.asSharedFlow()
-
-    private val _navigationByScreenWeather =
-        MutableSharedFlow<NavigationByScreen>(0, 1, BufferOverflow.DROP_OLDEST)
-    val navigationByScreenWeather get() = _navigationByScreenWeather.asSharedFlow()
-
     private var _messageError = MutableSharedFlow<Int>(0, 1, BufferOverflow.DROP_OLDEST)
     val messageError get() = _messageError.asSharedFlow()
 
