@@ -14,7 +14,22 @@ class CityViewModel : ViewModel() {
     val messageError get() = _messageError.asSharedFlow()
 
     fun loadData() {
-
+        _citiesList.tryEmit(
+            listOf(
+                CityElement(
+                    cityName = "Москва",
+                    minimumTemperature = 25,
+                    maximumTemperature = 25,
+                    weatherIcon = "Ясно",
+                ),
+                CityElement(
+                    cityName = "Санкт-Петербург",
+                    minimumTemperature = 25,
+                    maximumTemperature = 25,
+                    weatherIcon = "Ясно",
+                )
+            )
+        )
     }
 
     fun returnBack() {

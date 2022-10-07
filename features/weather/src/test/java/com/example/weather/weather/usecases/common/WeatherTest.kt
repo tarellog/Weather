@@ -1,5 +1,7 @@
 package com.example.weather.weather.usecases.common
 
+import com.example.core.models.Icon
+import com.example.core.models.WeatherInfoModel
 import com.example.weather.network.common.model.*
 
 val weatherExpectedModel = WeatherModel(
