@@ -1,8 +1,7 @@
 package com.example.cities
 
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.channels.BufferOverflow
-import kotlinx.coroutines.flow.MutableSharedFlow
+import com.example.core.flow.MutableSingleEventFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -11,7 +10,7 @@ class CityViewModel : ViewModel() {
     private val _citiesList = MutableStateFlow<List<CityElement>>(emptyList())
     val citiesList get() = _citiesList.asStateFlow()
 
-    private var _messageError = MutableSharedFlow<Int>(0, 1, BufferOverflow.DROP_OLDEST)
+    private var _messageError = MutableSingleEventFlow<Int>()
     val messageError get() = _messageError.asSharedFlow()
 
     fun loadData() {
