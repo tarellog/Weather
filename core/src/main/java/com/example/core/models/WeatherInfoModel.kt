@@ -1,6 +1,6 @@
-package com.example.weather.network.common.model
+package com.example.core.models
 
-import com.example.weather.R
+import com.example.core.R
 import com.google.gson.annotations.SerializedName
 
 enum class Icon(val image: Int) {
