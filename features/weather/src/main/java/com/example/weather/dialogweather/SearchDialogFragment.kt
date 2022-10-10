@@ -7,8 +7,7 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
-import com.example.constants.BUNDLE_KEY
-import com.example.constants.REQUEST_KEY
+import com.example.constants.TransmitNameCityByKey
 import com.example.weather.R
 import com.example.weather.databinding.FragmentSearchDialogBinding
 
@@ -32,7 +31,10 @@ class SearchDialogFragment : DialogFragment() {
         dialog?.window?.setBackgroundDrawableResource(R.drawable.rounded_corner_dialog)
         binding.buttonAdd.setOnClickListener {
             val result = binding.editText.text.toString()
-            setFragmentResult(REQUEST_KEY, bundleOf(BUNDLE_KEY to result))
+            setFragmentResult(
+                TransmitNameCityByKey.REQUEST_KEY,
+                bundleOf(TransmitNameCityByKey.BUNDLE_KEY to result)
+            )
             dismiss()
         }
     }
