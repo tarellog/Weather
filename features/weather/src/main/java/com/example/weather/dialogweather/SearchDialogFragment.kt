@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
+import com.example.constants.BUNDLE_KEY
+import com.example.constants.REQUEST_KEY
 import com.example.weather.R
 import com.example.weather.databinding.FragmentSearchDialogBinding
 
@@ -33,9 +35,5 @@ class SearchDialogFragment : DialogFragment() {
             setFragmentResult(REQUEST_KEY, bundleOf(BUNDLE_KEY to result))
             dismiss()
         }
-    }
-    companion object {
-        const val REQUEST_KEY = "requestKey"
-        const val BUNDLE_KEY = "bundleKey"
     }
 }
