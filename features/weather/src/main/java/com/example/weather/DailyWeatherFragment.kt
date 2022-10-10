@@ -118,8 +118,4 @@ class DailyWeatherFragment : Fragment() {
             )
         }
     }
-    companion object {
-        const val REQUEST_KEY = "requestKey"
-        const val BUNDLE_KEY = "bundleKey"
-    }
 }

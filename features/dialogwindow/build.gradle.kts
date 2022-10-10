@@ -42,6 +42,7 @@ android {
 dependencies {
     implementation(project(":moduleinjector"))
     implementation(project(":core"))
+    implementation(project(":constants"))
 
     implementation(AppDependencies.appLibraries)
     testImplementation(AppDependencies.testLibraries)
