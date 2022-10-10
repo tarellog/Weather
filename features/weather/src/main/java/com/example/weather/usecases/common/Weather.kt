@@ -1,6 +1,6 @@
 package com.example.weather.usecases.common
 
-import com.example.weather.network.common.model.Icon
+import com.example.core.models.Icon
 import java.util.*
 
 data class Weather(

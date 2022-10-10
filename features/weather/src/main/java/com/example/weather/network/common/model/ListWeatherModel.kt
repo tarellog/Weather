@@ -1,5 +1,6 @@
 package com.example.weather.network.common.model
 
+import com.example.core.models.WeatherInfoModel
 import com.google.gson.annotations.SerializedName
 
 data class ListWeatherModel(
