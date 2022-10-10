@@ -12,14 +12,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.constants.TransmitNameCityByKey
 import com.example.core.flow.observe
 import com.example.core.viewmodel.ViewModelFactory
 import com.example.weather.adapter.dailyweather.DailyItem
 import com.example.weather.adapter.dailyweather.HeaderItem
 import com.example.weather.common.WeatherComponentHolder
 import com.example.weather.databinding.FragmentDailyWeatherBinding
-import com.example.weather.dialogweather.SearchDialogFragment.Companion.BUNDLE_KEY
-import com.example.weather.dialogweather.SearchDialogFragment.Companion.REQUEST_KEY
 import com.mikepenz.fastadapter.FastAdapter
 import com.mikepenz.fastadapter.adapters.GenericItemAdapter
 import com.mikepenz.fastadapter.adapters.ItemAdapter
@@ -69,8 +68,8 @@ class DailyWeatherFragment : Fragment() {
     ): View {
         _binding = FragmentDailyWeatherBinding.inflate(inflater, container, false)
 
-        setFragmentResultListener(REQUEST_KEY) { key, bundle ->
-            val result = bundle.getString(BUNDLE_KEY)
+        setFragmentResultListener(TransmitNameCityByKey.REQUEST_KEY) { key, bundle ->
+            val result = bundle.getString(TransmitNameCityByKey.BUNDLE_KEY)
             viewModel.displayDataWeather(result.toString())
         }
 
