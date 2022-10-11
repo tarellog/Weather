@@ -49,7 +49,7 @@ android {
 dependencies {
     implementation(project(":features:weather"))
     implementation(project(":features:cities"))
-    implementation(project(":features:dialogwindow"))
+    implementation(project(":features:dialogwindowselectioncity"))
     implementation(project(":moduleinjector"))
     implementation(project(":core"))
 
