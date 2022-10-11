@@ -1,10 +1,5 @@
 <resources>
-    <string name="app_name">WeatherApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Введите город</string>
+    <string name="enter_city">Введите город</string>
     <string name="cancel">Отменить</string>
     <string name="add">Добавить</string>
-    <string name="temp">%1$d°</string>
-    <string name="today">Сегодня %1$s</string>
-    <string name="message">"Произошла ошибка, повторите попытку"</string>
 </resources>

@@ -15,7 +15,7 @@
         android:inputType="textCapSentences"
         android:paddingStart="40dp"
         android:textColor="#2A2D33"
-        android:hint="@string/hello_blank_fragment"
+        android:hint="@string/enter_city"
         android:background="@drawable/box_edittext"
         app:layout_constraintBottom_toTopOf="@id/button_cancel"
         app:layout_constraintEnd_toEndOf="parent"
