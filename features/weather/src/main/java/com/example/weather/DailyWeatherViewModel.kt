@@ -68,7 +68,11 @@ class DailyWeatherViewModel(
             })
     }
 
-    fun actionToScreenCity() {
+    fun navigationToScreenCity() {
         router.openScreenCity()
+    }
+
+    fun navigationToScreenDialog() {
+        router.openScreenDialog()
     }
 }

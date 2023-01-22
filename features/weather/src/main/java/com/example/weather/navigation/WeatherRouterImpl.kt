@@ -10,4 +10,8 @@ class WeatherRouterImpl(
     override fun openScreenCity() {
         navigationCommand.tryEmit(navigationProvider.createCommandNavigationToScreenCity())
     }
+
+    override fun openScreenDialog() {
+        navigationCommand.tryEmit(navigationProvider.createCommandNavigationToScreenDialog())
+    }
 }

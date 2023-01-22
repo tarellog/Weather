@@ -4,4 +4,5 @@ import com.example.core.navigation.NavCommand
 
 interface WeatherNavigationProvider {
     fun createCommandNavigationToScreenCity(): NavCommand
+    fun createCommandNavigationToScreenDialog(): NavCommand
 }

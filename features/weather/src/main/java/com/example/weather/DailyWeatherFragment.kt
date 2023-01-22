@@ -73,9 +73,9 @@ class DailyWeatherFragment : Fragment() {
             viewModel.displayDataWeather(result.toString())
         }
 
-        binding.search.setOnClickListener {
-            viewModel.actionToScreenCity()
-        }
+        binding.search.setOnClickListener { viewModel.navigationToScreenDialog() }
+
+        binding.loader.setOnClickListener { viewModel.navigationToScreenCity() }
 
         getWeatherByLocation()
 

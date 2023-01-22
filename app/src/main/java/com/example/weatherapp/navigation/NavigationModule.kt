@@ -2,7 +2,6 @@ package com.example.weatherapp.navigation
 
 import com.example.core.navigation.NavCommand
 import com.example.weather.navigation.WeatherNavigationProvider
-import com.example.weatherapp.BuildConfig
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.channels.BufferOverflow
@@ -13,21 +12,15 @@ import javax.inject.Singleton
 class NavigationModule {
     @Provides
     @Singleton
-    fun providesNavigationScreen(): WeatherNavigationProvider {
-        return if (BuildConfig.ENABLING_SCREEN_CITY == true) {
-            NavigationFromWeatherScreenToCityScreen()
-        } else {
-            NavigationFromWeatherScreenToDialogScreen()
-        }
-    }
+    fun providesNavigationScreenCity(): WeatherNavigationProvider =
+        WeatherNavigationProviderImpl()
 
     @Provides
     @Singleton
-    fun navigationCommand(): MutableSharedFlow<NavCommand> {
-        return MutableSharedFlow(
+    fun navigationCommand(): MutableSharedFlow<NavCommand> =
+        MutableSharedFlow(
             replay = 0,
             extraBufferCapacity = 1,
             BufferOverflow.DROP_OLDEST
         )
-    }
 }

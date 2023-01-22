@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.example.core.navigation.NavCommand
 import com.example.weather.DailyWeatherViewModel
+import com.example.weather.location.LocationServiceImpl
 import com.example.weather.navigation.WeatherNavigationProvider
 import com.example.weather.navigation.WeatherRouter
 import com.example.weather.navigation.WeatherRouterImpl
@@ -17,7 +18,6 @@ import com.example.weather.usecases.weatherlocation.LocationDataSource
 import com.example.weather.usecases.weatherlocation.LocationService
 import com.example.weather.usecases.weatherlocation.WeatherByLocationGetter
 import com.example.weather.usecases.weatherlocation.WeatherByLocationGetterImpl
-import com.example.weatherapp.weather.location.LocationServiceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap

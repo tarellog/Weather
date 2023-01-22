@@ -1,4 +1,4 @@
-package com.example.weatherapp.weather.location
+package com.example.weather.location
 
 import android.annotation.SuppressLint
 import android.content.Context
