@@ -19,6 +19,7 @@ object AppDependencies {
     //region Lifecycle
     private val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.frgamentKtx}"
     private val viewModelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.viewModelKtx}"
+    private val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutine}"
     //endregion
 
     //region Navigation
@@ -74,6 +75,7 @@ object AppDependencies {
         converterGson,
         fragmentKtx,
         viewModelKtx,
+        coroutine,
         navigation,
         navigationUi,
         fastAdapter,

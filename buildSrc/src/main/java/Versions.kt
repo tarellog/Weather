@@ -22,6 +22,7 @@ object Versions {
     //region lifecycle
     val frgamentKtx = "1.5.2"
     val viewModelKtx = "2.5.1"
+    val coroutine = "1.3.9"
     //endregion
 
     //region navigation

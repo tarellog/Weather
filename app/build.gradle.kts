@@ -31,7 +31,7 @@ android {
         }
         debug {
             isMinifyEnabled = false
-            buildConfigField("Boolean", "ENABLING_SCREEN_CITY", "true")
+            buildConfigField("Boolean", "ENABLING_SCREEN_CITY", "false")
         }
     }
     compileOptions {

@@ -1,10 +1,11 @@
 package com.example.weather.usecases.weatherloader
 
 import com.example.weather.usecases.common.Weather
-import io.reactivex.Single
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class WeatherLoaderImpl(private val weatherService: WeatherService) : WeatherLoader {
-    override fun getWeather(cityName: String): Single<Weather> {
-        return weatherService.getWeather(cityName)
+    override suspend fun getWeather(cityName: String): Weather {
+        return withContext(Dispatchers.Default) { weatherService.getWeather(cityName) }
     }
 }

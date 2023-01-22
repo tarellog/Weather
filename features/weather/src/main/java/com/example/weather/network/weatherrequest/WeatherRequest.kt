@@ -5,25 +5,22 @@ import com.example.weather.network.common.converters.mapToDisplayModel
 import com.example.weather.network.common.converters.mapToHeaderDisplayModel
 import com.example.weather.usecases.common.Weather
 import com.example.weather.usecases.weatherloader.WeatherService
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class WeatherRequest(private val api: ApiWeatherService) : WeatherService {
-    override fun getWeather(cityName: String): Single<Weather> {
-        return api.getApi(cityName)
-            .map { weatherModel ->
-                Weather(
-                    headerWeather = buildList {
-                        add(weatherModel.list.mapToHeaderDisplayModel())
-                    },
-                    dailyWeather = buildList {
-                        addAll(weatherModel.list.mapToDisplayModel())
-                    },
-                    cityName = weatherModel.city.name
-                )
-            }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
+    override suspend fun getWeather(cityName: String): Weather {
+        return withContext(Dispatchers.Default) {
+            val remoteData = api.getApi(cityName)
+            Weather(
+                headerWeather = buildList {
+                    add(remoteData.list.mapToHeaderDisplayModel())
+                },
+                dailyWeather = buildList {
+                    addAll(remoteData.list.mapToDisplayModel())
+                },
+                cityName = remoteData.city.name
+            )
+        }
     }
 }
