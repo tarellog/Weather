@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.core.flow.MutableSingleEventFlow
 import com.example.weather.navigation.WeatherRouter
 import com.example.weather.usecases.common.DailyWeather
-import com.example.weather.usecases.common.TodayWeather
+import com.example.weather.usecases.common.Weather
 import com.example.weather.usecases.weatherloader.WeatherLoader
 import com.example.weather.usecases.weatherlocation.WeatherByLocationGetter
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,22 +23,18 @@ class DailyWeatherViewModel(
     private var _message = MutableSingleEventFlow<Int>()
     val message get() = _message.asSharedFlow()
 
-    private var _header = MutableStateFlow<List<TodayWeather>>(emptyList())
+    private var _header = MutableStateFlow<List<Weather>>(emptyList())
     val header get() = _header.asStateFlow()
 
     private var _dailyWeather = MutableStateFlow<List<DailyWeather>>(emptyList())
     val dailyWeather get() = _dailyWeather.asStateFlow()
 
-    private var _city = MutableStateFlow("")
-    val city get() = _city.asStateFlow()
-
     fun displayDataWeather(cityName: String) {
         viewModelScope.launch {
             try {
                 val loadData = loadData.getWeather(cityName)
-                _header.tryEmit(loadData.headerWeather)
+                _header.tryEmit(listOf(loadData))
                 _dailyWeather.tryEmit(loadData.dailyWeather)
-                _city.tryEmit(loadData.cityName)
             }
             catch (e: Throwable) {
                 Log.e(
@@ -55,9 +51,8 @@ class DailyWeatherViewModel(
     fun getWeatherDataLocation() {
         locations.getWeatherByLocation()
             .subscribe({ listWeatherModel ->
-                _header.tryEmit(listWeatherModel.headerWeather)
+                _header.tryEmit(listOf(listWeatherModel))
                 _dailyWeather.tryEmit(listWeatherModel.dailyWeather)
-                _city.tryEmit((listWeatherModel.cityName))
             }, {
                 Log.e(
                     "qwert",
