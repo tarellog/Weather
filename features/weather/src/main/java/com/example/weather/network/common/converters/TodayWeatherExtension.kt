@@ -19,5 +19,7 @@ fun ListWeatherModel.toTodayWeather(): TodayWeather = TodayWeather(
     date = simpleDateFormat.parse(dt_txt)!!,
     icon = weather.first().icon,
     temp = main.temp.toInt(),
-    description = weather.first().description
+    description = weather.first().description,
+    wind = wind.speed.toInt(),
+    humidity = main.humidity
 )
