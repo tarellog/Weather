@@ -25,11 +25,35 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setButtonNavigationView()
         navigationCommand.observe(
             lifecycleScope,
             action = { findNavController(R.id.container_fragment).navigate(it) },
             onError = { Log.e("log","error", it) }
         )
+    }
+
+    private fun setButtonNavigationView() {
+        binding.bottomNav.setOnItemSelectedListener { menu ->
+            when (menu.itemId) {
+                R.id.main -> {
+                    findNavController(R.id.container_fragment)
+                        .navigate(com.example.weather.R.id.weather_nav_graph)
+                    return@setOnItemSelectedListener true
+                }
+                R.id.favorite -> {
+                    findNavController(R.id.container_fragment)
+                        .navigate(com.example.cities.R.id.city_nav_graph)
+                    return@setOnItemSelectedListener true
+                }
+                R.id.search -> {
+                    findNavController(R.id.container_fragment)
+                        .navigate(com.example.windowdialog.R.id.dialog_nav_graph)
+                    return@setOnItemSelectedListener true
+                }
+                else -> { return@setOnItemSelectedListener false }
+            }
+        }
     }
 
     override fun onDestroy() {
