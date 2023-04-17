@@ -96,6 +96,11 @@ class DailyWeatherFragment : Fragment() {
             action = { FastAdapterDiffUtil[itemAdapter] = it.map(::DailyItem) },
             onError = { Log.e("log", "error") }
         )
+        viewModel.city.observe(
+            viewLifecycleOwner.lifecycleScope,
+            action = { binding.city.text = it },
+            onError = { Log.e("log", "error") }
+        )
         viewModel.message.observe(
             viewLifecycleOwner.lifecycleScope,
             action = { Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show() },

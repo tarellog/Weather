@@ -14,8 +14,6 @@ data class TodayWeather(
     var icon: Icon,
     val temp: Int,
     val description: String,
-    val wind: Int,
-    val humidity: Int
 )
 
 data class DailyWeather(

@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.example.weather.R
 import com.example.weather.databinding.HeaderItemBinding
-import com.example.weather.usecases.common.Weather
+import com.example.weather.usecases.common.TodayWeather
 import com.mikepenz.fastadapter.binding.AbstractBindingItem
 import java.text.SimpleDateFormat
 import java.util.*
 
-class HeaderItem(private val item: Weather) :
+class HeaderItem(private val item: TodayWeather) :
     AbstractBindingItem<HeaderItemBinding>() {
 
     override var identifier: Long
@@ -26,16 +26,15 @@ class HeaderItem(private val item: Weather) :
     override fun bindView(binding: HeaderItemBinding, payloads: List<Any>) {
         val context = binding.root.context
         val sdf = SimpleDateFormat("dd MMMM, E", Locale("ru"))
-        binding.cityName.text = item.cityName
-        binding.todayDate.text = sdf.format(item.headerWeather.first().date).toString()
-        binding.todayTemp.text = context.getString(R.string.temp, item.headerWeather.first().temp)
-        binding.todayDescription.text = item.headerWeather.first().description
-        binding.wind.text = context.getString(R.string.wind, item.headerWeather.first().wind)
-        binding.humidity.text = context.getString(R.string.humidity, item.headerWeather.first().humidity)
+        binding.todayDate.text = context.getString(
+            R.string.today, sdf.format(item.date).toString()
+        )
+        binding.todayTemp.text = context.getString(R.string.temp, item.temp)
+        binding.todayDescription.text = item.description
         binding.todayIcon.setImageDrawable(
             ContextCompat.getDrawable(
                 context,
-                item.headerWeather.first().icon.image
+                item.icon.image
             )
         )
     }

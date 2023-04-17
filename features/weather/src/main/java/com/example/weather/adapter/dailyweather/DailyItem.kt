@@ -2,6 +2,7 @@ package com.example.weather.adapter.dailyweather
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import com.example.weather.R
 import com.example.weather.adapter.hoursweather.HoursItem
 import com.example.weather.databinding.DailyItemBinding
@@ -30,15 +31,15 @@ class DailyItem(private val item: DailyWeather) :
     override fun bindView(binding: DailyItemBinding, payloads: List<Any>) {
         val context = binding.root.context
         val sdf = SimpleDateFormat("dd MMMM, E", Locale("ru"))
-//        binding.date.text = sdf.format(item.date)
+        binding.date.text = sdf.format(item.date)
         binding.minTemp.text = context.getString(R.string.temp, item.minTemp)
         binding.maxTemp.text = context.getString(R.string.temp, item.maxTemp)
-//        binding.image.setImageDrawable(
-//            ContextCompat.getDrawable(
-//                context,
-//                item.icon.image
-//            )
-//        )
+        binding.image.setImageDrawable(
+            ContextCompat.getDrawable(
+                context,
+                item.icon.image
+            )
+        )
 
         val hoursAdapter = ItemAdapter<HoursItem>()
         val fastAdapter = FastAdapter.with(hoursAdapter)
