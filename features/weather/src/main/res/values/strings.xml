@@ -1,9 +1,8 @@
 <resources>
     <string name="app_name">WeatherApp</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="temp">%1$d°</string>
     <string name="today">Сегодня %1$s</string>
     <string name="message">"Произошла ошибка, повторите попытку"</string>
-    <string name="wind">Скорость ветра %1$d</string>
-    <string name="humidity">Влажность воздуха %1$d</string>
+    <string name="wind">Скорость ветра %1$d м/с</string>
+    <string name="humidity">Влажность воздуха %1$d\%%</string>
 </resources>

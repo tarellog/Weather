@@ -5,44 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:background="@color/blue"
-    tools:context="com.example.weatherapp.com.example.weather.DailyWeatherFragment">
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?android:attr/actionBarSize"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageButton
-            android:id="@+id/location"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginStart="25dp"
-            android:background="@drawable/rounded_corner"
-            android:src="@drawable/location"
-            app:tint="#8F96A1" />
-
-        <ImageButton
-            android:id="@+id/loader"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/rounded_corner"
-            android:src="@drawable/loader"
-            app:tint="#8F96A1" />
-
-        <ImageButton
-            android:id="@+id/search"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginEnd="25dp"
-            android:background="@drawable/rounded_corner"
-            android:src="@drawable/search"
-            app:tint="#8F96A1" />
-
-    </androidx.appcompat.widget.Toolbar>
+    tools:context=".DailyWeatherFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"
@@ -53,7 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/daily_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

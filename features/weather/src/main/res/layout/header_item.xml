@@ -16,6 +16,7 @@
         android:maxLines="1"
         android:textColor="#FFFFFF"
         android:textSize="23sp"
+        android:paddingTop="50dp"
         tools:text="@tools:sample/lorem" />
 
     <TextView
