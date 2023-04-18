@@ -5,42 +5,54 @@
     android:id="@+id/daily_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="@dimen/d_margin_20dp"
     android:orientation="vertical"
-    android:paddingTop="16dp"
+    android:paddingTop="@dimen/d_padding_16dp"
     tools:background="@color/blue">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="28dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="16dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/d_margin_30dp"
+        android:layout_marginBottom="@dimen/d_margin_16dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="79dp"
             android:text="@string/tooday"
             android:textColor="@color/white"
             android:textSize="22sp" />
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/minTemp"
-            android:layout_width="26dp"
-            android:layout_height="28dp"
-            android:layout_marginEnd="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:maxLines="1"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
             tools:text="13" />
 
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/maxTemp"
-            android:layout_width="26dp"
-            android:layout_height="28dp"
-            android:layout_marginEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="end|center"
+            android:layout_marginEnd="@dimen/d_margin_30dp"
             android:maxLines="1"
             android:textColor="@color/white"
             android:textSize="16sp"
@@ -52,14 +64,14 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginHorizontal="30dp"
+        android:layout_marginHorizontal="@dimen/d_margin_30dp"
         android:background="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerHours"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
+        android:layout_marginHorizontal="@dimen/d_margin_15dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/hours_item" />

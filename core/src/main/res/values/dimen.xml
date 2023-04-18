@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- margin -->
+    <dimen name="d_margin_5dp">5dp</dimen>
+    <dimen name="d_margin_10dp">10dp</dimen>
+    <dimen name="d_margin_15dp">15dp</dimen>
+    <dimen name="d_margin_16dp">16dp</dimen>
+    <dimen name="d_margin_20dp">20dp</dimen>
+    <dimen name="d_margin_30dp">30dp</dimen>
+
+    <!-- padding -->
+    <dimen name="d_padding_10dp">10dp</dimen>
+    <dimen name="d_padding_16dp">16dp</dimen>
+    <dimen name="d_padding_50dp">50dp</dimen>
+
+</resources>
