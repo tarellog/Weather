@@ -16,7 +16,7 @@
         android:maxLines="1"
         android:textColor="#FFFFFF"
         android:textSize="23sp"
-        android:paddingTop="50dp"
+        android:paddingTop="@dimen/d_padding_50dp"
         tools:text="@tools:sample/lorem" />
 
     <TextView
@@ -35,8 +35,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginHorizontal="32dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="@dimen/d_margin_30dp"
+        android:layout_marginTop="@dimen/d_margin_20dp"
         android:gravity="center"
         android:textColor="#FFFFFF"
         android:textSize="48sp"
@@ -55,7 +55,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="@dimen/d_margin_5dp"
         android:gravity="center"
         android:maxLines="1"
         android:textColor="#FFFFFF"
@@ -66,14 +66,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="@dimen/d_margin_20dp">
 
         <TextView
             android:id="@+id/wind"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginStart="@dimen/d_margin_30dp"
+            android:layout_marginTop="@dimen/d_margin_5dp"
             android:maxLines="1"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
@@ -88,8 +88,8 @@
             android:id="@+id/humidity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="30dp"
+            android:layout_marginTop="@dimen/d_margin_5dp"
+            android:layout_marginEnd="@dimen/d_margin_30dp"
             android:maxLines="1"
             android:textColor="#FFFFFF"
             android:textSize="14sp"
