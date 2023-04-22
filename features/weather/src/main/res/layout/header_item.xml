@@ -4,8 +4,8 @@
     android:id="@+id/header_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/ic_daily_bg"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:background="@color/purple">
 
     <TextView
         android:id="@+id/cityName"
@@ -16,7 +16,9 @@
         android:maxLines="1"
         android:textColor="#FFFFFF"
         android:textSize="23sp"
+        android:textStyle="bold"
         android:paddingTop="@dimen/d_padding_50dp"
+        android:layout_marginBottom="@dimen/d_padding_10dp"
         tools:text="@tools:sample/lorem" />
 
     <TextView
