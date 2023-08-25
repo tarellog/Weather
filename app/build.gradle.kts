@@ -8,7 +8,7 @@ plugins {
 
 android {
     compileSdk = AppConfig.compileSdk
-    buildToolsVersion = AppConfig.buildToolsVersion
+    namespace = "com.example.weatherapp"
 
     defaultConfig {
         applicationId = "com.example.weatherapp"
@@ -27,19 +27,16 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            buildConfigField("Boolean", "ENABLING_SCREEN_CITY", "true")
+//            buildConfigField("Boolean", "ENABLING_SCREEN_CITY", "true")
         }
         debug {
             isMinifyEnabled = false
-            buildConfigField("Boolean", "ENABLING_SCREEN_CITY", "false")
+//            buildConfigField("Boolean", "ENABLING_SCREEN_CITY", "false")
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     buildFeatures {
         viewBinding = true
