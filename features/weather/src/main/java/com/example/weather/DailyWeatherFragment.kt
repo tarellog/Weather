@@ -51,7 +51,7 @@ class DailyWeatherFragment : Fragment() {
     ): View {
         _binding = FragmentDailyWeatherBinding.inflate(inflater, container, false)
 
-        setFragmentResultListener(TransmitNameCityByKey.REQUEST_KEY) { key, bundle ->
+        setFragmentResultListener(TransmitNameCityByKey.REQUEST_KEY) { _, bundle ->
             val result = bundle.getString(TransmitNameCityByKey.BUNDLE_KEY)
             viewModel.displayDataWeather(result.toString())
         }

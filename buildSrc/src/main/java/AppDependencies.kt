@@ -40,6 +40,7 @@ object AppDependencies {
 
     //region kapt
     private val daggerKapt = "com.google.dagger:dagger-compiler:${Versions.kaptDagger}"
+    val daggerProducers = "com.google.dagger:dagger-producers:${Versions.kaptDagger}"
     //endregion
 
     //region Rx
@@ -92,7 +93,8 @@ object AppDependencies {
 
     //region kapt list
     val kapt = listOf (
-        daggerKapt
+        daggerKapt,
+        daggerProducers
     )
     //endregion
 

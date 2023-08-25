@@ -3,7 +3,7 @@ object Versions {
     //region app level
     const val gradle = "7.2.1"
     const val kotlin = "1.6.10"
-    const val safeArgs = "2.5.1"
+    const val safeArgs = "2.7.1"
     //endregion
 
     //region android ui
@@ -38,7 +38,7 @@ object Versions {
     //endregion
 
     //region dagger
-    val dagger = "2.42"
+    val dagger = "2.47"
     //endregion
 
     //region rx
@@ -52,7 +52,7 @@ object Versions {
     //endregion
 
     //region kapt
-    val kaptDagger = "2.42"
+    val kaptDagger = "2.47"
     //endregion
 
     //region test
