@@ -17,7 +17,7 @@
         android:textColor="#FFFFFF"
         android:textSize="23sp"
         android:textStyle="bold"
-        android:paddingTop="@dimen/d_padding_50dp"
+        android:layout_marginTop="@dimen/d_margin_20dp"
         android:layout_marginBottom="@dimen/d_padding_10dp"
         tools:text="@tools:sample/lorem" />
 
@@ -41,14 +41,14 @@
         android:layout_marginTop="@dimen/d_margin_20dp"
         android:gravity="center"
         android:textColor="#FFFFFF"
-        android:textSize="48sp"
+        android:textSize="70sp"
         android:textStyle="bold"
         tools:text="@tools:sample/lorem" />
 
     <ImageView
         android:id="@+id/today_icon"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_gravity="center"
         tools:src="@tools:sample/avatars" />
 

@@ -5,4 +5,6 @@
     <color name="purple">#99355FCB</color>
     <color name="blue">#FF44A2FF</color>
     <color name="light_blue">#FF5AADFF</color>
+    <color name="transparent">#00FFFFFF</color>
+    <color name="nightBackground">#991B2F61</color>
 </resources>
