@@ -6,7 +6,6 @@ import java.util.*
 data class Weather(
     val headerWeather: List<TodayWeather>,
     val dailyWeather: List<DailyWeather>,
-    val cityName: String
 )
 
 data class TodayWeather(
@@ -15,7 +14,8 @@ data class TodayWeather(
     val temp: Int,
     val description: String,
     val wind: Int,
-    val humidity: Int
+    val humidity: Int,
+    val cityName: String
 )
 
 data class DailyWeather(

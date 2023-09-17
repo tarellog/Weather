@@ -16,12 +16,11 @@ class LocationDataSourceImpl(private val api: ApiWeatherService) : LocationDataS
             .map { weatherModel ->
                 Weather(
                     headerWeather = buildList {
-                        add(weatherModel.list.mapToHeaderDisplayModel())
+                        add(weatherModel.mapToHeaderDisplayModel())
                     },
                     dailyWeather = buildList {
                         addAll(weatherModel.list.mapToDisplayModel())
                     },
-                    cityName = weatherModel.city.name
                 )
             }
             .subscribeOn(Schedulers.io())

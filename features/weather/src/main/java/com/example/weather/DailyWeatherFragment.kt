@@ -13,14 +13,9 @@ import androidx.lifecycle.lifecycleScope
 import com.example.constants.TransmitNameCityByKey
 import com.example.core.flow.observe
 import com.example.core.viewmodel.ViewModelFactory
-import com.example.weather.adapter.dailyweather.DailyItem
-import com.example.weather.adapter.dailyweather.HeaderItem
+import com.example.weather.adapter.WeatherAdapter
 import com.example.weather.common.WeatherComponentHolder
 import com.example.weather.databinding.FragmentDailyWeatherBinding
-import com.mikepenz.fastadapter.FastAdapter
-import com.mikepenz.fastadapter.adapters.GenericItemAdapter
-import com.mikepenz.fastadapter.adapters.ItemAdapter
-import com.mikepenz.fastadapter.diff.FastAdapterDiffUtil
 import javax.inject.Inject
 
 class DailyWeatherFragment : Fragment() {
@@ -28,9 +23,7 @@ class DailyWeatherFragment : Fragment() {
     private var _binding: FragmentDailyWeatherBinding? = null
     private val binding get() = _binding ?: throw NullPointerException("Binding is not initialized")
 
-    private val headerAdapter = ItemAdapter<HeaderItem>()
-    private val itemAdapter = GenericItemAdapter()
-    private val fastAdapter = FastAdapter.with(listOf(headerAdapter, itemAdapter))
+    private val weatherAdapter = WeatherAdapter()
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
@@ -58,21 +51,16 @@ class DailyWeatherFragment : Fragment() {
 
 //        binding.search.setOnClickListener { viewModel.navigationToScreenDialog() }
 
-        binding.recycler.adapter = fastAdapter
+        binding.recycler.adapter = weatherAdapter
 
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.header.observe(
+        viewModel.weatherData.observe(
             viewLifecycleOwner.lifecycleScope,
-            action = { FastAdapterDiffUtil[headerAdapter] = it.map(::HeaderItem) },
-            onError = { Log.e("log", "error") }
-        )
-        viewModel.dailyWeather.observe(
-            viewLifecycleOwner.lifecycleScope,
-            action = { FastAdapterDiffUtil[itemAdapter] = it.map(::DailyItem) },
+            action = { weatherAdapter.submitList(it) },
             onError = { Log.e("log", "error") }
         )
         viewModel.message.observe(

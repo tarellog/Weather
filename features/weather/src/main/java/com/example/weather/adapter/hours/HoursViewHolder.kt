@@ -1,29 +1,22 @@
-package com.example.weather.adapter.hoursweather
+package com.example.weather.adapter.hours
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.weather.R
 import com.example.weather.databinding.HoursItemBinding
 import com.example.weather.usecases.common.TimeWeather
-import com.mikepenz.fastadapter.binding.AbstractBindingItem
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
 
-class HoursItem(private val item: TimeWeather) :
-    AbstractBindingItem<HoursItemBinding>() {
+class HoursViewHolder(private val binding: HoursItemBinding) : ViewHolder(binding.root) {
 
-    override var identifier: Long
-        get() = item.hashCode().toLong()
-        set(value) {}
+    constructor(parent: ViewGroup) : this(
+        HoursItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+    )
 
-    override val type: Int
-        get() = R.id.hours_item
-
-    override fun createBinding(inflater: LayoutInflater, parent: ViewGroup?) =
-        HoursItemBinding.inflate(inflater, parent, false)
-
-    override fun bindView(binding: HoursItemBinding, payloads: List<Any>) {
+    fun bind(item: TimeWeather) {
         val context = binding.root.context
         val sdf = SimpleDateFormat("HH:mm", Locale("ru"))
         binding.hoursTime.text = sdf.format(item.timeHours)

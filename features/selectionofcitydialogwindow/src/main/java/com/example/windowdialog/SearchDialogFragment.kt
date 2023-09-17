@@ -36,5 +36,8 @@ class SearchDialogFragment : DialogFragment() {
             )
             dismiss()
         }
+        binding.buttonCancel.setOnClickListener { dismiss() }
+        binding.imgRemove.setOnClickListener { dismiss() }
     }
+
 }

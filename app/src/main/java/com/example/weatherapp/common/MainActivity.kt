@@ -2,6 +2,7 @@ package com.example.weatherapp.common
 
 import android.os.Bundle
 import android.util.Log
+import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
@@ -9,6 +10,9 @@ import com.example.core.flow.observe
 import com.example.core.navigation.NavCommand
 import com.example.core.navigation.navigate
 import com.example.weatherapp.R
+import com.example.weather.R as WeatherR
+import com.example.cities.R as CitiesR
+import com.example.windowdialog.R as SearchR
 import com.example.weatherapp.databinding.ActivityMainBinding
 import kotlinx.coroutines.flow.MutableSharedFlow
 import javax.inject.Inject
@@ -37,23 +41,25 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNav.setOnItemSelectedListener { menu ->
             when (menu.itemId) {
                 R.id.main -> {
-                    findNavController(R.id.container_fragment)
-                        .navigate(com.example.weather.R.id.weather_nav_graph)
+                    navigateFragment(WeatherR.id.weather_nav_graph)
                     return@setOnItemSelectedListener true
                 }
                 R.id.favorite -> {
-                    findNavController(R.id.container_fragment)
-                        .navigate(com.example.cities.R.id.city_nav_graph)
+                    navigateFragment(CitiesR.id.city_nav_graph)
                     return@setOnItemSelectedListener true
                 }
                 R.id.search -> {
-                    findNavController(R.id.container_fragment)
-                        .navigate(com.example.windowdialog.R.id.dialog_nav_graph)
+                    navigateFragment(SearchR.id.dialog_nav_graph)
                     return@setOnItemSelectedListener true
                 }
                 else -> { return@setOnItemSelectedListener false }
             }
         }
+    }
+
+    private fun navigateFragment(@IdRes fragment: Int) {
+        findNavController(R.id.container_fragment)
+            .navigate(fragment)
     }
 
     override fun onDestroy() {

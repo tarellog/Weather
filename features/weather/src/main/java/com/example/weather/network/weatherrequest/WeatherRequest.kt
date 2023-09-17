@@ -14,12 +14,11 @@ class WeatherRequest(private val api: ApiWeatherService) : WeatherService {
             val remoteData = api.getApi(cityName)
             Weather(
                 headerWeather = buildList {
-                    add(remoteData.list.mapToHeaderDisplayModel())
+                    add(remoteData.mapToHeaderDisplayModel())
                 },
                 dailyWeather = buildList {
                     addAll(remoteData.list.mapToDisplayModel())
                 },
-                cityName = remoteData.city.name
             )
         }
     }
