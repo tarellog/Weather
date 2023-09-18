@@ -20,6 +20,7 @@ data class TodayWeather(
 
 data class DailyWeather(
     val date: Date,
+    val temp: Int,
     val minTemp: Int,
     val maxTemp: Int,
     val icon: Icon,

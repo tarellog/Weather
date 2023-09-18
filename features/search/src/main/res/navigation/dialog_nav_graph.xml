@@ -7,7 +7,7 @@
 
     <dialog
         android:id="@+id/searchDialogFragment"
-        android:name="com.example.windowdialog.SearchDialogFragment"
+        android:name="com.example.search.SearchDialogFragment"
         android:label="fragment_search_dialog"
         tools:layout="@layout/fragment_search_dialog" />
 

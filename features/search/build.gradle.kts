@@ -6,7 +6,7 @@ plugins {
 
 android {
     compileSdk = AppConfig.compileSdk
-    namespace = "com.example.windowdialog"
+    namespace = "com.example.search"
 
     defaultConfig {
         minSdk = AppConfig.minSdk

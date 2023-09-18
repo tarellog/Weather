@@ -45,6 +45,8 @@ class DailyWeatherViewModel(
         weather.dailyWeather
             .take(1)
             .forEach { weatherList.addAll(listOf(WeatherItem.WeatherData(it))) }
+        weatherList.add(WeatherItem.Title)
+        weather.dailyWeather.forEach { weatherList.addAll(listOf(WeatherItem.WeatherToWeek(it))) }
         _weatherData.tryEmit(weatherList)
     }
 

@@ -27,10 +27,7 @@ object AppDependencies {
     private val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigationUi}"
     //endregion
 
-    //region FastAdapter
-    private val fastAdapter = "com.mikepenz:fastadapter:${Versions.fastAdapter}"
-    private val fastAdapterBinding = "com.mikepenz:fastadapter-extensions-binding:${Versions.fastBinding}"
-    private val fastAdapterDiff = "com.mikepenz:fastadapter-extensions-diff:${Versions.fastDiff}"
+    //region Adapter
     private val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recycler}"
     //endregion
 
@@ -79,9 +76,6 @@ object AppDependencies {
         coroutine,
         navigation,
         navigationUi,
-        fastAdapter,
-        fastAdapterBinding,
-        fastAdapterDiff,
         recyclerView,
         dagger,
         rxAndroid,
