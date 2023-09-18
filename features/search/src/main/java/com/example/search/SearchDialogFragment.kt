@@ -1,4 +1,4 @@
-package com.example.windowdialog
+package com.example.search
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
 import com.example.constants.TransmitNameCityByKey
-import com.example.windowdialog.databinding.FragmentSearchDialogBinding
+import com.example.search.databinding.FragmentSearchDialogBinding
 
 class SearchDialogFragment : DialogFragment() {
 

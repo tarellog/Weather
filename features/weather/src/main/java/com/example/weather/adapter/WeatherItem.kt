@@ -7,5 +7,7 @@ sealed class WeatherItem {
 
     data class HeaderData(val headerData: TodayWeather) : WeatherItem()
     data class WeatherData(val weatherData: DailyWeather) : WeatherItem()
+    object Title : WeatherItem()
+    data class WeatherToWeek(val toWeekData: DailyWeather) : WeatherItem()
 
 }

@@ -1,4 +1,4 @@
-package com.example.windowdialog
+package com.example.search
 
 import org.junit.Assert.assertEquals
 import org.junit.Test

@@ -13,6 +13,8 @@ class WeatherAdapter : Adapter<ViewHolder>() {
         when (viewType) {
             R.layout.header_item -> WeatherHeaderViewHolder(parent)
             R.layout.daily_item -> WeatherViewHolder(parent)
+            R.layout.title_item -> TitleViewHolder(parent)
+            R.layout.weather_to_week_item -> WeatherToWeekViewHolder(parent)
             else -> throw IllegalStateException("view holder not create")
         }
 
@@ -20,6 +22,8 @@ class WeatherAdapter : Adapter<ViewHolder>() {
         when (holder) {
             is WeatherHeaderViewHolder -> holder.bind(list[position] as WeatherItem.HeaderData)
             is WeatherViewHolder -> holder.bind(list[position] as WeatherItem.WeatherData)
+            is TitleViewHolder -> holder.bind()
+            is WeatherToWeekViewHolder -> holder.bind(list[position] as WeatherItem.WeatherToWeek)
         }
     }
 
@@ -27,6 +31,8 @@ class WeatherAdapter : Adapter<ViewHolder>() {
         when (list[position]) {
             is WeatherItem.HeaderData -> R.layout.header_item
             is WeatherItem.WeatherData -> R.layout.daily_item
+            is WeatherItem.Title -> R.layout.title_item
+            is WeatherItem.WeatherToWeek -> R.layout.weather_to_week_item
         }
 
     override fun getItemCount(): Int = list.size

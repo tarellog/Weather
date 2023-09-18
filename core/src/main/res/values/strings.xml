@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="tooday">Сегодня</string>
+    <string name="title">Прогноз на неделю</string>
 </resources>
